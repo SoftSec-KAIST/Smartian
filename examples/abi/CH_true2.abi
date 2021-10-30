@@ -1,0 +1,17 @@
+[
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "breakIt",
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "constructor"
+    }
+]
