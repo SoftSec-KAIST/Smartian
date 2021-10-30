@@ -1,0 +1,4573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>B2R2.FrontEnd.BinFile</name></assembly>
+<members>
+<member name="P:B2R2.FrontEnd.BinFile.Segment.Permission">
+<summary>
+ Permission of the segment.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Segment.Size">
+<summary>
+ Size of the segment.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Segment.Address">
+<summary>
+ Address of the segment.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Segment">
+<summary>
+ A segment is a block of code/data that is loaded in the real memory at
+ runtime. A segment can contain multiple sections in it.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Permission.Executable">
+<summary>
+ File is executable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Permission.Writable">
+<summary>
+ File is writable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Permission.Readable">
+<summary>
+ File is readable.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Permission">
+<summary>
+ File permission. Each permission corresponds to a bit, and thus, multiple
+ permissions can be OR-ed.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.FileType.UnknownFile">
+<summary>
+ Other types.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.FileType.ObjFile">
+<summary>
+ Object.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.FileType.LibFile">
+<summary>
+ Library.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.FileType.CoreFile">
+<summary>
+ Core (core dump).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.FileType.ExecutableFile">
+<summary>
+ Executable.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.FileType">
+<summary>
+ FileType represents categories for binary files.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.LinkageTableEntry.TableAddress">
+<summary>
+ The address of the table that stores the actual target address, e.g., GOT.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.LinkageTableEntry.TrampolineAddress">
+<summary>
+ Trampoline code address, e.g., PLT.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.LinkageTableEntry.LibraryName">
+<summary>
+ Corresponding library name.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.LinkageTableEntry.FuncName">
+<summary>
+ Target function name for dynamic linking.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.LinkageTableEntry">
+<summary>
+ Linkage table entry object, which basically refers to PLT or IAT.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Section.Name">
+<summary>
+ Name of the section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Section.Size">
+<summary>
+ Size of the section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Section.Kind">
+<summary>
+ Section kind.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Section.FileOffset">
+<summary>
+ File offset of the seciton.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Section.Address">
+<summary>
+ Address of the section.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.Section.ToAddrRange">
+<summary>
+ Convert the section into an AddrRange based on its starting address and
+ the size.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Section">
+<summary>
+ A section object defined in a file-format-agnostic way. A Section in B2R2
+ should be located inside a segment.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.SectionKind.ExtraSection">
+<summary>
+ Extra section.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.SectionKind.LinkageTableSection">
+<summary>
+ Linkage table, such as PLT, section.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.SectionKind.WritableSection">
+<summary>
+ Writable section.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.SectionKind.ExecutableSection">
+<summary>
+ Executable section.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.SectionKind">
+<summary>
+ Kinds of sections.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Symbol.ArchOperationMode">
+<summary>
+ Corresponding ArchOperationMode for this symbol, which is only meaningful
+ for ARM.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Symbol.LibraryName">
+<summary>
+ Corresponding library name.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Symbol.Target">
+<summary>
+ Symbol target.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Symbol.Kind">
+<summary>
+ Symbol kind.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Symbol.Name">
+<summary>
+ Symbol name.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Symbol.Address">
+<summary>
+ Address of the symbol.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Symbol">
+<summary>
+ A symbol object defined in a file-format-agnostic way.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.TargetKind.DynamicSymbol">
+<summary>
+ Dynamic symbols cannot be stripped off.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.TargetKind.StaticSymbol">
+<summary>
+ Static symbols are used by link editor, and can be stripped off.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.TargetKind">
+<summary>
+ Is the symbol used for static target (static link editor) or dynamic target
+ (dynamic linker)?
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.SymbolKind.ForwardType">
+<summary>
+ The symbol is associated with a forwarding entry.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.SymbolKind.FileType">
+<summary>
+ The symbol gives the name of the source file associated with the obj file.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.SymbolKind.SectionType">
+<summary>
+ The symbol is associated with a section.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.SymbolKind.TrampolineType">
+<summary>
+ The symbol is associated with a trampoline instruction, such as PLT.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.SymbolKind.ExternFunctionType">
+<summary>
+ The symbol is associated with an external (imported) function.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.SymbolKind.FunctionType">
+<summary>
+ The symbol is associated with a general function.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.SymbolKind.ObjectType">
+<summary>
+ The symbol is associated with a data object, such as a variable.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.SymbolKind.NoType">
+<summary>
+ The symbol type is not specified.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.SymbolKind">
+<summary>
+ Kinds of a symbol.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.BinaryPointer.MaxOffset">
+<summary>
+ Max offset that this pointer can point to.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.BinaryPointer.Offset">
+<summary>
+ File offset.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.BinaryPointer.Addr">
+<summary>
+ Virtual address.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.BinaryPointer.#ctor(System.UInt64,System.Int32,System.Int32)">
+<summary>
+ Initializer
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.BinaryPointer">
+<summary>
+ A pointer to binary, which is used to exclusively point to a portion of a
+ binary, e.g., a section. It holds both the virtual address as well as the
+ file offset.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.WordSize">
+ <summary>
+   Word size of the CPU that this binary can run on.
+ </summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.TextStartAddr">
+ <summary>
+   The beginning of the text section of this binary.
+ </summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.IsStripped">
+ <summary>
+   Is this binary stripped?
+ </summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.IsRelocatable">
+ <summary>
+   Is this binary relocatable (position-independent)?
+ </summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.IsNXEnabled">
+ <summary>
+   Is NX enabled for this binary? (DEP enabled or not)
+ </summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.ISA">
+ <summary>
+   The ISA that this file expects to run on.
+ </summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.FileType">
+ <summary>
+   What kind of binary is this?
+ </summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.FilePath">
+ <summary>
+   The file path where this file is located.
+ </summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.FileFormat">
+ <summary>
+   The format of this file: ELF, PE, Mach-O, or etc.
+ </summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.ExceptionTable">
+ <summary>
+   An exception table, which is a mapping from a function address to a set
+   of landing pads. The landing pads are mappings from a range of
+   instruction addresses to a landing pad address.
+ </summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.EntryPoint">
+ <summary>
+   The entry point of this binary (the start address that this binary runs
+   at). Note that some binaries (e.g., PE DLL files) do not have a specific
+   entry point, and EntryPoint will return None in such a case.
+ </summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.BinReader">
+ <summary>
+   The corresponding binary reader.
+ </summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.FileInfo.BaseAddress">
+ <summary>
+   The base address of this binary at which this binary is prefered to be
+   loaded in memory.
+ </summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.TryFindFunctionSymbolName(System.UInt64)">
+ <summary>
+   Find the symbol name for a given address.
+ </summary>
+ <returns>
+   Returns a symbol as an Ok value if a symbol exists, otherwise returns
+   an Error value.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.TranslateAddress(System.UInt64)">
+ <summary>
+   Translate a virtual address into a relative offset to this binary.
+ </summary>
+ <param name="addr">Virtual address.</param>
+ <returns>
+   Returns an offset to this binary for a given virtual address.
+ </returns>
+ <exception cref="T:B2R2.FrontEnd.BinFile.InvalidAddrReadException">
+   Thrown when the given address is out of a valid address range.
+ </exception>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.ToBinaryPointer(System.String)">
+ <summary>
+   Convert the section of the name (string) into a binary pointer, which
+   can exclusively point to binary contents of the section.
+ </summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.ToBinaryPointer(System.UInt64)">
+ <summary>
+   Convert the section at the address (Addr) into a binary pointer, which
+   can exclusively point to binary contents of the section.
+ </summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.PermissionToString(B2R2.FrontEnd.BinFile.Permission)">
+ <summary>
+   Convert from permission to string.
+ </summary>
+ <param name="perm">A permission to convert.</param>
+ <returns>
+   A converted string.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.IsValidRange(B2R2.AddrRange)">
+ <summary>
+   Check if the given address range is valid. This function returns true
+   only if the whole range of the addressess are valid (for every address
+   in the range, IsValidAddr should return true).
+ </summary>
+ <returns>
+   Returns true if the whole range of addresses is within a valid range,
+   false otherwise.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.IsValidAddr(System.UInt64)">
+ <summary>
+   Check if the given address is valid for this binary. We say a given
+   address is valid for the binary if the address is within the range of
+   statically computable segment ranges.
+ </summary>
+ <returns>
+   Returns true if the address is within a valid range, false otherwise.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.IsLinkageTable(System.UInt64)">
+ <summary>
+   Return if a given address is an address of a linkage table entry.
+ </summary>
+ <returns>
+   True if the address is a linkage table address, false otherwise.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.IsInFileRange(B2R2.AddrRange)">
+ <summary>
+   Check if the given address range is valid and there exists a
+   corresponding region in the actual binary file. This function returns
+   true only if the whole range of the addressess are valid (for every
+   address in the range, IsInFileAddr should return true).
+ </summary>
+ <returns>
+   Returns true if the whole range of addresses is within a valid range,
+   false otherwise.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.IsInFileAddr(System.UInt64)">
+ <summary>
+   Check if the given address is valid and there is an actual mapping from
+   the binary file to the corresponding memory. Unlike IsValidAddr, this
+   function checks if we can decide the actual value of the given address
+   from the binary. For example, a program header of an ELF file may
+   contain 100 bytes in size, but when it is mapped to a segment in memory,
+   the size of the segment can be larger than the size of the program
+   header. This function checks if the given address is in the range of the
+   segment that has a direct mapping to the file's program header.
+ </summary>
+ <returns>
+   Returns true if the address is within a mapped address range, false
+   otherwise.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.IsExecutableAddr(System.UInt64)">
+ <summary>
+   Check if the given address is executable address for this binary. We say
+   a given address is executable if the address is within an executable
+   section.
+ </summary>
+ <returns>
+   Returns true if the address is executable, false otherwise.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetTextSections">
+ <summary>
+   Return a sequence text sections.
+ </summary>
+ <returns>
+   A sequence of text sections.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetSymbols">
+ <summary>
+   Return a list of all the symbols from the binary.
+ </summary>
+ <returns>
+   A sequence of symbols.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetStaticSymbols">
+ <summary>
+   Return a list of all the static symbols from the binary. Static symbols
+   can be removed when we strip the binary. Unlike dynamic symbols, static
+   symbols are not required to run the binary, thus they can be safely
+   removed before releasing it.
+ </summary>
+ <returns>
+   A sequence of static symbols.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetSegments(B2R2.FrontEnd.BinFile.Permission)">
+ <summary>
+   For a given permission, return a list of segments that satisfy the
+   permission. For a given "READ-only" permission, this function may return
+   a segment whose permission is "READABLE and WRITABLE", as an instance.
+ </summary>
+ <returns>
+   A sequence of segments.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetSegments(System.UInt64)">
+ <summary>
+   Return a list of the segments from the binary, which contain the given
+   address.
+ </summary>
+ <param name="addr">The address that belongs to segments.</param>
+ <returns>
+   A sequence of segments.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetSegments(System.Boolean)">
+ <summary>
+   Return a list of segments from the binary. If the isLoadable parameter
+   is true, it will only return a list of "loadable" segments. Otherwise,
+   it will return all possible segments. By default, this function returns
+   only loadable segments, e.g., PT_LOAD segment of ELF.
+ </summary>
+ <returns>
+   A sequence of segments.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetSections(System.String)">
+ <summary>
+   Return a section that has the specified name.
+ </summary>
+ <param name="name">The name of the section.</param>
+ <returns>
+   A sequence of sections that have the specified name. This function
+   returns an empty sequence if there is no section of the given name.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetSections(System.UInt64)">
+ <summary>
+   Return a section that contains the given address.
+ </summary>
+ <param name="addr">The address that belongs to a section.</param>
+ <returns>
+   A sequence of sections. This function returns a singleton if there
+   exists a corresponding section. Otherwise, it returns an empty sequence.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetSections">
+ <summary>
+   Return a list of all the sections from the binary.
+ </summary>
+ <returns>
+   A sequence of sections.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetRelocationSymbols">
+ <summary>
+   Return a list of all relocation symbols from the binary.
+ </summary>
+ <returns>
+   A sequence of relocation symbols.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetNotInFileIntervals(B2R2.AddrRange)">
+ <summary>
+   Given a range r, return a list of address ranges (intervals) that are
+   within r, and that are not in-file.
+ </summary>
+ <returns>
+   Returns an empty list when the given range r is valid, i.e.,
+   `IsInFileRange r = true`.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetLinkageTableEntries">
+ <summary>
+   Return a list of all the linkage table entries from the binary.
+ </summary>
+ <returns>
+   A sequence of linkage table entries, e.g., PLT entries for ELF files.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetFunctionSymbols">
+ <summary>
+   Returns a sequence of local function symbols (excluding external
+   functions) from a given FileInfo.
+ </summary>
+ <returns>
+   A sequence of function symbols.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetFunctionAddresses">
+ <summary>
+   Returns a sequence of local function addresses (excluding external
+   functions) from a given FileInfo.
+ </summary>
+ <returns>
+   A sequence of function addresses.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetExecutableSections">
+ <summary>
+   Get a sequence of executable sections including linkage table code
+   sections such as PLT.
+ </summary>
+ <returns>
+   A sequence of executable sections.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.GetDynamicSymbols(Microsoft.FSharp.Core.FSharpOption{System.Boolean})">
+ <summary>
+   Return a list of all the dynamic symbols from the binary. Dynamic
+   symbols are the ones that are required to run the binary. The
+   "excludeImported" argument indicates whether to exclude external symbols
+   that are imported from other files. However, even if "excludeImported"
+   is true, returned symbols may include a forwarding entry that redirects
+   to another function in an external file (cf. SymbolKind.ForwardType).
+   When "excludeImported" argument is not given, this function will simply
+   return all possible dynamic symbols.
+ </summary>
+ <returns>
+   A sequence of dynamic symbols.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.FileTypeToString(B2R2.FrontEnd.BinFile.FileType)">
+ <summary>
+   Convert <see cref="T:B2R2.FrontEnd.BinFile.FileType">FileType</see> to
+   string.
+ </summary>
+ <param name="ty">A FileType to convert.</param>
+ <returns>
+   A converted string.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.EntryPointToString(Microsoft.FSharp.Core.FSharpOption{System.UInt64})">
+ <summary>
+   Convert from entrypoint information to string.
+ </summary>
+ <param name="entryPoint">Entry point of a given binary.</param>
+ <returns>
+   A converted string.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileInfo.AddSymbol(System.UInt64,B2R2.FrontEnd.BinFile.Symbol)">
+ <summary>
+   Add a symbol for address.
+ </summary>
+ <returns>
+   Does not return a value.
+ </returns>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.FileInfo">
+<summary>
+ FileInfo describes a binary file in a format-agnostic way.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.RawFileInfo">
+ <summary>
+   This class represents a raw binary file (containing only binary code and
+   data without file format)
+ </summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.WasmFileInfo">
+ <summary>
+   This class represents a Web Assembly
+   (Wasm Module) binary file.
+ </summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELFFileInfo">
+ <summary>
+   This class represents an ELF binary file.
+ </summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.MachFileInfo">
+ <summary>
+   This class represents a Mach-O binary file.
+ </summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PEFileInfo">
+ <summary>
+   This class represents a PE binary file.
+ </summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.InvalidFileTypeException">
+<summary>
+ Raised when an invalid file type is encountered.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.FileFormatMismatchException">
+<summary>
+ Raised when an unexpected file format is detected.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.InvalidAddrReadException">
+<summary>
+ Raised when accessing an invalid address of a binary file.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FileHelper.trimByRange(B2R2.AddrRange,B2R2.AddrRange)">
+<summary>
+ Trim the target range based on my range (myrange) in such a way that the
+ resulting range is always included in myrange.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.WasmModule.BinReader">
+<summary>
+ Binary Reader
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.WasmModule.IndexMap">
+<summary>
+ An element location translation map (Index to/from Offset).
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.WasmModule.SectionsInfo">
+<summary>
+ Contains a summary of all sections information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.CustomContents.Size">
+<summary>
+ Size of the contents in bytes
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.CustomContents.Name">
+<summary>
+ Name of the custom section
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.Section`1.Contents">
+<summary>
+ The actual contents of the section
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.Section`1.Offset">
+<summary>
+ The Offset of the section
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.Section`1.Size">
+<summary>
+ The Size of the contents in bytes
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.IndexInfo.ElemOffset">
+<summary>
+ Element offset.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.IndexInfo.Kind">
+<summary>
+ Index kind.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.IndexInfo.Index">
+<summary>
+ Element index.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.IndexInfo.SecOffset">
+<summary>
+ Element parent section offset.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.SectionsInfo.SecArray">
+<summary>
+ Section summary by its number.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.SectionsInfo.SecByName">
+<summary>
+ Section summary by name.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.SectionsInfo.SecByAddr">
+<summary>
+ Section summary by address.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.SectionSummary.ContentsSize">
+<summary>
+ Section contents size in bytes.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.SectionSummary.HeaderSize">
+<summary>
+ Section header size in bytes.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.SectionSummary.Offset">
+<summary>
+ Section offset.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.SectionSummary.Name">
+<summary>
+ Section Name.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.SectionSummary.Id">
+<summary>
+ Section Identifier.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Wasm.SectionSummary">
+<summary>
+ Represents the summary of a section information.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Wasm.Mutability.Mut">
+<summary>
+ Variable
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Wasm.Mutability.Immut">
+<summary>
+ Constant
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.Vector`1.Size">
+<summary>
+ Size of the vector in bytes
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.Vector`1.Elements">
+<summary>
+ The actual elements sequence
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Wasm.Vector`1.Length">
+<summary>
+ Length of encoded elements
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.UnwindingEntry.Rule">
+<summary>
+ Unwinding rule.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.UnwindingEntry.CanonicalFrameAddress">
+<summary>
+ CFA.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.UnwindingEntry.Location">
+<summary>
+ Instruction location.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.UnwindingEntry">
+<summary>
+ An entry (a row) of the call frame information table (unwinding table).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.Rule">
+<summary>
+ Rule that describes how a given register/return address has been saved on
+ the stack frame.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.Target">
+<summary>
+ Either a return address or a normal register is stored on the stack.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.Action.ActionExpr">
+<summary>
+ The previous value is represented as the expression.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.Action.Register">
+<summary>
+ The previous value of this register is stored in another register numbered
+ R.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.Action.ValOffset">
+<summary>
+ The previous value of this register is the value CFA+N where CFA is the
+ current CFA value and N is a signed offset.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.Action.Offset">
+<summary>
+ The previous value of this register is saved at the address CFA+N where
+ CFA is the current CFA value and N is a signed offset.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.Action.SameValue">
+<summary>
+ The register has not been modified from the previous frame.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.Action.Undefined">
+<summary>
+ Has no recoverable value in the previous frame.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.Action">
+<summary>
+ How does a target value get stored on the stack frame.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.CanonicalFrameAddress">
+<summary>
+ The CFA. Machine-independent representation of the current frame address.
+ For example, (esp+8) on x86.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.DWOperation">
+<summary>
+ Dwarf opcodes.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.DWCFAInstruction">
+<summary>
+ Dwarf instructions used for unwinding stack.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderApplication.DW_EH_PE_omit">
+<summary>
+ No value is present.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderApplication.DW_EH_PE_datarel">
+<summary>
+ Value is relative to the beginning of the .eh_frame_hdr section.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderApplication.DW_EH_PE_pcrel">
+<summary>
+ Value is relative to the current program counter.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderApplication.DW_EH_PE_absptr">
+<summary>
+ Value is used with no modification.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderValue.DW_EH_PE_sdata8">
+<summary>
+ A 8-byte signed value.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderValue.DW_EH_PE_sdata4">
+<summary>
+ A 4-byte signed value.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderValue.DW_EH_PE_sdata2">
+<summary>
+ A 2-byte signed value.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderValue.DW_EH_PE_sleb128">
+<summary>
+ Signed value is encoded using the LEB128.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderValue.DW_EH_PE_udata8">
+<summary>
+ A 8-byte unsigned value.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderValue.DW_EH_PE_udata4">
+<summary>
+ A 4-byte unsigned value.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderValue.DW_EH_PE_udata2">
+<summary>
+ A 2-byte unsigned value.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderValue.DW_EH_PE_uleb128">
+<summary>
+ Unsigned value is encoded using the LEB128.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderValue.DW_EH_PE_absptr">
+<summary>
+ A literal pointer whose size is determined by the architecture.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ExceptionHeaderValue.DW_EH_PE_omit">
+<summary>
+ No value is present.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.UnwindingTbl">
+<summary>
+ Unwinding info table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.ISA">
+<summary>
+ ISA.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.BinReader">
+<summary>
+ BinReader.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.ExecutableRanges">
+<summary>
+ Executable address ranges.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.NotInFileRanges">
+<summary>
+ Not-in-file address ranges.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.InvalidAddrRanges">
+<summary>
+ Invalid address ranges.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.ExceptionTable">
+<summary>
+ Exception table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.ExceptionFrame">
+<summary>
+ Exception frame.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.Globals">
+<summary>
+ Global symbols (such as R_X86_64_GLOB_DAT).
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.PLT">
+<summary>
+ Procedure Linkage Table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.RelocInfo">
+<summary>
+ Relocation information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.SymInfo">
+<summary>
+ Symbol information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.SecInfo">
+<summary>
+ Section information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.LoadableSecNums">
+<summary>
+ Loadable section numbers.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.LoadableSegments">
+<summary>
+ Loadable segments.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.ProgHeaders">
+<summary>
+ Segment information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.BaseAddr">
+<summary>
+ Preferred base address.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELF.ELFHdr">
+<summary>
+ ELF header.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.ELF">
+<summary>
+ Main ELF format representation.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.CallFrameInformation">
+<summary>
+ The main information block of .eh_frame.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.FrameDescriptionEntry">
+<summary>
+ FDE. Frame Description Entry.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.CommonInformationEntry">
+<summary>
+ CIE. Common Information Entry.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.Augmentation">
+<summary>
+ This tells how augmetation data is handled.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.LanguageSpecificDataArea">
+<summary>
+ LSDA. Language Specific Data Area.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.LSDAHeader.TTEnd">
+<summary>
+ The end of types table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.LSDAHeader.TTFormat">
+<summary>
+ This is the format of types table entry.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.LSDAHeader.LPStart">
+<summary>
+ The base of the landing pad pointers.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.LSDAHeader.LPFormat">
+<summary>
+ This is the format of the landing pad pointers.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.LSDAHeader">
+<summary>
+ Language Specific Data Area header.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ProgramHeader.PHAlignment">
+<summary>
+ The value to which the segments are aligned in memory and in the file.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ProgramHeader.PHMemSize">
+<summary>
+ The number of bytes in the memory image of the segment. This can be
+ greater than PHFileSize as some sections (w/ SHTNoBits type) occupy
+ nothing in the binary file, but can be mapped in the segment at runtime.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ProgramHeader.PHFileSize">
+<summary>
+ The number of bytes in the file image of the segment.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ProgramHeader.PHPhyAddr">
+<summary>
+ The physical address of the segment. This is reserved for systems using
+ physical addresses.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ProgramHeader.PHAddr">
+<summary>
+ The virtual address at which the first byte of the segment resides in
+ memory.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ProgramHeader.PHOffset">
+<summary>
+ An offset from the beginning of the file at which the first byte of the
+ segment resides in memory.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ProgramHeader.PHFlags">
+<summary>
+ Flags relevant to the segment.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ProgramHeader.PHType">
+<summary>
+ Program header type.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.ProgramHeader">
+<summary>
+ An executable or shared object file&apos;s program header table is an array of
+ structures, each of which describes a segment or the other information a
+ system needs to prepare for execution. An object file segment contains one
+ or more sections. Program headers are meaningful only for executable and
+ shared object files. A file specifies its own program header size with
+ the ELF header&apos;s members.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTPAXFlags">
+<summary>
+ This segment contains PAX flags.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTGNURelro">
+<summary>
+ This segment specifies the location and size of a segment which may be
+ made read-only after relocations have been processed.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTGNUStack">
+<summary>
+ This segment specifies the permissions on the segment containing the stack
+ and is used to indicate weather the stack should be executable. The
+ absence of this header indicates that the stack will be executable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTGNUEHFrame">
+<summary>
+ This segment specifies the location and size of the exception handling
+ information as defined by the .eh_frame_hdr section.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTHiProc">
+<summary>
+ The upper bound of processor-specific program header type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTMIPSABIFlags">
+<summary>
+ MIPS ABI flags (PT_MIPS_ABIFLAGS).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTARMExIdx">
+<summary>
+ The exception unwind table (PT_ARM_EXIDX).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTLoProc">
+<summary>
+ The lower bound of processor-specific program header type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTHiOS">
+<summary>
+ The upper bound of OS-specific program header type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTLoOS">
+<summary>
+ The lower bound of OS-specific program header type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTTLS">
+<summary>
+ This segment contains the Thread-Local Storage template.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTPhdr">
+<summary>
+ This segment specifies the location and size of the program header table
+ itself, It may occur only if the program header table is part of the
+ memory image of the program. If it is present, it must precede any
+ loadable segment entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTShLib">
+<summary>
+ This segment type is reserved but has unspecified semantics.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTNote">
+<summary>
+ This segment contains the location and size of auxiliary information.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTInterp">
+<summary>
+ This segment contains the location and size of a null-terminated path name
+ to invoke an interpreter. This segment type is meaningful only for
+ executable files, but not for shared objects. This segment may not occur
+ more than once in a file. If it is present, it must precede any loadable
+ segment entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTDynamic">
+<summary>
+ This segment contains dynamic linking information.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTLoad">
+<summary>
+ This is a loadable segment.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType.PTNull">
+<summary>
+ This program header is not used.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.ProgramHeaderType">
+<summary>
+ This member tells what kind of segment this array element describes or
+ how to interpret the array element&apos;s information. A segment is also known as
+ a &apos;program header&apos;.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbolInfo.AddrToSymbTable">
+<summary>
+ Address to symbol mapping.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbolInfo.SecNumToSymbTbls">
+<summary>
+ A mapping from a section number to the corresponding symbol table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbolInfo.VersionTable">
+<summary>
+ Linux-specific symbol version table containing versions required to link.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.ELFSymbolInfo">
+<summary>
+ Main data structure for storing symbol information.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.RelocInfo">
+<summary>
+ Relocation information
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.RelocationEntry.RelSecNumber">
+<summary>
+ The number of the section that defines this relocation.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.RelocationEntry.RelAddend">
+<summary>
+ A constant addend used to compute the value to be stored into the
+ relocatable field.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.RelocationEntry.RelType">
+<summary>
+ Relocation type.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.RelocationEntry.RelSymbol">
+<summary>
+ Relocation symbol. Symbol can be None when only the addend is used.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.RelocationEntry.RelOffset">
+<summary>
+ The location at which to apply the relocation action.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.RelocationEntry">
+<summary>
+ Relocation entry.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.RelocationType">
+<summary>
+ Relocation type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPSGPREL32">
+<summary>
+ MIPS: GP-relative 32 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPSCall16">
+<summary>
+ MIPS: 16-bit GOT entry for function.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPSPC16">
+<summary>
+ MIPS: PC-relative 16 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPSGOT16">
+<summary>
+ MIPS: 16-bit GOT entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPSLiteral">
+<summary>
+ MIPS: 16-bit literal entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPSGPREL16">
+<summary>
+ MIPS: GP-relative 16 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPSLow16">
+<summary>
+ MIPS: low 16 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPSHigh16">
+<summary>
+ MIPS: high 16 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPS26">
+<summary>
+ MIPS: direct 26 bit shifted.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPSREL32">
+<summary>
+ MIPS: PC-relative 32 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPS32">
+<summary>
+ MIPS: direct 32 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPS16">
+<summary>
+ MIPS: direct 16 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS.RelocMIPSNone">
+<summary>
+ MIPS: no reloc.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.RelocationMIPS">
+<summary>
+ Relocation type for MIPS.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8.RelocAARCH64JmpSlot">
+<summary>
+ AARCH64: create PLT entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8.RelocAARCH64GlobData">
+<summary>
+ AARCH64: create GOT entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8.RelocAARCH64Copy">
+<summary>
+ AARCH64: copy symbol at runtime.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8.RelocAARCH64GOTREL32">
+<summary>
+ AARCH64: GOT-relative 32 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8.RelocAARCH64GOTREL64">
+<summary>
+ AARCH64: GOT-relative 64 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8.RelocAARCH64PREL16">
+<summary>
+ AARCH64: PC-relative 16 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8.RelocAARCH64PREL32">
+<summary>
+ AARCH64: PC-relative 32 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8.RelocAARCH64PREL64">
+<summary>
+ AARCH64: PC-relative 64 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8.RelocAARCH64ABS16">
+<summary>
+ AARCH64: direct 16 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8.RelocAARCH64ABS32">
+<summary>
+ AARCH64: direct 32 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8.RelocAARCH64ABS64">
+<summary>
+ AARCH64: direct 64 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8.RelocAARCH64None">
+<summary>
+ AARCH64: no reloc.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.RelocationARMv8">
+<summary>
+ Relocation type for ARMv8.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMPLT32">
+<summary>
+ ARM: 32-bit PLT address.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMGOT32">
+<summary>
+ ARM: 32-bit GOT entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMGOTPC">
+<summary>
+ ARM: 32-bit PC-relative offset to GOT.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMGOTOffset">
+<summary>
+ ARM: 32-bit offset to GOT.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMRelative">
+<summary>
+ ARM: adjust by program base.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMJmpSlot">
+<summary>
+ ARM: create PLT entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMGlobData">
+<summary>
+ ARM: create GOT entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMCopy">
+<summary>
+ ARM: copy symbol at runtime.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMABS8">
+<summary>
+ ARM: direct 8 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMABS12">
+<summary>
+ ARM: direct 12 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMABS16">
+<summary>
+ ARM: direct 16 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMPC13">
+<summary>
+ ARM: PC-relative LDR.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMREL32">
+<summary>
+ ARM: PC-relative 32 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMABS32">
+<summary>
+ ARM: direct 32 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMPC24">
+<summary>
+ ARM: PC-relative 26-bit branch.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7.RelocARMNone">
+<summary>
+ ARM: no reloc.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.RelocationARMv7">
+<summary>
+ Relocation type for ARMv7.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64IRelative">
+<summary>
+ x86-64: adjust indirectly by program base.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64Size64">
+<summary>
+ x86-64: size of symbol plus 64-bit addend.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64Size32">
+<summary>
+ x86-64: size of symbol plus 32-bit addend.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64PLTOFF64">
+<summary>
+ x86-64: 64-bit GOT relative offset to PLT entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64GOTPLT64">
+<summary>
+ x86-64: 64-bit GOT entry offset requiring PLT.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64GOTPC64">
+<summary>
+ x86-64: 64-bit PC relative offset to GOT.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64GOTPCREL64">
+<summary>
+ x86-64: 64-bit PC-relative offset to GOT entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64GOT64">
+<summary>
+ x86-64: 64-bit GOT entry offset.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64GOTPC32">
+<summary>
+ x86-64: 32-bit signed PC-relative offset to GOT.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64GOTOFF64">
+<summary>
+ x86-64: 64-bit offset to GOT.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64PC64">
+<summary>
+ x86-64: PC-relative 64 bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64PC8">
+<summary>
+ x86-64: 8-bit sign extended PC relative.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX648">
+<summary>
+ x86-64: direct 8-bit sign extended.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64PC16">
+<summary>
+ x86-64: 16-bit sign extended PC relative.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX6416">
+<summary>
+ x86-64: direct 16-bit zero extended.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX6432S">
+<summary>
+ x86-64: direct 32-bit sign extended.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX6432">
+<summary>
+ x86-64: direct 32-bit zero extended.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64GOTPCREL">
+<summary>
+ x86-64: 32-bit signed PC-relative offset to GOT.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64Relative">
+<summary>
+ x86-64: adjust by program base.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64JmpSlot">
+<summary>
+ x86-64: create PLT entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64GlobData">
+<summary>
+ x86-64: create GOT entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64Copy">
+<summary>
+ x86-64: copy symbol at runtime.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64PLT32">
+<summary>
+ x86-64: 32-bit PLT entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64GOT32">
+<summary>
+ x86-64: 32-bit GOT entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64PC32">
+<summary>
+ x86-64: PC-relative 32-bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX6464">
+<summary>
+ x86-64: direct 64-bit.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX64.RelocX64None">
+<summary>
+ x86-64: no relocation.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.RelocationX64">
+<summary>
+ Relocation type for x86-64.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386SUB32">
+<summary>
+ x86: (A - S).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386SUB16">
+<summary>
+ x86: (A - S).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386SEG16">
+<summary>
+ x86: (A + (S &gt;&gt; 4)).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386GOT32X">
+<summary>
+ x86: (G + A - GOT/G + A)
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386IRELATIVE">
+<summary>
+ x86: indirect (B + A).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386TLSGOTDESC">
+<summary>
+ x86 more TLS relocations
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386SIZE32">
+<summary>
+ x86: (Z + A).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386TLSGD32">
+<summary>
+ x86 more TLS relocations
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386PC8">
+<summary>
+ x86: (S + A - P).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc3868">
+<summary>
+ x86: (S + A).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386PC16">
+<summary>
+ x86: (S + A - P).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc38616">
+<summary>
+ x86: (S + A).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386TLSTPOFF">
+<summary>
+ x86 TLS relocations
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc38632PLT">
+<summary>
+ x86: (L + A).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386GOTPC">
+<summary>
+ x86: pc-relative offset to GOT (GOT + A - P).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386GOTOffset">
+<summary>
+ x86: 32-bit offset to GOT (S + A - GOT).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386Relative">
+<summary>
+ x86: adjust by program base (S + A).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386JmpSlot">
+<summary>
+ x86: create PLT entry (S).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386GlobData">
+<summary>
+ x86: create GOT entry (S).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386Copy">
+<summary>
+ x86: copy symbol at runtime.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386PLT32">
+<summary>
+ x86: 32-bit PLT entry (L + A - P).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386GOT32">
+<summary>
+ x86: 32-bit GOT entry (G + A).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386PC32">
+<summary>
+ x86: PC-relative 32-bit (S + A - P).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc38632">
+<summary>
+ x86: direct 32-bit (S + A).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.RelocationX86.Reloc386None">
+<summary>
+ x86: no relocation.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.RelocationX86">
+<summary>
+ Relocation type for x86.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbol.ArchOperationMode">
+<summary>
+ ArchOperationMode.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbol.VerInfo">
+<summary>
+ Version information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbol.ParentSection">
+<summary>
+ Parent section of this section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbol.SecHeaderIndex">
+<summary>
+ The index of the relevant section with regard to this symbol.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbol.Vis">
+<summary>
+ Symbol visibility.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbol.SymType">
+<summary>
+ Symbol type.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbol.Bind">
+<summary>
+ Symbol binding.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbol.Size">
+<summary>
+ Size of the symbol (e.g., size of the data object).
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbol.SymName">
+<summary>
+ Symbol&apos;s name.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSymbol.Addr">
+<summary>
+ Address of the symbol.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.SymVerInfo.VerName">
+<summary>
+ Version string.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.SymVerInfo.VerType">
+<summary>
+ Version type.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SymVerInfo">
+<summary>
+ Symbol version information.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.VersionType.VerHidden">
+<summary>
+ Hidden symbol.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.VersionType.VerGlobal">
+<summary>
+ Unversioned global symbol.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.VersionType.VerLocal">
+<summary>
+ Unversioned local symbol.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.VersionType.VerRegular">
+<summary>
+ Regular version number.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionHeaderIdx.SecIdx">
+<summary>
+ This symbol index holds an index into the section header table.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionHeaderIdx.SHNHiReserve">
+<summary>
+ The upper boundary of the range of the reserved range.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionHeaderIdx.SHNXIndex">
+<summary>
+ An escape value indicating that the actual section header index is too
+ large to fit in the containing field. The header section index is found in
+ another location specific to the structure where it appears.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionHeaderIdx.SHNCommon">
+<summary>
+ The symbol labels a common block that has not yet been allocated.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionHeaderIdx.SHNABS">
+<summary>
+ The symbol has an absolute value that will not change because of
+ relocation.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionHeaderIdx.SHNHiOS">
+<summary>
+ The upper bound of OS-specific section index value.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionHeaderIdx.SHNLoOS">
+<summary>
+ The lower bound of OS-specific section index value.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionHeaderIdx.SHNHiProc">
+<summary>
+ The upper bound of processor-specific section index value.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionHeaderIdx.SHNLoProc">
+<summary>
+ The lower bound of processor-specific section index value.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionHeaderIdx.SHNUndef">
+<summary>
+ The symbol is undefined. Linker should update references to this symbol
+ with the actual definition from another file.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionHeaderIdx.SHNLoReserve">
+<summary>
+ This is the start of the reserved range.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionHeaderIdx">
+<summary>
+ Every symbol table entry is defined in relation to some section.
+ This member holds the relevant section header table index.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolVisibility.STVProtected">
+<summary>
+ A symbol defined in the current component is protected if it is visible in
+ other components but cannot be preempted. Any reference to such a symbol
+ from within the defining component must be resolved to the definition in
+ that component, even if there is a definition in another component that
+ would interpose by the default rules.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolVisibility.STVHidden">
+<summary>
+ A symbol defined in the current component is hidden if its name is not
+ visible to other components. Such a symbol is necessarily protected. This
+ attribute is used to control the external interface of a component. An
+ object named by such a symbol may still be referenced from another
+ component if its address is passed outside.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolVisibility.STVInternal">
+<summary>
+ This visibility attribute is currently reserved.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolVisibility.STVDefault">
+<summary>
+ Use the visibility specified by the symbol&apos;s binding type (SymbolBind).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SymbolVisibility">
+<summary>
+ This member currently specifies a symbol&apos;s visibility
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolType.STTHiProc">
+<summary>
+ The upper bound of processor-specific symbol type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolType.STTLoProc">
+<summary>
+ The lower bound of processor-specific symbol type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolType.STTHiOS">
+<summary>
+ The upper bound of OS-specific binding type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolType.STTLoOS">
+<summary>
+ The lower bound of OS-specific symbol type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolType.STTGNUIFunc">
+<summary>
+ A symbol with type STT_GNU_IFUNC is a function, but the symbol does not
+ provide the address of the function as usual. Instead, the symbol provides
+ the address of a function which returns a pointer to the actual function.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolType.STTTLS">
+<summary>
+ The symbol specifies a Thread-Local Storage entity.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolType.STTCommon">
+<summary>
+ This symbol labels an uninitialized common block.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolType.STTFile">
+<summary>
+ This symbol represents the name of the source file associated with the
+ object file.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolType.STTSection">
+<summary>
+ This symbol is associated with a section. Symbol table entries of this
+ type exist primarily for relocation and normally have STBLocal binding.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolType.STTFunc">
+<summary>
+ This symbol is associated with a function.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolType.STTObject">
+<summary>
+ This symbol is associated with a data object, such as variable and an
+ array.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolType.STTNoType">
+<summary>
+ Symbol&apos;s type is not specified.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SymbolType">
+<summary>
+ A symbol&apos;s type provides a general classification for the associated entity.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolBind.STBHiProc">
+<summary>
+ The upper bound of processor-specific binding type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolBind.STBLoProc">
+<summary>
+ The lower bound of processor-specific binding type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolBind.STBHiOS">
+<summary>
+ The upper bound of OS-specific binding type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolBind.STBLoOS">
+<summary>
+ The lower bound of OS-specific binding type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolBind.STBWeak">
+<summary>
+ Weak symbols resemble global symbols, but their definitions have lower
+ precedence.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolBind.STBGlobal">
+<summary>
+ Global symbols are visible to all object files being combined.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SymbolBind.STBLocal">
+<summary>
+ Local symbols are not visible outside. Local symbols of the same name may
+ exist in multiple files without interfering with each other.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SymbolBind">
+<summary>
+ A symbol&apos;s binding determines the linkage visibility and behavior.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.DynamicSectionEntry">
+<summary>
+ Dynamic section entry.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.DynamicSectionTag">
+<summary>
+ ELF dynamic section tags.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.SectionInfo.VerDefSec">
+<summary>
+ GNU version definition section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.SectionInfo.VerNeedSec">
+<summary>
+ GNU version need section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.SectionInfo.VerSymSec">
+<summary>
+ GNU version symbol section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.SectionInfo.DynSymSecNums">
+<summary>
+ Dynamic symbol section numbers.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.SectionInfo.StaticSymSecNums">
+<summary>
+ Static symbol section numbers.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.SectionInfo.SecByNum">
+<summary>
+ Section by its number.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.SectionInfo.SecByName">
+<summary>
+ Section by name.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.SectionInfo.SecByAddr">
+<summary>
+ Section by address.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionInfo">
+<summary>
+ Section information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSection.SecEntrySize">
+<summary>
+ Some sections hold a table of fixed-size entries, such as a symbol
+ table. For such a section, this member gives the size in bytes of each
+ entry.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSection.SecAlignment">
+<summary>
+ Some sections have address alignment constraints.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSection.SecInfo">
+<summary>
+ Extra information. The interpretation of this info depends on the section
+ type.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSection.SecLink">
+<summary>
+ A section header table index link. The interpretation of this field
+ depends on the section type.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSection.SecSize">
+<summary>
+ The section&apos;s size in bytes.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSection.SecOffset">
+<summary>
+ Byte offset from the beginning of the file to the first byte in the
+ section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSection.SecAddr">
+<summary>
+ The address at which the section&apos;s first byte should reside. If this
+ section will not appear in the process memory, this value is 0.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSection.SecFlags">
+<summary>
+ Misc. attributes about the section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSection.SecType">
+<summary>
+ Categorizes the section&apos;s contents and semantics.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSection.SecName">
+<summary>
+ The name of the section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.ELFSection.SecNum">
+<summary>
+ Unique section number.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.ELFSection">
+<summary>
+ ELF Section
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFX8664Large">
+<summary>
+ This section can hold more than 2GB.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFExclude">
+<summary>
+ This section is excluded from input to the link-edit of an executable or
+ shared object
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFOrdered">
+<summary>
+ This section requires ordering in relation to other sections of the same
+ type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFMaskProc">
+<summary>
+ All bits included in this mask are reserved for processor-specific
+ semantics.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFMaskOS">
+<summary>
+ All bits included in this mask are reserved for operating system-specific
+ semantics.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFCompressed">
+<summary>
+ This section contains compressed data.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFTLS">
+<summary>
+ This section contains TLS data.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFGroup">
+<summary>
+ This section is a member, perhaps the only one, of a section group.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFOSNonConforming">
+<summary>
+ This section requires special OS-specific processing beyond the standard
+ linking rules to avoid incorrect behavior
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFLinkOrder">
+<summary>
+ This section adds special ordering requirements to the link editor.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFInfoLink">
+<summary>
+ This section holds section indexes.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFString">
+<summary>
+ This section contains string.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFMerge">
+<summary>
+ This section may be merged.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFExecInstr">
+<summary>
+ This section contains executable machine code.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFAlloc">
+<summary>
+ This section occupies memory during process execution.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionFlag.SHFWrite">
+<summary>
+ This section contains data that should be writable during process
+ execution.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionFlag">
+<summary>
+ Sections support 1-bit flags that describe miscellaneous attributes.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTGNUVerSym">
+<summary>
+ This section holds Linux-specific version information. It specifically
+ contains an array of elements of type Elfxx_Half. It has as many entries
+ as the dynamic symbol table.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTGNUVerNeed">
+<summary>
+ This section holds Linux-specific version information (Elfxx_VerNeed).
+ This stores version information of external functions, which is needed by
+ the caller binary.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTGNUVerDef">
+<summary>
+ This section holds Linux-specific version information (Elfxx_VerDef). This
+ stores version information of functions defined in the binary.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTHiUser">
+<summary>
+ This section specifies the upper bound of program-specific section type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTLoUser">
+<summary>
+ This section specifies the lower bound of program-specific section type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTHiProc">
+<summary>
+ This section marks the end of processor-specific section type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTLoProc">
+<summary>
+ This section marks the start of processor-specific section type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTSymTabShIdx">
+<summary>
+ This section holds section indexes.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTGroup">
+<summary>
+ This section holds section group information.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTPreInitArray">
+<summary>
+ This section contains pre-initialization function pointers.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTFiniArray">
+<summary>
+ This section contains termination function pointers.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTInitArray">
+<summary>
+ This section contains initialization function pointers.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTDynSym">
+<summary>
+ This section contains a minimal set of dynamic linking symbols.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTShLib">
+<summary>
+ This section is reserved (unknown purpose).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTRel">
+<summary>
+ This section holds relocation entries without explicit addends.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTNoBits">
+<summary>
+ This section occupies no space, although SecOffset contains a conceptual
+ offset to it.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTNote">
+<summary>
+ This section holds a note.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTDynamic">
+<summary>
+ This section holds information for dynamic linking.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTHash">
+<summary>
+ This section holds a symbol hash table. All ELF files participating in
+ dynamic linking must contain a symbol hash table.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTRela">
+<summary>
+ This section holds relocation entries with explicit addends.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTStrTab">
+<summary>
+ This section holds a string table.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTSymTab">
+<summary>
+ This section holds a symbol table.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTProgBits">
+<summary>
+ This section holds information defined by the program, whose format and
+ meaning are determined solely by the program.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.ELF.SectionType.SHTNull">
+<summary>
+ This section is inactive.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.SectionType">
+<summary>
+ This member categorizes the section&apos;s contents and semantics.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.ELFHeader">
+<summary>
+ ELF header.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.ELFFileType">
+<summary>
+ File type.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.UnhandledEncoding">
+<summary>
+ Raised when an unhandled encoding is encountered.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.ExceptionFrames.InvalidDWInstructionExpression">
+<summary>
+ Raised when invalid sequence of dwarf instructions encountered.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.ExceptionFrames.CIENotFoundByFDE">
+<summary>
+ Raised when CIE is not found by FDE
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.ExceptionFrames.UnhandledAugString">
+<summary>
+ Raised when an unhandled augment string is encountered.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.ExceptionFrames.UnhandledExceptionHandlingFrameVersion">
+<summary>
+ Raised when an unhandled eh_frame version is encountered.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.ELF.ELFGccExceptTable.parseLSDA(B2R2.WordSize,B2R2.BinReader,System.UInt64,System.Int32,Microsoft.FSharp.Collections.FSharpList{B2R2.FrontEnd.BinFile.ELF.LanguageSpecificDataArea})">
+<summary>
+ Parse language-specific data area.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.ELF.Header.isELF(B2R2.BinReader,System.Int32)">
+<summary>
+ Check if the file has a valid ELF header.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.ELF.Section.parseSectionNameContents(B2R2.FrontEnd.BinFile.ELF.ELFHeader,B2R2.BinReader)">
+<summary>
+ Return the raw memory contents that represent the section names separated by
+ null character.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.ELF.ProgHeader.parse(System.UInt64,B2R2.FrontEnd.BinFile.ELF.ELFHeader,B2R2.BinReader)">
+<summary>
+ Parse and associate program headers with section headers to return the list
+ of segments.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.PLT.PLTType.UnknownPLT">
+<summary>
+ The PLT pattern is unknown.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.ELF.PLT.PLTType.PLT">
+<summary>
+ The regular PLT.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.PLT.PLTDescriptor.InfoGetter">
+<summary>
+ Compute a EntryInfo from (Entry index, current entry address,
+ PLTDescriptor, BinReader, gotBaseAddr). Each PLT has its own getter.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.PLT.PLTDescriptor.InstrSize">
+<summary>
+ Size of the instruction that refers to the GOT.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.PLT.PLTDescriptor.GOTOffset">
+<summary>
+ Offset from a start of a PLT entry to the index to the GOT.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.PLT.PLTDescriptor.EntrySize">
+<summary>
+ Entry size of the PLT.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.PLT.PLTDescriptor.IsSecondary">
+<summary>
+ Is secondary PLT?
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.PLT.PLTDescriptor.LinkMethod">
+<summary>
+ Lazy vs. Non-lazy (eager) binding.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.PLT.PLTDescriptor.CodeKind">
+<summary>
+ PIC or non-PIC.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.ELF.PLT.PLTDescriptor.StartAddr">
+<summary>
+ PLT start address.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.ELF.PLT.computeARMPLTHeaderSize(B2R2.BinReader,B2R2.FrontEnd.BinFile.ELF.ELFSection)">
+<summary>
+ Get the size of the header of PLT (PLT Zero)
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.BinReader">
+<summary>
+ BinReader.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.ExecutableRanges">
+<summary>
+ Executable address ranges.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.NotInFileRanges">
+<summary>
+ Not-in-file address ranges.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.InvalidAddrRanges">
+<summary>
+ Invalid address ranges.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.Relocations">
+<summary>
+ Relocation information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.SecText">
+<summary>
+ Text section index.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.SymInfo">
+<summary>
+ Symbol info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.Cmds">
+<summary>
+ Load Commands
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.Sections">
+<summary>
+ Sections.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.SegmentMap">
+<summary>
+ Segment address map.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.Segments">
+<summary>
+ Segments.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.MachHdr">
+<summary>
+ Header.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.BaseAddr">
+<summary>
+ Preferred base address.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.Mach.EntryPoint">
+<summary>
+ Entry point.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.Mach">
+<summary>
+ Main Mach-o file structure.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SymInfo.Exports">
+<summary>
+ Export info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SymInfo.LinkageTable">
+<summary>
+ Linkage table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SymInfo.SymbolMap">
+<summary>
+ Address to symbol mapping.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SymInfo.Symbols">
+<summary>
+ All symbols.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.SymInfo">
+<summary>
+ Symbol info
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.RelocationInfo.IsPCRel">
+<summary>
+ Is this address part of an instruction that uses PC-relative addressing?
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.RelocationInfo.RelocSection">
+<summary>
+ Parent section
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.RelocationInfo.RelocLength">
+<summary>
+ Relocation length.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.RelocationInfo.RelocSymbol">
+<summary>
+ RelocSymbol
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.RelocationInfo.RelocAddr">
+<summary>
+ Offset in the section to what is being relocated.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.RelocationInfo">
+<summary>
+ Reloc info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.ExportInfo.ExportAddr">
+<summary>
+ Exported symbol address.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.ExportInfo.ExportSymName">
+<summary>
+ Symbol name.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.ExportInfo">
+<summary>
+ Export info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSymbol.SymAddr">
+<summary>
+ Address of the symbol.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSymbol.VerInfo">
+<summary>
+ External library version info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSymbol.SymDesc">
+<summary>
+ Providing additional information about the nature of this symbol for
+ non-stab symbols.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSymbol.SecNum">
+<summary>
+ The number of the section that this symbol can be found.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSymbol.IsExternal">
+<summary>
+ Is this an external symbol?
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSymbol.SymType">
+<summary>
+ Symbol type (N_TYPE field of n_type).
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSymbol.SymName">
+<summary>
+ Symbol name.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.MachSymbol">
+<summary>
+ Mach-O symbol.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NPC">
+<summary>
+ Global pascal symbol.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NLeng">
+<summary>
+ Second stab entry with length information.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NEComL">
+<summary>
+ End common (local name).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NEComm">
+<summary>
+ End common.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NBComm">
+<summary>
+ Begin common.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NRBrac">
+<summary>
+ Right bracket.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NExcl">
+<summary>
+ Deleted include file.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NLBrac">
+<summary>
+ Left bracket.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NEntry">
+<summary>
+ Alternate entry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NEIncl">
+<summary>
+ Include file end.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NPSym">
+<summary>
+ Parameter.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NOLevel">
+<summary>
+ Compiler optimization level.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NVersion">
+<summary>
+ Compiler version.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NParams">
+<summary>
+ Compiler parameters.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NSOL">
+<summary>
+ &quot;#included&quot; file name: name,,n_sect,0,address.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NBIncl">
+<summary>
+ Include file beginning.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NLSym">
+<summary>
+ Local symbol.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NOSO">
+<summary>
+ Object file name.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NSO">
+<summary>
+ Source file name.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NSSym">
+<summary>
+ Structure element.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NEnSym">
+<summary>
+ End nsect sym.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NSLine">
+<summary>
+ Source line.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NRSym">
+<summary>
+ Register sym.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NOpt">
+<summary>
+ Emitted with gcc2_compiled and in gcc source.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NAST">
+<summary>
+ AST file path.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NBnSym">
+<summary>
+ Begin nsect sym.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NLCSym">
+<summary>
+ .lcomm symbol.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NStSym">
+<summary>
+ Static symbol.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NFun">
+<summary>
+ Procedure.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NFName">
+<summary>
+ Procedure name (f77 kludge).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NGSym">
+<summary>
+ Global symbol.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NIndirect">
+<summary>
+ The symbol is defined to be the same as another symbol.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NPreBnd">
+<summary>
+ The symbol is undefined and the image is using a prebound value for the
+ symbol.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NSect">
+<summary>
+ The symbol is defined in the section number given in n_sect.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NAbs">
+<summary>
+ The symbol is absolute. The linker does not update the value of an
+ absolute symbol.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SymbolType.NUndef">
+<summary>
+ The symbol is undefined.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.SymbolType">
+<summary>
+ Symbol type (N_TYPE).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.SectionInfo">
+<summary>
+ Section information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSection.SecReserved2">
+<summary>
+ Reserved field 2.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSection.SecReserved1">
+<summary>
+ Reserved field 1.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSection.SecAttrib">
+<summary>
+ Section attributes.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSection.SecType">
+<summary>
+ Section type.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSection.SecNumOfReloc">
+<summary>
+ The number of relocation entries located at SecRelOff for this section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSection.SecRelOff">
+<summary>
+ The file offset of the first relocation entry for this section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSection.SecAlignment">
+<summary>
+ The section’s byte alignment.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSection.SecOffset">
+<summary>
+ The offset to this section in the file.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSection.SecSize">
+<summary>
+ The size of this section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSection.SecAddr">
+<summary>
+ The virtual memory address of this section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSection.SegName">
+<summary>
+ The name of the segment that should eventually contain this section.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachSection.SecName">
+<summary>
+ Section name.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.MachSection">
+<summary>
+ Mach-O section.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionAttribute.AttrLocReloc">
+<summary>
+ Section has local relocation entries.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionAttribute.AttrExtReloc">
+<summary>
+ Section has external relocation entries.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionAttribute.AttrDebug">
+<summary>
+ Debug section.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionAttribute.AttrSelfModifyingCode">
+<summary>
+ Used with i386 code stubs written on by dyld.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionAttribute.AttrLiveSupport">
+<summary>
+ Blocks are live if they reference live blocks.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionAttribute.AttrNoDeadStrip">
+<summary>
+ No dead stripping.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionAttribute.AttrStripStaticSyms">
+<summary>
+ OK to strip static symbols in this section in files with the MH_DYLDLINK
+ flag.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionAttribute.AttrNoTOC">
+<summary>
+ Section contains coalesced symbols that are not to be in a ranlib table of
+ contents.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionAttribute.AttrPureInstructions">
+<summary>
+ Section contains only true machine instructions.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.SectionAttribute">
+<summary>
+ Section attribute.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.ThreadLocalInitFunctionPointers">
+<summary>
+ Functions to call to initialize TLV values .
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.ThreadLocalVariablePointers">
+<summary>
+ Pointers to TLV descriptors.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.ThreadLocalVariables">
+<summary>
+ TLV descriptors.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.ThreadLocalZeroFill">
+<summary>
+ Template of initial values for TLVs.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.ThreadLocalRegular">
+<summary>
+ Template of initial values for TLVs.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.LazyDyLibSymbolPointers">
+<summary>
+ Section with only lazy symbol pointers to lazy loaded dylibs.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.DTraceDOF">
+<summary>
+ Section contains DTrace Object Format.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.SixteenByteLiterals">
+<summary>
+ Section with only 16 byte literals.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.Interposing">
+<summary>
+ Section with only pairs of function pointers for interposing.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.GBZeroFill">
+<summary>
+ Zero fill on demand section (this can be larger than 4 gigabytes).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.Coalesced">
+<summary>
+ Section contains symbols that are to be coalesced.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.ModTermFuncPointers">
+<summary>
+ Section with only function pointers for termination.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.ModInitFuncPointers">
+<summary>
+ Section with only function pointers for initialization.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.SymbolStubs">
+<summary>
+ Section with only symbol stubs, byte size of stub in the reserved2 field.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.LazySymbolPointers">
+<summary>
+ Section with only lazy symbol pointers.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.NonLazySymbolPointers">
+<summary>
+ Section with only non-lazy symbol pointers .
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.LiteralPointers">
+<summary>
+ section with only pointers to literals.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.EightByteLiterals">
+<summary>
+ Section with only 8 byte literals.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.FourByteLiterals">
+<summary>
+ Section with only 4 byte literals.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.CStringLiterals">
+<summary>
+ Section with only literal C strings.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.ZeroFill">
+<summary>
+ Zero fill on demand section.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.SectionType.Regular">
+<summary>
+ Regular section.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.SectionType">
+<summary>
+ Section type.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.UnhandledCommand">
+<summary>
+ This type represents a load command unhandled by B2R2.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLibCmd.DyLibCmpVer">
+<summary>
+ Library&apos;s compatibility vers number.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLibCmd.DyLibCurVer">
+<summary>
+ Library&apos;s current version number.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLibCmd.DyLibTimeStamp">
+<summary>
+ Library&apos;s build time stamp.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLibCmd.DyLibName">
+<summary>
+ Library&apos;s path name.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.DyLibCmd">
+<summary>
+ Dynamic library command: the data used by the dynamic linker to match a
+ shared library against the files that have linked to it.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MainCmd.StackSize">
+<summary>
+ Initial stack size, if not zero.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MainCmd.EntryOff">
+<summary>
+ Offset of main().
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.MainCmd">
+<summary>
+ Main command.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.FuncStartsCmd">
+<summary>
+ Function starts command (LC_FUNCTION_STARTS).
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLdInfoCmd.ExportSize">
+<summary>
+ The size of export info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLdInfoCmd.ExportOff">
+<summary>
+ File offset to export info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLdInfoCmd.LazyBindSize">
+<summary>
+ The size of lazy binding info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLdInfoCmd.LazyBindOff">
+<summary>
+ File offset to lazy binding info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLdInfoCmd.WeakBindSize">
+<summary>
+ The size of weak binding info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLdInfoCmd.WeakBindOff">
+<summary>
+ File offset to weak binding info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLdInfoCmd.BindSize">
+<summary>
+ The size of binding info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLdInfoCmd.BindOff">
+<summary>
+ File offset to binding info
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLdInfoCmd.RebaseSize">
+<summary>
+ The size of rebase info.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DyLdInfoCmd.RebaseOff">
+<summary>
+ File offset to rebase info.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.DyLdInfoCmd">
+<summary>
+ DYLD information command (dyld_info_command).
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.NumLocalRel">
+<summary>
+ An integer indicating the number of entries in the local relocation table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.LocalRelOff">
+<summary>
+ An integer indicating the byte offset from the start of the file to the
+ local relocation table data.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.NumExtRel">
+<summary>
+ An integer indicating the number of entries in the external relocation
+ table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.ExtRelOff">
+<summary>
+ An integer indicating the byte offset from the start of the file to the
+ external relocation table data.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.NumIndirectSym">
+<summary>
+ An integer indicating the number of entries in the indirect symbol table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.IndirectSymOff">
+<summary>
+ An integer indicating the byte offset from the start of the file to the
+ indirect symbol table data.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.NumExtRefSym">
+<summary>
+ An integer indicating the number of entries in the external reference
+ table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.ExtRefSymOff">
+<summary>
+ An integer indicating the byte offset from the start of the file to the
+ external reference table data.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.NumModTab">
+<summary>
+ An integer indicating the number of entries in the module table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.ModTabOff">
+<summary>
+ An integer indicating the byte offset from the start of the file to the
+ module table data.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.NumTOCContents">
+<summary>
+ An integer indicating the number of entries in the table of contents.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.TOCOffset">
+<summary>
+ An integer indicating the byte offset from the start of the file to the
+ table of contents data.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.NumUndefSym">
+<summary>
+ An integer indicating the total number of symbols in the group of
+ undefined external symbols.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.IdxUndefSym">
+<summary>
+ An integer indicating the index of the first symbol in the group of
+ undefined external symbols.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.NumExtSym">
+<summary>
+ An integer indicating the total number of symbols in the group of defined
+ external symbols.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.IdxExtSym">
+<summary>
+ An integer indicating the index of the first symbol in the group of
+ defined external symbols.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.NumLocalSym">
+<summary>
+ An integer indicating the total number of symbols in the group of local
+ symbols.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd.IdxLocalSym">
+<summary>
+ An integer indicating the index of the first symbol in the group of local
+ symbols.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.DySymTabCmd">
+<summary>
+ Dynamic symbol table command.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SymTabCmd.StrSize">
+<summary>
+ An integer indicating the size (in bytes) of the string table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SymTabCmd.StrOff">
+<summary>
+ An integer containing the byte offset from the start of the image to the
+ location of the string table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SymTabCmd.NumOfSym">
+<summary>
+ An integer indicating the number of entries in the symbol table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SymTabCmd.SymOff">
+<summary>
+ An integer containing the byte offset from the start of the file to the
+ location of the symbol table entries.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.SymTabCmd">
+<summary>
+ Symbol table command.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SegCmd.SegFlag">
+<summary>
+ A set of flags that affect the loading of this segment.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SegCmd.NumSecs">
+<summary>
+ The number of section data structures following this load command.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SegCmd.InitProt">
+<summary>
+ The initial virtual memory protections of this segment.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SegCmd.MaxProt">
+<summary>
+ The maximum permitted virtual memory protections of this segment
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SegCmd.FileSize">
+<summary>
+ The number of bytes occupied by this segment on disk
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SegCmd.FileOff">
+<summary>
+ The offset in this file of the data to be mapped at VMAddr.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SegCmd.VMSize">
+<summary>
+ The number of bytes of virtual memory occupied by this segment.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SegCmd.VMAddr">
+<summary>
+ The starting virtual memory address of this segment
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SegCmd.SegCmdName">
+<summary>
+ Segment name.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.SegCmd.SecOff">
+<summary>
+ The offset of the sections in the segment. If the segment has sections
+ then the section structures directly follow the segment command and their
+ size is in the size of the command.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.SegCmd">
+<summary>
+ Segment command.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.LoadCommand">
+<summary>
+ The load command structures are located directly after the header of the
+ object file, and they specify both the logical structure of the file and the
+ layout of the file in virtual memory.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCVerMinWatchOS">
+<summary>
+ Build for Watch min OS version
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCLinkOptimizeHint">
+<summary>
+ Optimization hints in MH_OBJECT files.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCLinkOpt">
+<summary>
+ Linker options in MH_OBJECT files.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCEncInfo64">
+<summary>
+ 64-bit encrypted segment information.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCDyLibCodeSigDRS">
+<summary>
+ Code signing DRs copied from linked dylibs.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCSourceVer">
+<summary>
+ Source version used to build binary.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCDataInCode">
+<summary>
+ Table of non-instructions in __text.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCMain">
+<summary>
+ Replacement for LC_UNIXTHREAD.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCDyLDEnv">
+<summary>
+ String for dyld to treat like environment variable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCFunStarts">
+<summary>
+ Compressed table of function start addresses.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCVerMinIphoneOS">
+<summary>
+ Build for iPhoneOS min OS version.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCVerMinMacOSX">
+<summary>
+ Build for MacOSX min OS version.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCLoadUpwardDyLib">
+<summary>
+ Load upward dylib.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCDyLDInfoOnly">
+<summary>
+ Compressed dyld information only.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCDyLDInfo">
+<summary>
+ Compressed dyld information.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCEncSegInfo">
+<summary>
+ Encrypted segment information.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCLazyLoadDyLib">
+<summary>
+ Delay load of dylib until first use.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCReExportDyLib">
+<summary>
+ Load and re-export dylib.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCSegSplitInfo">
+<summary>
+ Local of info to split segments
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCCodeSign">
+<summary>
+ Local of code signature.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCRunPath">
+<summary>
+ Runpath additions.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCUUID">
+<summary>
+ The uuid.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCRoutines64">
+<summary>
+ 64-bit image routines.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCSegment64">
+<summary>
+ 64-bit segment of this file to be mapped.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCLoadWeakDyLib">
+<summary>
+ Load a dynamically linked shared library that is allowed to be missing.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCPrebindCksum">
+<summary>
+ Prebind checksum.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCTwoLevelHints">
+<summary>
+ Two-level namespace lookup hints
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCSubLib">
+<summary>
+ Sub library.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCSubClient">
+<summary>
+ Sub client.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCSubUmbrella">
+<summary>
+ Sub umbrella.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCSubFramework">
+<summary>
+ Sub framework.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCRoutines">
+<summary>
+ Image routines.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCPreboundDyLib">
+<summary>
+ Modules prebound for a dynamically linked shared library.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCIDDyLink">
+<summary>
+ Dynamic linker identification.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCLoadDyLink">
+<summary>
+ Load a dynamic linker.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCIDDyLib">
+<summary>
+ This command Specifies the install name of a dynamic shared library.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCLoadDyLib">
+<summary>
+ Load a dynamically linked shared library.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCDySymTab">
+<summary>
+ Dynamic link-edit symbol table info.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCPrepage">
+<summary>
+ Prepage command (internal use).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCFVMFile">
+<summary>
+ Fixed VM file inclusion (internal use).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCIdent">
+<summary>
+ Object identification info (obsolete).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCIDFVMLib">
+<summary>
+ Fixed VM shared library identification.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCLoadFVMLib">
+<summary>
+ Load a specified fixed VM shared library.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCUnixThread">
+<summary>
+ This command defines the initial thread state of the main thread of the
+ process.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCThread">
+<summary>
+ This command defines the initial thread state of the main thread of the
+ process. LCThread is similar to LCUnixThread but does not cause the kernel
+ to allocate a stack.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCSymSeg">
+<summary>
+ The gdb symbol table info (obsolete).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCSymTab">
+<summary>
+ The symbol table for this file.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.LoadCmdType.LCSegment">
+<summary>
+ Defines a segment of this file to be mapped into the address space of the
+ process that loads this file. It also includes all the sections contained
+ by the segment.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.LoadCmdType">
+<summary>
+ Load command type.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachHeader.Flags">
+<summary>
+ A set of bit flags indicating the state of certain optional features of
+ the Mach-O file format.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachHeader.SizeOfCmds">
+<summary>
+ The number of bytes occupied by the load commands following the header
+ structure.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachHeader.NumCmds">
+<summary>
+ The number of load commands.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachHeader.FileType">
+<summary>
+ File type.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachHeader.CPUSubType">
+<summary>
+ CPU subtype.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachHeader.CPUType">
+<summary>
+ CPU type.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachHeader.Class">
+<summary>
+ Word size.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.Mach.MachHeader.Magic">
+<summary>
+ Magic number.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.MachHeader">
+<summary>
+ Mach-O file format header.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHAppExtensionSafe">
+<summary>
+ The code was linked for use in an application extension.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHNoHeapExecution">
+<summary>
+ When this bit is set, the OS will run the main executable with a
+ non-executable heap even on platforms (e.g. i386) that don&apos;t require it.
+ Only used in MHExecute filetypes.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHHasTLVDescriptors">
+<summary>
+ Contains a section of type ThreadLocalVariables.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHDeadStrippableDYLIB">
+<summary>
+ Only for use on dylibs.  When linking against a dylib that has this bit
+ set, the static linker will automatically not create a LCLoadDyLib load
+ command to the dylib if no symbols are being referenced from the dylib.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHPIE">
+<summary>
+ When this bit is set, the OS will load the main executable at a random
+ address.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHNoReexportedDylibs">
+<summary>
+ When this bit is set on a dylib, the static linker does not need to
+ examine dependent dylibs to see if any are re-exported.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHSetUIDSafe">
+<summary>
+ When this bit is set, the binary declares it is safe for use in processes
+ when issetugid() is true.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHRootSafe">
+<summary>
+ When this bit is set, the binary declares it is safe for use in processes
+ with uid zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHAllowStackExecution">
+<summary>
+ When this bit is set, all stacks in the task will be given stack execution
+ privilege. Only used in MHExecute filetypes.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHBindsToWeak">
+<summary>
+ The final linked image uses weak symbols.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHWeakDefines">
+<summary>
+ The final linked image contains external weak symbols.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHCanonical">
+<summary>
+ The binary has been canonicalized via the unprebind operation.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHSubsectionsViaSymbols">
+<summary>
+ Safe to divide up the sections into sub-sections via symbols for dead code
+ stripping.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHAllModsBound">
+<summary>
+ Indicates that this binary binds to all two-level namespace modules of
+ its dependent libraries. only used when MH_PREBINDABLE and MH_TWOLEVEL
+ are both set.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHPrebindable">
+<summary>
+ the binary is not prebound but can have its prebinding redone. only used
+ when MHPreBound is not set.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHNoFixPrebinding">
+<summary>
+ Do not have dyld notify the prebinding agent about this executable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHNoMultiDefs">
+<summary>
+ This umbrella guarantees no multiple defintions of symbols in its
+ sub-images so the two-level namespace hints can always be used.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHForceFlat">
+<summary>
+ The executable is forcing all images to use flat name space bindings.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHTwoLevel">
+<summary>
+ The image is using two-level name space bindings.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHLazyInit">
+<summary>
+ the shared library init routine is to be run lazily via catching memory
+ faults to its writeable segments (obsolete).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHSplitSegs">
+<summary>
+ The file has its read-only and read-write segments split.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHPreBound">
+<summary>
+ The file has its dynamic undefined references prebound.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHBinDatLoad">
+<summary>
+ The object file&apos;s undefined references are bound by the dynamic linker
+ when loaded.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHDYLDLink">
+<summary>
+ The object file is input for the dynamic linker and can&apos;t be statically
+ link edited again.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHIncrLink">
+<summary>
+ The object file is the output of an incremental link against a base file
+ and can&apos;t be linked against a base file and can&apos;t be link edited again.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFlag.MHNoUndefs">
+<summary>
+ The object file has no undefined references.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.MachFlag">
+<summary>
+ Attribute of the file.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFileType.MHKextBundle">
+<summary>
+ x86_64 kexts.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFileType.MHDsym">
+<summary>
+ Companion file with only debug sections.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFileType.MHDylibStub">
+<summary>
+ Shared library stub for static linking only, no section contents.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFileType.MHDybundle">
+<summary>
+ Dynamically bound bundle file.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFileType.MHDylinker">
+<summary>
+ Dynamically bound shared library file.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFileType.MHDylib">
+<summary>
+ Dynamically bound shared library file.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFileType.MHPreload">
+<summary>
+ Preloaded executable file.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFileType.MHCore">
+<summary>
+ Core file.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFileType.MHFvmlib">
+<summary>
+ Fixed VM shared library file.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFileType.MHExecute">
+<summary>
+ Standard executable programs.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.MachFileType.MHObject">
+<summary>
+ Intermediate object files.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.MachFileType">
+<summary>
+ Usage of the file.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.CPUSubType">
+<summary>
+ CPUSubType specifies the exact model of the CPU.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.CPUType">
+<summary>
+ CPUType indicates the architecture.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.Magic.FATCigam">
+<summary>
+ The file is intended for use on multiple architectures (FAT binary). This
+ value is used on a little-endian host.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.Magic.FATMagic">
+<summary>
+ The file is intended for use on multiple architectures (FAT binary). This
+ value is used on a big-endian host.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.Magic.MHCigam64">
+<summary>
+ The byte ordering scheme of the target machine is the reverse of the host
+ CPU (64-bit CPU).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.Magic.MHMagic64">
+<summary>
+ The file is intended for use on a CPU with the same endianness as the
+ computer on which the compiler is running (64-bit CPU).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.Magic.MHCigam">
+<summary>
+ The byte ordering scheme of the target machine is the reverse of the host
+ CPU (32-bit CPU).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.Magic.MHMagic">
+<summary>
+ The file is intended for use on a CPU with the same endianness as the
+ computer on which the compiler is running (32-bit CPU).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.Magic">
+<summary>
+ Magic number for Mach-O header.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.Mach.LoadCommands.readLCStr(B2R2.BinReader,System.UInt32,System.Int32)">
+<summary>
+ Read lc_str string.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.Mach.Symbol.parseExportTrieHead(System.UInt64,B2R2.BinReader,System.Int32)">
+<summary>
+ The symbols exported by a dylib are encoded in a trie.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.Mach.Symbol.parseSymbolPtrs``1(B2R2.FrontEnd.BinFile.Mach.MachHeader,B2R2.FrontEnd.BinFile.Mach.SectionInfo,``0[],System.Int32[])">
+<summary>
+ Symbol pointer tables are similar to GOT in ELF.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.Mach.Symbol.parseSymbolStubs``1(B2R2.FrontEnd.BinFile.Mach.SectionInfo,``0[],System.Int32[])">
+<summary>
+ __stubs section is similar to PLT in ELF.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.Mach.Symbol.parseDynSymTable(B2R2.BinReader,Microsoft.FSharp.Collections.FSharpList{B2R2.FrontEnd.BinFile.Mach.DySymTabCmd})">
+<summary>
+ DynSym table contains indices to the symbol table.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.Mach.Symbol.symTab(Microsoft.FSharp.Collections.FSharpList{B2R2.FrontEnd.BinFile.Mach.MachSymbol},System.UInt64,B2R2.BinReader,B2R2.FrontEnd.BinFile.Mach.MachHeader,B2R2.FrontEnd.BinFile.Mach.DyLibCmd[],System.ReadOnlySpan{System.Byte},System.Int32,System.UInt32)">
+<summary>
+ Parse SymTab, which is essentially an array of n_list.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.Helper.MachVMProt.Executable">
+<summary>
+ File is executable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.Helper.MachVMProt.Writable">
+<summary>
+ File is writable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.Mach.Helper.MachVMProt.Readable">
+<summary>
+ File is readable.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.Mach.Helper.MachVMProt">
+<summary>
+ Mach-specific virtual memory permission (for maxprot and initprot). Note
+ that these values are different than the B2R2.Permission type.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.BinReader">
+<summary>
+ BinReader
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.FindSectionIdxFromRVA">
+<summary>
+ A function for finding section index for a given rva (int).
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.ExecutableRanges">
+<summary>
+ Executable address ranges.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.NotInFileRanges">
+<summary>
+ Not-in-file address ranges.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.InvalidAddrRanges">
+<summary>
+ Invalid address ranges.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.SymbolInfo">
+<summary>
+ Symbol information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.WordSize">
+<summary>
+ Word size for the binary.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.RelocBlocks">
+<summary>
+ List of relocation blocks
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.ForwardMap">
+<summary>
+ Forward target symbol name to a (binary * function) tuple.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.ExportMap">
+<summary>
+ Address (VA) to exported function name.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.ImportMap">
+<summary>
+ RVA to import information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.SectionHeaders">
+<summary>
+ Section headers.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.BaseAddr">
+<summary>
+ Image base address.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.PE.PEHeaders">
+<summary>
+ PE headers.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.PE">
+<summary>
+ Main PE format representation.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.SymbolInfo">
+<summary>
+ Symbol information (either from PDB or from COFF symbol table).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.PESymbol">
+<summary>
+ PE symbol. We separate B2R2.FrontEnd.BinFile.Symbol from format-specific symbol type
+ for ease of analysis.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.SymFlags">
+<summary>
+ PE symbol flag.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.GSIHashRecord.HRCRef">
+<summary>
+ A cross reference.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.GSIHashRecord.HROffset">
+<summary>
+ An offset.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.GSIHashRecord">
+<summary>
+ GSI (global symbol information) hash record.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.GSIHashHeader">
+<summary>
+ GSI hash header.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.PE.SymType.SGPROC32">
+<summary>
+ Global procedure start.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.PE.SymType.SLPROC32">
+<summary>
+ Local procedure start.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.PE.SymType.SLPROCREF">
+<summary>
+ Local Reference to a procedure.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.PE.SymType.SPROCREF">
+<summary>
+ Reference to a procedure.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.PE.SymType.SPUB32">
+<summary>
+ Public symbol.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.PE.SymType.SVFTABLE32">
+<summary>
+ Address of virtual function table.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinFile.PE.SymType.SCOMPILE">
+<summary>
+ Compile flags symbol.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.SymType">
+<summary>
+ PE symbol type.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ModuleInfo.ObjFileName">
+<summary>
+ Object file name.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ModuleInfo.ModuleName">
+<summary>
+ Module name
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ModuleInfo.SymStreamIndex">
+<summary>
+ The index of the stream that contains symbol information for this module.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ModuleInfo.SectionIndex">
+<summary>
+ The section in the binary which contains the code/data from this module.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.ModuleInfo">
+<summary>
+ Module information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.DBIStreamHeader.ModInfoSize">
+<summary>
+ Size of the module info substream.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.DBIStreamHeader.SymRecordStreamIdx">
+<summary>
+ The index to the stream containing all CodeView symbol records used by the
+ program.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.DBIStreamHeader.PublicStreamIdx">
+<summary>
+ The index to the public stream.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.DBIStreamHeader.GlobalStreamIdx">
+<summary>
+ The index to the global stream.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.DBIStreamHeader.DBIVersion">
+<summary>
+ Compiler version
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.DBIStreamHeader">
+<summary>
+ DBI stream header.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.DBIStreamVersion">
+<summary>
+ DBI stream version.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.StreamDirectory.StreamBlocks">
+<summary>
+ The block indices for streams.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.StreamDirectory.StreamSizes">
+<summary>
+ The sizes of streams.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.StreamDirectory.NumStreams">
+<summary>
+ Number of streams.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.StreamDirectory">
+<summary>
+ The Stream Directory contains information about the other streams in an MSF
+ file. MSF is a file system internally used in a PDB file, and a file in MSF
+ is often called as a stream.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.SuperBlock.BlockMapAddr">
+<summary>
+ The index of a block within the MSF file.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.SuperBlock.NumDirectoryBytes">
+<summary>
+ The size of the stream directory, in bytes. The stream directory contains
+ information about each stream&apos;s size and the set of blocks that it
+ occupies.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.SuperBlock.NumBlocks">
+<summary>
+ The total number of blocks in the file.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.SuperBlock.FreeBlockMapIdx">
+<summary>
+ The index of a block within the file, at which begins a bit field
+ representing the set of all blocks within the file, which are free.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.SuperBlock.BlockSize">
+<summary>
+ The block size of the internal file system. PDB can be considered as a
+ file system within the file.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.SuperBlock">
+<summary>
+ SuperBlock forms the header of a PDB file.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.ExportAddressTableField.ForwarderRVA">
+<summary>
+ The pointer to a null-terminated ASCII string in the export section. This
+ string must be within the range that is given by the export table data
+ directory entry.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.ExportAddressTableField.ExportRVA">
+<summary>
+ The address of the exported symbol when loaded into memory, relative to
+ the image base. For example, the address of an exported function.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.ExportAddressTableField">
+<summary>
+ Each entry in the export address table is a field that uses one of two
+ formats: ExportRVA and ForwarderRVA.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ExportDirectoryTable.OrdinalTableRVA">
+<summary>
+ The address of the ordinal table, relative to the image base.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ExportDirectoryTable.NamePointerRVA">
+<summary>
+ The address of the export name pointer table, relative to the image base.
+ The table size is given by the Number of Name Pointers field.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ExportDirectoryTable.ExportAddressTableRVA">
+<summary>
+ The address of the export address table, relative to the image base.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ExportDirectoryTable.NumNamePointers">
+<summary>
+ The number of entries in the name pointer table. This is also the number
+ of entries in the ordinal table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ExportDirectoryTable.AddressTableEntries">
+<summary>
+ The number of entries in the export address table.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ExportDirectoryTable.OrdinalBase">
+<summary>
+ The starting ordinal number for exports in this image. This field
+ specifies the starting ordinal number for the export address table. It is
+ usually set to 1.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ExportDirectoryTable.ExportDLLName">
+<summary>
+ The name of the DLL to export.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.ExportDirectoryTable">
+<summary>
+ The export directory table contains address information that is used to
+ resolve imports to the entry points within this image.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.ImportInfo.ImportByName">
+<summary>
+ Import by name.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.ImportInfo.ImportByOrdinal">
+<summary>
+ Import by ordinal.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.ImportInfo">
+<summary>
+ Import information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ImportDirectoryTable.DelayLoad">
+<summary>
+ Indicate whether this IDT is delay IDT or not.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ImportDirectoryTable.ImportAddressTableRVA">
+<summary>
+ The RVA of the import address table. The contents of this table are
+ identical to the contents of the import lookup table until the image is
+ bound.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ImportDirectoryTable.ImportDLLName">
+<summary>
+ The name of the DLL to import.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ImportDirectoryTable.ForwarderChain">
+<summary>
+ The index of the first forwarder reference.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinFile.PE.ImportDirectoryTable.ImportLookupTableRVA">
+<summary>
+ The RVA of the import lookup table.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.ImportDirectoryTable">
+<summary>
+ The import information begins with the import directory table, which
+ describes the remainder of the import information. This type includes both
+ delay IDT and normal IDT.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.RelocBlock">
+<summary>
+ Relocation Block
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.RelocBlockEntry">
+<summary>
+ Relocation Block Entry.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.BaseRelocType">
+<summary>
+ Base Relocation Type.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.PE.PDB.MSFStream">
+<summary>
+ Hold an MSF stream.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.PE.Helper.getPEArch(System.Byte[],System.Int32)">
+<summary>
+ Return Architecture from the PE header. If the given binary is invalid,
+ return an Error.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.PE.Helper.getVirtualSectionSize(System.Reflection.PortableExecutable.SectionHeader)">
+<summary>
+ Some PE files have a section header indicating that the corresponding
+ section&apos;s size is zero even if it contains actual data, i.e.,
+ sHdr.VirtualSize = 0, but sHdr.SizeOfRawData &lt;&gt; 0. Thus, we should use this
+ function to get the size of sections (segments).
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.PE.Parser.decideNameWithTable(Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.Int16}},System.Int16,System.Int32)">
+<summary>
+ Decide the name of an exported address. The address may have been exported
+ only with ordinal, and does not have a corresponding name in export name
+ pointer table. In such case, consider its name as &quot;#&lt;Ordinal&gt;&quot;.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.PE.Parser.parseENPT(B2R2.BinReader,System.Reflection.PortableExecutable.SectionHeader[],B2R2.FrontEnd.BinFile.PE.ExportDirectoryTable)">
+<summary>
+ Parse Export Name Pointer Table (ENPT).
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.PE.Parser.findSectionIndex(System.Reflection.PortableExecutable.SectionHeader[],System.Int32)">
+<summary>
+ This is equivalent to GetContainingSectionIndex function except that we are
+ using our own section header array here. This should be used instead of
+ GetContainingSectionIndex as we sometimes consider only a subset of the
+ sections in a file, e.g., when analyzing COFF binaries.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinFile.FormatDetector.Identify(System.Byte[],B2R2.ISA)">
+ <summary>
+   Given a byte array, identify its binary file format and return
+   B2R2.FileFormat and B2R2.ISA.
+ </summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinFile.FormatDetector">
+<summary>
+ Binary file format detector.
+</summary>
+</member>
+</members>
+</doc>

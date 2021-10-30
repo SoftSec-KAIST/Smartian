@@ -1,0 +1,1237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>B2R2.FrontEnd.BinLifter.TMS320C6000</name></assembly>
+<members>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.R">
+<summary>
+ Shortcut for Register type.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.TMS320C6000.InsInfo.EffectiveAddress">
+<summary>
+ Effective address (after applying delay slots)
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.TMS320C6000.InsInfo.IsParallel">
+<summary>
+ Parallel bit. If this is true, this instruction will get executed in
+ parallel with the previous instruction. Note that this is not exactly the
+ same as the P bit used in the processor.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.TMS320C6000.InsInfo.OperationSize">
+<summary>
+ Operation Size.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.TMS320C6000.InsInfo.FunctionalUnit">
+<summary>
+ Functional Units.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.TMS320C6000.InsInfo.Operands">
+<summary>
+ Operands.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.TMS320C6000.InsInfo.Opcode">
+<summary>
+ Opcode.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.TMS320C6000.InsInfo.NumBytes">
+<summary>
+ Instruction length.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.TMS320C6000.InsInfo.Address">
+<summary>
+ Address.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.InsInfo">
+<summary>
+ Basic information obtained by parsing a TMS320C6000 instruction.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Opcode">
+ <summary>
+   TMS320C6000 opcodes. This type should be generated using
+   <c>scripts/genOpcode.fsx</c> from the `TMS320C6000SupportedOpcode.txt`
+   file.
+ </summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.TMS320C6000.TMS320C6000Instruction.Info@">
+<summary>
+ Basic instruction information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.TMS320C6000.TMS320C6000Instruction.Info">
+<summary>
+ Basic instruction information.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.TMS320C6000Instruction">
+<summary>
+ The internal representation for a TMS320C6000 instruction used by our
+ disassembler and lifter.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.TMS320C6000Parser">
+<summary>
+ Parser for TMS320C6000 instructions. Parser will return a platform-agnostic
+ instruction type (Instruction).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.TMS320C6000.TMS320C6000TranslationContext.RegExprs@">
+<summary>
+ Register expressions.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.TMS320C6000.TMS320C6000TranslationContext.RegExprs">
+<summary>
+ Register expressions.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.TMS320C6000TranslationContext">
+<summary>
+ Translation context for TMS320C6000 instructions.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.RegisterModule">
+<summary>
+ This module exposes several useful functions to handle TMS320C6000
+ registers.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XUMsb16">
+<summary>
+ Unsigned 16 MSB of register that can optionally use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XULsb16">
+<summary>
+ Unsigned 16 LSB of register that can optionally use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XUInt">
+<summary>
+ Unsigned 32-bit integer value that can optionally use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XU4">
+<summary>
+ Four packed unsigned 8-bit integers in a single 32-bit register that can
+ optionally use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XU2">
+<summary>
+ Two packed unsigned 16-bit integers in a single 32-bit register that can
+ optionally use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XSP">
+<summary>
+ Single-precision floating-point register value that can optionally use
+ cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XSMsb16">
+<summary>
+ Signed 16 MSB of register that can optionally use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XSLsb16">
+<summary>
+ Signed 16 LSB of register that can optionally use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XSInt">
+<summary>
+ Signed 32-bit integer value that can optionally use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XS4">
+<summary>
+ Four packed signed 8-bit integers in a single 32-bit register that can
+ optionally use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XS2">
+<summary>
+ Two packed signed 16-bit integers in a single 32-bit register that can
+ optionally use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XInt">
+<summary>
+ 32-bit integer value that can optionally use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XI4">
+<summary>
+ Four packed 8-bit integers in a single 32-bit register that can optionally
+ use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XI2">
+<summary>
+ Two packed 16-bit integers in a single 32-bit register that can optionally
+ use cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.XDP">
+<summary>
+ Double-precision floating-point register value that can optionally use
+ cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.UMsb16">
+<summary>
+ Unsigned 16-bit integer value in upper half of 32-bit register.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.ULsb16">
+<summary>
+ Unsigned 16-bit integer value in lower half of 32-bit register.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.ULong">
+<summary>
+ Unsigned 40-bit integer value.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.ULLong">
+<summary>
+ Unsigned 64-bit integer value.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.UInt">
+<summary>
+ Unsigned 32-bit integer value.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.UConst">
+<summary>
+ n-bit unsigned constant field (for example, ucst5).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.U4">
+<summary>
+ Four packed unsigned 8-bit integers in a single 32-bit register.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.U2">
+<summary>
+ Two packed unsigned 16-bit integers in a single 32-bit register.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.SP">
+<summary>
+ Single-precision floating-point register value that can optionally use
+ cross path.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.SMsb16">
+<summary>
+ Signed 16-bit integer value in upper half of 32-bit register.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.SLsb16">
+<summary>
+ Signed 16-bit integer value in lower half of 32-bit register.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.SLong">
+<summary>
+ Signed 40-bit integer value.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.SLLong">
+<summary>
+ Signed 64-bit integer value.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.SInt">
+<summary>
+ Signed 32-bit integer value.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.SDInt">
+<summary>
+ Signed 64-bit integer value (two registers).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.SConst">
+<summary>
+ n-bit signed constant field.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.S4">
+<summary>
+ Four packed signed 8-bit integers in a single 32-bit register.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.S2">
+<summary>
+ Two packed signed 16-bit integers in a single 32-bit register.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.Int">
+<summary>
+ 32-bit integer value.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.I4">
+<summary>
+ Four packed 8-bit integers in a single 32-bit register.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.I2">
+<summary>
+ Two packed 16-bit integers in a single 32-bit register.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.DWU4">
+<summary>
+ Four packed unsigned 16-bit integers in a 64-bit register pair.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.DWS4">
+<summary>
+ Four packed signed 16-bit integers in a 64-bit register pair.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.DUInt">
+<summary>
+ Unsigned 64-bit integer value (two registers).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.DS2">
+<summary>
+ Two packed signed 16-bit integers in a single 64-bit register pair.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.DP">
+<summary>
+ Double-precision floating-point register value.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.DInt">
+<summary>
+ 64-bit integer value (two registers).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.Const">
+<summary>
+ n-bit constant field (for example, cst5).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.BVec4">
+<summary>
+ Bit vector of four flags for s4 or u4 data type.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.BVec2">
+<summary>
+ Bit vector of two flags for s2 or u2 data type.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType.B14B15">
+<summary>
+ Register B14 or B15.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.OperandType">
+<summary>
+ Table 3-1. Instruction Operation and Execution Notations.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseNoUnitLoop``1(``0)">
+<summary>
+ Appendix H. page 765. Fig. H-4
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseNoUnitLoopNonCond``1(``0)">
+<summary>
+ Appendix H. page 765. Fig. H-3
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseNoUnitIdleNop(System.UInt32)">
+<summary>
+ Appendix H. page 765. Fig. H-2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseNoUnitDINT(System.UInt32)">
+<summary>
+ Appendix H. page 765. Fig. H-1
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitFieldOps(System.UInt32)">
+<summary>
+ Appendix F. page 749. Fig. F-16
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitUnary(System.UInt32)">
+<summary>
+ Appendix F. page 749. Fig. F-15
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitNonCond(System.UInt32)">
+<summary>
+ Appendix F. page 749. Fig. F-14
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitMoveConst(System.UInt32)">
+<summary>
+ Appendix F. page 749. Fig. F-13
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitNonCondImm(System.UInt32)">
+<summary>
+ Appendix F. page 749. Fig. F-12
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitBrRegNOP(System.UInt32)">
+<summary>
+ Appendix F. page 748. Fig. F-11
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitBrDispNOP(System.UInt32)">
+<summary>
+ Appendix F. page 748. Fig. F-10
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitBdecBpos(System.UInt32)">
+<summary>
+ Appendix F. page 748. Fig. F-9
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitBrPointer``1(``0)">
+<summary>
+ Appendix F. page 748. Fig. F-8
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitBrRegWithoutNOP(System.UInt32)">
+<summary>
+ Appendix F. page 748. Fig. F-7
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitBrDisp(System.UInt32)">
+<summary>
+ Appendix F. page 748. Fig. F-6
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitSrcsExt(System.UInt32)">
+<summary>
+ Appendix F. page 748. Fig. F-5
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitADDKPC(System.UInt32)">
+<summary>
+ Appendix F. page 748. Fig. F-4
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitADDK(System.UInt32)">
+<summary>
+ Appendix F. page 747. Fig. F-3
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitAddSubFloat``1(``0)">
+<summary>
+ Appendix F. page 747. Fig. F-2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSUnitSrcs(System.UInt32)">
+<summary>
+ Appendix F. page 747. Fig. F-1
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseMUnitMPY(System.UInt32)">
+<summary>
+ Appendix E. page 743. Fig. E-4
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseMUnitNonCond(System.UInt32)">
+<summary>
+ Appendix E. page 743. Fig. E-3
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseMUnitUnaryExt(System.UInt32)">
+<summary>
+ Appendix E. page 743. Fig. E-2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseMUnitCompound(System.UInt32)">
+<summary>
+ Appendix E. page 743. Fig. E-1
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseLUnitNonCond``1(``0)">
+<summary>
+ Appendix D. page 735. Fig. D-3
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseLUnitUnary(System.UInt32)">
+<summary>
+ Appendix D. page 735. Fig. D-2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseLUnitSrcs``1(``0)">
+<summary>
+ Appendix D. page 735. Fig. D-1
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDUnitLSNonalignDWord``1(``0)">
+<summary>
+ Appendix C. page 724. Fig. C-7
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDUnitLSDWord``1(``0)">
+<summary>
+ Appendix C. page 724. Fig. C-6
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDUnitLSLongImm(System.UInt32)">
+<summary>
+ Appendix C. page 724. Fig. C-5
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDUnitLSBasic(System.UInt32)">
+<summary>
+ Appendix C. page 724. Fig. C-4
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDUnitADDLongImm(System.UInt32)">
+<summary>
+ Appendix C. page 724. Fig. C-3
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDUnitSrcsExt(System.UInt32)">
+<summary>
+ Appendix C. page 724. Fig. C-2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDUnitSrcs(System.UInt32)">
+<summary>
+ Appendix C. page 724. Fig. C-1
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseRegToCtrlReg``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ Register to Control Register
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseCtrlRegToReg``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ Control Register to Register
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDUnitDWordOperands``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit,B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.MemoryOpOrder)">
+<summary>
+ mem, regPair
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDUnitLSLongImmOperands``2(System.UInt32,``0,``1,B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.MemoryOpOrder)">
+<summary>
+ mem [ucst15]
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDUnitLSBasicOperands``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit,B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.MemoryOpOrder)">
+<summary>
+ mem [offsetR/ucst5]
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSiUc5Uc5Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ snit, ucst5, ucst5, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUiUc5Uc5Ui``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ unit, ucst5, ucst5, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSpSpSp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsp, sp, sp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXDpDpDp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xdp, dp, dp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSiSiSl``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsint, sint, slong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXiIntInt``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xint, int, int
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSiSiSi2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsint, sint, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSiSiSi1``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsint, sint, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS2XS2U4``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s2, xs2, u4
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseIntXiS2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ int, xint, s2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXU2Uc5U2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xu2, ucst5, u2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXU2UiU2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xu2, uint, u2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUlUc5Ul``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ ulong, ucst5, ulong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUlUiUl``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ ulong, uint, ulong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXS2Uc5S2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xs2, ucst5, s2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXS2UiS2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xs2, uint, s2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXUiUc5Ul``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xuint, ucst5, ulong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSlUc5Sl``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ slong, ucst5, slong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSiUc5Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsint, ucst5, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXUiUiUl2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xuint, uint, ulong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXUiUiUl1``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xuint, uint, ulong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSlUiSl``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ slong, uint, slong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseU2XS2U2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ u2, xs2, u2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSiXSiS2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sint, xsint, s2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXUiUc5Ui``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xuint, ucst5, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUiXiDi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ uint, xint, dint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUiXUiDUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ uint, xuint, duint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseIntXUiDi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ int, xuint, dint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseIntXiDi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ int, xint, dint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS2XS2Ull``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s2, xs2, ullong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUlsb16XSlsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ ulsb16, xslsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseU4XU4DWU4``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ u4, xu4, dwu4
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUlsb16XUlsb16Ui``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ ulsb16, xulsb16, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS4XU4DWS4``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s4, xu4, dws4
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc5XUlsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst5, xulsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSlsb16XUlsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ slsb16, xulsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSpXSpDp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sp, xsp, dp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSpXDpDp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sp, xdp, dp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUlsb16XSmsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ ulsb16, xsmsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSlsb16XUmsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ slsb16, xumsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUlsb16XUmsb16Ui``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ ulsb16, xumsb16, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSlsb16XSmsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ slsb16, xsmsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseC5XSiSDi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ cst5, xsint, sdint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSiXSiSDi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sint, xsint, sdint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseC5XSiSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ cst5, xsint, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUmsb16XSmsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ umsb16, xsmsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUmsb16XSlsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ umsb16, xslsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUmsb16XUmsb16Ui``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ umsb16, xumsb16, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSmsb16XUmsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ smsb16, xumsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSmsb16XUlsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ smsb16, xulsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUmsb16XUlsb16Ui``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ umsb16, xulsb16, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSmsb16XSlsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ smsb16, xslsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseIntXiInt``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ int, xint, int
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseIntXiSll``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ int, xint, sllong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSmsb16XSmsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ smsb16, xsmsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUiUiUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ uint, uint, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseU4XU4Ui``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ u4, xu4, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS4XU4Int``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s4, xu4, int
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS2XU2Int``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s2, xu2, int
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS2XS2Sll``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s2, xs2, sllong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS2XS2Int``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s2, xs2, int
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDS2XS2S2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ ds2, xs2, s2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDS2XS2Di``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ ds2, xs2, dint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS2XS4Di``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s2, xs4, dint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS2XS2Di``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s2, xs2, dint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseU4XU4Bv4``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ u4, xu4, bv4
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS4XS4Bv4``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s4, xs4, bv4
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS2XS2Bv2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s2, xs2, bv2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseU4XU4U4``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ u4, xu4, u4
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS2XS2S2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s2, xs2, s2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseI2Xi2I2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ i2, xi2, i2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseB14B15Uc15Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ B14/B15, ucst15, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseI4Xi4I4``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ i4, xi4, i4
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSiXSiDi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sint, xsint, dint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc7Uc3Ui``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst7, ucst3, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc5XSlsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst5, xslsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSlsb16XSlsb16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ slsb16, xslsb16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseC5XUiUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ cst5, xuint, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSiUiSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsint, uint, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUc4UlUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ ucst4, ulong, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXUiUlUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xuint, ulong, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUc4XUiUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ ucst4, xuint, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSpXSpSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sp, xsp, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDpXDpSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ dp, xdp, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc5SlUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst5, slong, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSiSlUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsint, slong, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc5XSiUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst5, xsint, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSiXSiUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sint, xsint, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXUiUiUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xuint, uint, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc5XUiUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst5, xuint, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUiXUiUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ uint, xuint, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXUiUlUl``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xuint, ulong, ulong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUiXUiUl``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ uint, xuint, ulong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDpXDpDp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ dp, xdp, dp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSpXSpSp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sp, xsp, sp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSiUc5Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sint, ucst5, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSiSiSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sint, sint, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc5SlSl``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst5, slong, slong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc5XSiSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst5, xsint, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSiSlSl``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsint, slong, slong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSiXSiSl``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sint, xsint, slong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSiXSiSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sint, xsint, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUSc16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ uscst16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseS2S2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ s2, s2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXU4U2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xu4, u2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSpSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsp, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSpDp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsp, dp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSlSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ slong, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDpDp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ dp, dp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSlUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ slong, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSiUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsint, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc5Si2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst5 (17-13), sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc5Si1``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst5 (22-18), sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc16Si``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst16, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXiInt``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xint, int
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSiSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sint, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXUiUc3``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xuint, ucst3
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc12Uc3``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst12, ucst3
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXUiUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xuint, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXU4U4``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xu4, u4
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc10Int``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst10, int
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXs2S2``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xs2, s2
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXUiSp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xuint, sp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSiSp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsint, sp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXUiDp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xuint, dp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSiDp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsint, dp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDpSp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ dp, sp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseDpSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ dp, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc16Ui``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst16, uint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSpSp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsp, sp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXDpDp``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ dp, dp
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSlSl``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ slong, slong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXSiSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xsint, sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ sint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSl``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ slong
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseUc4``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ ucst4 (NOP)
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseXUi``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ xuint
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.TMS320C6000.Parser.parseSc21``1(System.UInt32,``0,B2R2.FrontEnd.BinLifter.TMS320C6000.FunctionalUnit)">
+<summary>
+ scst21
+</summary>
+</member>
+</members>
+</doc>

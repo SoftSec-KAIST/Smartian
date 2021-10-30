@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>B2R2.FrontEnd.BinLifter.EVM</name></assembly>
+<members>
+<member name="P:B2R2.FrontEnd.BinLifter.EVM.InsInfo.GAS">
+<summary>
+ Gas
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.EVM.InsInfo.Opcode">
+<summary>
+ Opcode.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.EVM.InsInfo.Offset">
+<summary>
+ Offset of the instruction. When codecopy (or similar) is used, we should
+ adjust the address of the copied instructions using this offset.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.EVM.InsInfo.NumBytes">
+<summary>
+ Instruction length.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.EVM.InsInfo.Address">
+<summary>
+ Address.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.InsInfo">
+<summary>
+ Basic information obtained by parsing an EVM instruction.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SELFDESTRUCT">
+<summary>
+ Halt execution and register account for later deletion
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.INVALID">
+<summary>
+ Designated invalid instruction
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.REVERT">
+<summary>
+ Stop execution and revert state changes, without consuming all provided
+ gas and providing a reason
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.STATICCALL">
+<summary>
+ Similar to CALL, but does not modify state
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.CREATE2">
+<summary>
+ Create a new account and set creation address to
+ sha3(sender + sha3(init code)) % 2**160
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DELEGATECALL">
+<summary>
+ Message-call into this account with an alternative account&apos;s code, but
+ persisting into this account with an alternative account&apos;s code
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.RETURN">
+<summary>
+ Halt execution returning output data
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.CALLCODE">
+<summary>
+ Message-call into this account with alternative account&apos;s code
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.CALL">
+<summary>
+ Message-call into an account
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.CREATE">
+<summary>
+ Create a new account with associated code
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.LOG4">
+<summary>
+ Append log record with four topics
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.LOG3">
+<summary>
+ Append log record with three topics
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.LOG2">
+<summary>
+ Append log record with two topics
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.LOG1">
+<summary>
+ Append log record with one topic
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.LOG0">
+<summary>
+ Append log record with no topics
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP16">
+<summary>
+ Exchange 1st and 17th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP15">
+<summary>
+ Exchange 1st and 16th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP14">
+<summary>
+ Exchange 1st and 15th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP13">
+<summary>
+ Exchange 1st and 14th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP12">
+<summary>
+ Exchange 1st and 13th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP11">
+<summary>
+ Exchange 1st and 12th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP10">
+<summary>
+ Exchange 1st and 11th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP9">
+<summary>
+ Exchange 1st and 10th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP8">
+<summary>
+ Exchange 1st and 9th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP7">
+<summary>
+ Exchange 1st and 8th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP6">
+<summary>
+ Exchange 1st and 7th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP5">
+<summary>
+ Exchange 1st and 6th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP4">
+<summary>
+ Exchange 1st and 5th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP3">
+<summary>
+ Exchange 1st and 4th stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP2">
+<summary>
+ Exchange 1st and 3rd stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SWAP1">
+<summary>
+ Exchange 1st and 2nd stack items
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP16">
+<summary>
+ Duplicate 16th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP15">
+<summary>
+ Duplicate 15th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP14">
+<summary>
+ Duplicate 14th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP13">
+<summary>
+ Duplicate 13th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP12">
+<summary>
+ Duplicate 12th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP11">
+<summary>
+ Duplicate 11th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP10">
+<summary>
+ Duplicate 10th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP9">
+<summary>
+ Duplicate 9th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP8">
+<summary>
+ Duplicate 8th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP7">
+<summary>
+ Duplicate 7th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP6">
+<summary>
+ Duplicate 6th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP5">
+<summary>
+ Duplicate 5th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP4">
+<summary>
+ Duplicate 4th stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP3">
+<summary>
+ Duplicate 3rd stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP2">
+<summary>
+ Duplicate 2nd stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DUP1">
+<summary>
+ Duplicate 1st stack item
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH32">
+<summary>
+ Place 32-byte (full word) item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH31">
+<summary>
+ Place 31-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH30">
+<summary>
+ Place 30-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH29">
+<summary>
+ Place 29-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH28">
+<summary>
+ Place 28-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH27">
+<summary>
+ Place 27-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH26">
+<summary>
+ Place 26-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH25">
+<summary>
+ Place 25-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH24">
+<summary>
+ Place 24-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH23">
+<summary>
+ Place 23-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH22">
+<summary>
+ Place 22-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH21">
+<summary>
+ Place 21-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH20">
+<summary>
+ Place 20-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH19">
+<summary>
+ Place 19-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH18">
+<summary>
+ Place 18-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH17">
+<summary>
+ Place 17-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH16">
+<summary>
+ Place 16-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH15">
+<summary>
+ Place 15-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH14">
+<summary>
+ Place 14-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH13">
+<summary>
+ Place 13-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH12">
+<summary>
+ Place 12-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH11">
+<summary>
+ Place 11-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH10">
+<summary>
+ Place 10-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH9">
+<summary>
+ Place 9-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH8">
+<summary>
+ Place 8-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH7">
+<summary>
+ Place 7-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH6">
+<summary>
+ Place 6-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH5">
+<summary>
+ Place 5-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH4">
+<summary>
+ Place 4-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH3">
+<summary>
+ Place 3-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH2">
+<summary>
+ Place 2-byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.PUSH1">
+<summary>
+ Place 1 byte item on stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.JUMPDEST">
+<summary>
+ Mark a valid destination for jumps
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.GAS">
+<summary>
+ Get the amount of available gas, including the corresponding reduction
+ the amount of available gas
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.MSIZE">
+<summary>
+ Get the size of active memory in bytes
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.GETPC">
+<summary>
+ Get the value of the program counter prior to the increment
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.JUMPI">
+<summary>
+ Conditionally alter the program counter
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.JUMP">
+<summary>
+ Alter the program counter
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SSTORE">
+<summary>
+ Save word to storage
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SLOAD">
+<summary>
+ Load word from storage
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.MSTORE8">
+<summary>
+ Save byte to memory
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.MSTORE">
+<summary>
+ Save word to memory
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.MLOAD">
+<summary>
+ Load word from memory
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.POP">
+<summary>
+ Remove word from stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.GASLIMIT">
+<summary>
+ Get the block&apos;s gas limit
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DIFFICULTY">
+<summary>
+ Get the block&apos;s difficulty
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.NUMBER">
+<summary>
+ Get the block&apos;s number
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.TIMESTAMP">
+<summary>
+ Get the block&apos;s timestamp
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.COINBASE">
+<summary>
+ Get the block&apos;s beneficiary address
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.BLOCKHASH">
+<summary>
+ Get the hash of one of the 256 most recent complete blocks
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.RETURNDATACOPY">
+<summary>
+ Copies data from the return data buffer to memory
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.RETURNDATASIZE">
+<summary>
+ Pushes the size of the return data buffer onto the stack
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.EXTCODECOPY">
+<summary>
+ Copy an account&apos;s code to memory
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.EXTCODESIZE">
+<summary>
+ Get size of an account&apos;s code
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.GASPRICE">
+<summary>
+ Get price of gas in current environment
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.CODECOPY">
+<summary>
+ Copy code running in current environment to memory
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.CODESIZE">
+<summary>
+ Get size of code running in current environment
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.CALLDATACOPY">
+<summary>
+ Copy input data in current environment to memory
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.CALLDATASIZE">
+<summary>
+ Get size of input data in current environment
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.CALLDATALOAD">
+<summary>
+ Get input data of current environment
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.CALLVALUE">
+<summary>
+ Get deposited value by the instruction/transaction responsible for this
+ execution
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.CALLER">
+<summary>
+ Get caller address
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.ORIGIN">
+<summary>
+ Get execution origination address
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.BALANCE">
+<summary>
+ Get balance of the given account
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.ADDRESS">
+<summary>
+ Get address of currently executing account
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SHA3">
+<summary>
+ Compute Keccak-256 hash
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SAR">
+<summary>
+ Arithmetic Shift Right
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SHR">
+<summary>
+ Logical Shift Right
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SHL">
+<summary>
+ Shift Left
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.BYTE">
+<summary>
+ Retrieve single byte from word
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.NOT">
+<summary>
+ Bitwise NOT operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.XOR">
+<summary>
+ Bitwise XOR operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.OR">
+<summary>
+ Bitwise OR operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.AND">
+<summary>
+ Bitwise AND operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.ISZERO">
+<summary>
+ Simple not operator
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.EQ">
+<summary>
+ Equality comparison
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SGT">
+<summary>
+ Signed greater-than comparison
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SLT">
+<summary>
+ Signed less-than comparison
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.GT">
+<summary>
+ Greater-than comparison
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.LT">
+<summary>
+ Less-than comparison
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SIGNEXTEND">
+<summary>
+ Extend length of two&apos;s complement signed integer
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.EXP">
+<summary>
+ Exponential operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.MULMOD">
+<summary>
+ Modulo multiplication operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.ADDMOD">
+<summary>
+ Modulo addition operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SMOD">
+<summary>
+ Signed modulo remainder operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.MOD">
+<summary>
+ Modulo remainder operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SDIV">
+<summary>
+ Signed integer division operation (truncated)
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.DIV">
+<summary>
+ Integer division operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.SUB">
+<summary>
+ Subtraction operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.MUL">
+<summary>
+ Multiplication operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.ADD">
+<summary>
+ Addition operation
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode.STOP">
+<summary>
+ Halts execution
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.Opcode">
+ <summary>
+   EVM opcodes. This type should be generated using
+   <c>scripts/genOpcode.fsx</c> from the `EVMSupportedOpcode.txt` file.
+ </summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.OperationSize">
+<summary>
+ Operation Size.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.R">
+<summary>
+ Shortcut for Register type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.EVM.Register.SP">
+<summary>
+ Stack pointer.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.EVM.Register.GAS">
+<summary>
+ Gas.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.EVM.Register.PC">
+<summary>
+ Program counter.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.EVM.EVMInstruction.Info@">
+<summary>
+ Basic instruction information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.EVM.EVMInstruction.Info">
+<summary>
+ Basic instruction information.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.EVMInstruction">
+<summary>
+ The internal representation for a EVM instruction used by our
+ disassembler and lifter.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.EVMParser">
+<summary>
+ Parser for EVM instructions. Parser will return a platform-agnostic
+ instruction type (Instruction).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.EVM.EVMTranslationContext.RegExprs@">
+<summary>
+ Register expressions.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.EVM.EVMTranslationContext.RegExprs">
+<summary>
+ Register expressions.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.EVMTranslationContext">
+<summary>
+ Translation context for Ethereum Virtual Machine (EVM) instructions.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.EVM.RegisterModule">
+<summary>
+ This module exposes several useful functions to handle EVM registers.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.EVM.Lifter.basicOperation(B2R2.FrontEnd.BinLifter.EVM.InsInfo,B2R2.FrontEnd.BinLifter.TranslationContext,Microsoft.FSharp.Core.FSharpFunc{B2R2.BinIR.LowUIR.Expr,Microsoft.FSharp.Core.FSharpFunc{B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr}})">
+<summary>
+ Binary operations and relative operations.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.EVM.Lifter.popFromStack(B2R2.FrontEnd.BinLifter.TranslationContext,B2R2.FrontEnd.BinLifter.IRBuilder)">
+<summary>
+ Pops an element from stack and returns the element.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.EVM.Lifter.pushToStack(B2R2.FrontEnd.BinLifter.TranslationContext,B2R2.BinIR.LowUIR.Expr,B2R2.FrontEnd.BinLifter.IRBuilder)">
+<summary>
+ Pushes an element to stack.
+</summary>
+</member>
+</members>
+</doc>

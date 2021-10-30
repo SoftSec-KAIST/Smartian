@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>B2R2.MiddleEnd.BinEssence</name></assembly>
+<members>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.UnknownEdge">
+<summary>
+ Unknown edge type. This should be an error case.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.ImplicitCallEdge">
+<summary>
+ An implicit edge that is not explicitly visible from the current CALL
+ instruction, but visible within the function. If there is a path in the
+ callee that calls a function, then we create an implicit edge from a
+ caller to any of the callees.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.CallFallThroughEdge">
+<summary>
+ A fall-through after a call instruction. This is indeed a pseudo edge as
+ there&apos;s no direct control flow from a call instruction to its
+ fall-through.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.FallThroughEdge">
+<summary>
+ A simple fall-through case. This type is created when an edge cuts in two
+ consecutive instructions.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.RetEdge">
+<summary>
+ An edge of a function return.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.ExternalCallEdge">
+<summary>
+ An edge of a call instruction to an external function or PLT.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.ExternalJmpEdge">
+<summary>
+ An edge of a jmp instruction to an external function or PLT.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.IndirectCallEdge">
+<summary>
+ An edge from an indirect call instruction.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.IndirectJmpEdge">
+<summary>
+ An edge from an indirect jmp instruction.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.RecursiveCallEdge">
+<summary>
+ An edge of a recursive call instruction.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.CallEdge">
+<summary>
+ An edge of a regular call instruction.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.IntraCJmpFalseEdge">
+<summary>
+ A false conditional edge only visible from an IR-level CFG, because there
+ is a control-flow inside a machine instruction.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.IntraCJmpTrueEdge">
+<summary>
+ A true conditional edge only visible from an IR-level CFG, because there
+ is a control-flow inside a machine instruction.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.IntraJmpEdge">
+<summary>
+ A direct jump edge only visible from an IR-level CFG, because there is a
+ control-flow inside a machine instruction.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.InterCJmpFalseEdge">
+<summary>
+ An edge of a conditional jump that is exercised when the condition is
+ false.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.InterCJmpTrueEdge">
+<summary>
+ An edge of a conditional jump that is exercised when the condition is
+ true.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind.InterJmpEdge">
+<summary>
+ An edge of a direct jump, e.g., JMP +0x42.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGEdgeKind">
+<summary>
+ We distinguish edges of a CFG by classifying them into several kinds.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.InstructionInfo.Offset">
+<summary>
+ Instruction itself contains its address, but we may want to place this
+ instruction in a different location in a virtual address space. This field
+ is useful in such cases to give a specific offset to the instruction. This
+ field is zero in most cases (except EVM) though.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.InstructionInfo.ReachablePPs">
+<summary>
+ Reachable program points (jump targets) from the instruction.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.InstructionInfo.Labels">
+<summary>
+ Labels.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.InstructionInfo.Stmts">
+<summary>
+ IR.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.InstructionInfo.Instruction">
+<summary>
+ Instruction.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.InstructionInfo">
+<summary>
+ Abstract information about the instruction and its corresponding IR
+ statements.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.VisualBlock">
+<summary>
+ A visual representation of a basic block.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.VisualLine">
+<summary>
+ A visual line of a basic block.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.BasicBlock.Range">
+<summary>
+ The instruction address range of the basic block.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.BasicBlock.PPoint">
+<summary>
+ The start position (ProgramPoint) of the basic block.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.BasicBlock.ToVisualBlock">
+<summary>
+ Convert this basic block to a visual representation.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.BasicBlock.IsFakeBlock">
+<summary>
+ Check if this is a fake basic block inserted by our analysis. We create a
+ fake block to represent call target vertices in a function-level CFG.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.BasicBlock">
+<summary>
+ The base type for basic block.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.IRBasicBlock.HasIndirectBranch(System.Boolean)">
+<summary>
+ Does this block has indirect branch? This flag will be set after building
+ an SCFG.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.IRBasicBlock.Range">
+<summary>
+ The address range of the basic block. Even if the block contains a partial
+ IR statements of an instruction, we include the instruction to compute the
+ range.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.IRBasicBlock.LastInstruction">
+<summary>
+ The last instruction of the basic block.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.IRBasicBlock.HasIndirectBranch">
+<summary>
+ Does this block has indirect branch? This flag will be set after building
+ an SCFG.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.IRBasicBlock.FirstInstruction">
+<summary>
+ The first instruction of the basic block.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.IRBasicBlock.Entry">
+<summary>
+ Address of function entry that this basic block belongs to.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.IRBasicBlock.GetLastStmt">
+<summary>
+ Get the last IR statement of the bblock.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.IRBasicBlock.GetInstructions">
+<summary>
+ Get an array of instructions that corresponds to each statement in the
+ IRStatements.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.IRBasicBlock.GetInsInfos">
+<summary>
+ Get the array of InstructionInfo of the basic block.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.IRBasicBlock.GetIRStatements">
+<summary>
+ Get an array of IR statements of a basic block.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.IRBasicBlock">
+<summary>
+ A basic block that consists of IR (LowUIR) statements. It contains all the
+ InstructionInfo of the basic block.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.BBLStore.VertexMap">
+<summary>
+ Vertices.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.BBLStore.Boundaries">
+<summary>
+ Instruciton-level basic block boundaries.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.BBLStore.BBLMap">
+<summary>
+ Addr to BBLInfo.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.BBLStore">
+<summary>
+ Collection of basic-block information.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.BBLInfo.IRLeaders">
+<summary>
+ IR-level leaders (program points) within the bbl.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.BBLInfo.InstrAddrs">
+<summary>
+ Instruction addresses in the basic block.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.BBLInfo.BlkRange">
+<summary>
+ The range (start addr, end addr) of the basic block.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.BBLInfo">
+<summary>
+ Represents instruction-level basic block leader.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.InstrMap">
+<summary>
+ Address to an InstructionInfo mapping. InstrMap contains both valid and
+ bogus instructions so do not use InstrMap directly for analyses.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CalleeMap">
+<summary>
+ A mapping from callee&apos;s name to its information.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.Callee.IsNoReturn">
+<summary>
+ Is this callee a no-return function such as &quot;exit&quot;?
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.Callee">
+<summary>
+ Callee is a function invoked within the binary under analysis. Callee can be
+ an external function, i.e., it does not need to be defined within the
+ binary. We let a target address be a callee&apos;s address if one of the
+ following two conditions hold: (1) the address is a target of a call
+ instruction, and (2) the address is maked as a function in the symbol table,
+ and the function is referenced by a branch instruction (either call or jmp).
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CalleeKind">
+<summary>
+ Callee can be either external or internal.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.NoReturnInfo.NoReturnCallSites">
+<summary>
+ Program points of no-return call sites.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.NoReturnInfo.NoReturnFuncs">
+<summary>
+ No-return function addresses.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.NoReturnInfo">
+<summary>
+ No-return function info.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.NoReturnCond.ConditionalNoRet">
+<summary>
+ Conditionally no-return, if n-th arguments (starting from one) specified
+ in the set are all non-zero.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.NoReturnCond.UnconditionalNoRet">
+<summary>
+ Unconditionally (always) no-return
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.NoReturnCond">
+<summary>
+ State a function is no-return under which conditions
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.JumpTableInfo.JTEntrySize">
+<summary>
+ Size of each entry of the table.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.JumpTableInfo.JTRange">
+<summary>
+ The start and the end address of the jump table (AddrRange).
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.JumpTableInfo.JTBaseAddr">
+<summary>
+ Base address of the jump table.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.JumpTableInfo">
+<summary>
+ Jump table (for switch-case) information.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.IndirectBranchInfo.JumpTableInfo">
+<summary>
+ Information about the corresponding jump table (if exists).
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.IndirectBranchInfo.TargetAddresses">
+<summary>
+ Possible target addresses.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.BinEssence.IndirectBranchInfo.HostFunctionAddr">
+<summary>
+ The host function (owner) of the indirect jump.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.CFGElement">
+<summary>
+ Internally used to indicate CFG elements: either a vertex or an edge.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.BinEssence.GetFunctionCFG(System.UInt64,System.Boolean)">
+<summary>
+ Retrieve an IR-based CFG (subgraph) of a function starting at the given
+ address (addr) from the SCFG, and the root node. When the
+ preserveRecursiveEdge parameter is false, we create fake blocks for
+ recursive calls, which is useful for intra-procedural analyses.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.BinEssence.FindVertex(System.UInt64)">
+<summary>
+ Find a basic block (vertex) in the SCFG that the given address belongs to.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.BinEssence.FindFunctionVertex(System.UInt64)">
+<summary>
+ For a given address, find the first vertex of a function that the address
+ belongs to.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.BinEssence.BinEssence">
+ <summary>
+   BinEssence is the main corpus of binary, which contains all the essential
+   information about parsed binary instructions, basic blocks, CFGs, as well
+   as intermediary information for recovering CFG. This is the key data
+   structure we maintain throughout the middle-end analyses.
+ </summary>
+ <remarks>
+   <para>B2R2's middle-end analyses roughly work as follows.</para>
+   <para>
+     We first start by creating an empty BinEssence, and recursively parse
+     (and lift) binary instructions starting from basic entry points we
+     obtained from the target binary. In this stage, we simply follow
+     concrete edges (including intra-instruction branches) appeared in
+     LowUIR. Therefore we may miss indirect branches in this stage, but we
+     will handle them later. After parsing all reachable instructions, we
+     obtain a mapping (InstrMap) from an address to an InsInfo.
+   </para>
+   <para>
+     We build the Super Control Flow Graph (SCFG) on the fly, but whenever
+     there is an edge that intersects existing basic block, we will split the
+     block into two.
+   </para>
+   <para>
+     We mark every call target encountered to build both CallerMap and
+     CalleeMap. Normally, being a call target (i.e., callee) implies being a
+     function entry. However, this is not always the case. We should not
+     always consider a callee as a function. Nevertheless, our lens-based
+     framework can provide a valid CFG at any callee, which can greatly help
+     further analyses.
+   </para>
+   <para>
+     Once we obtained basic information, i.e., BinEssence, to work with, we
+     perform some post-analyses to improve the information. For example, we
+     remove unnecessary edges from the SCFG by disconnecting return edges
+     from a function that termiates the process (e.g., exit function), and we
+     recover indirect branch targets to discover more instructions. After the
+     post analyses, we may or may not have an updated BinEssence.
+   </para>
+ </remarks>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.Helper.computeJumpTargetMask(B2R2.FrontEnd.BinInterface.BinHandle)">
+<summary>
+ Return the bitmask for the given BinHandle to correctly compute jump target
+ addresses.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.InstrMapModule.parse``1(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.ArchOperationMode,``0,B2R2.MiddleEnd.BinEssence.BBLStore,System.UInt64)">
+<summary>
+ InstrMap will only have this API. Removing instructions from InstrMap is
+ not allowed.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.IRCFGModule.init(B2R2.MiddleEnd.BinGraph.GraphImplementationType)">
+<summary>
+ Initialize IRCFG based on the implementation type.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.BinEssenceModule.getInitialEntryPoints(B2R2.FrontEnd.BinInterface.BinHandle)">
+<summary>
+ This function returns an initial sequence of entry points obtained from
+ the binary itself (e.g., from its symbol information). Therefore, if the
+ binary is stripped, the returned sequence will be incomplete, and we need
+ to expand it during the other analyses.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.BinEssenceModule.constructInfo(System.Collections.Generic.Dictionary{System.UInt64,B2R2.MiddleEnd.BinEssence.InstructionInfo},B2R2.ProgramPoint,B2R2.ProgramPoint)">
+<summary>
+ Construct an InstructionInfo for the given program point (ppoint).
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.BinEssence.BinEssenceModule.splitBlock(B2R2.MiddleEnd.BinEssence.BinEssence,System.UInt64,Microsoft.FSharp.Collections.FSharpList{B2R2.MiddleEnd.BinEssence.CFGElement})">
+<summary>
+ Split a block into two (by the given leader address).
+</summary>
+</member>
+</members>
+</doc>

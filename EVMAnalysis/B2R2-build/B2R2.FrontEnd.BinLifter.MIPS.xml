@@ -1,0 +1,1138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>B2R2.FrontEnd.BinLifter.MIPS</name></assembly>
+<members>
+<member name="T:B2R2.FrontEnd.BinLifter.MIPS.R">
+<summary>
+ Shortcut for Register type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.PC">
+<summary>
+ Program Counter.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.LO">
+<summary>
+ Accumulator Low (Acc 31:0)
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.HI">
+<summary>
+ Accumulator High (Acc 63:32)
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F31">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F30">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F29">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F28">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F27">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F26">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F25">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F24">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F23">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F22">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F21">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F20">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F19">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F18">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F17">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F16">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F15">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F14">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F13">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F12">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F11">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F10">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F9">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F8">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F7">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F6">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F5">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F4">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F3">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F2">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F1">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.F0">
+<summary>
+ Floating point Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R31">
+<summary>
+ $ra - Return address.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R30">
+<summary>
+ $fp - Frame pointer.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R29">
+<summary>
+ $sp - Stack pointer.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R28">
+<summary>
+ $gp - Global pointer.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R27">
+<summary>
+ $k1 - Reserved for kernel (operating system).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R26">
+<summary>
+ $k0 - Reserved for kernel (operating system).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R25">
+<summary>
+ $t9 - More temporary register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R24">
+<summary>
+ $t8 - More temporary register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R23">
+<summary>
+ $s7 - Saved register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R22">
+<summary>
+ $s6 - Saved register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R21">
+<summary>
+ $s5 - Saved register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R20">
+<summary>
+ $s4 - Saved register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R19">
+<summary>
+ $s3 - Saved register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R18">
+<summary>
+ $s2 - Saved register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R17">
+<summary>
+ $s1 - Saved register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R16">
+<summary>
+ $s0 - Saved register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R15">
+<summary>
+ $t7 - Temporary register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R14">
+<summary>
+ $t6 - Temporary register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R13">
+<summary>
+ $t5 - Temporary register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R12">
+<summary>
+ $t4 - Temporary register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R11">
+<summary>
+ $t3 - Temporary register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R10">
+<summary>
+ $t2 - Temporary register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R9">
+<summary>
+ $t1 - Temporary register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R8">
+<summary>
+ $t0 - Temporary register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R7">
+<summary>
+ $a3 - First four arguments to functions.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R6">
+<summary>
+ $a2 - First four arguments to functions.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R5">
+<summary>
+ $a1 - First four arguments to functions.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R4">
+<summary>
+ $a0 - First four arguments to functions.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R3">
+<summary>
+ $v1 - First and second return values, respectively.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R2">
+<summary>
+ $v0 - First and second return values, respectively.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R1">
+<summary>
+ $at - Reservd for assembler.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Register.R0">
+<summary>
+ $zero or $r0 - Always zero
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.MIPS.Register">
+<summary>
+ MIPS Registers
+ https://en.wikibooks.org/wiki/MIPS_Assembly/Register_File
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.MIPS.InsInfo.Arch">
+<summary>
+ Mips architecture.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.MIPS.InsInfo.OperationSize">
+<summary>
+ Operation Size.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.MIPS.InsInfo.Operands">
+<summary>
+ Operands.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.MIPS.InsInfo.Opcode">
+<summary>
+ Opcode.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.MIPS.InsInfo.Fmt">
+<summary>
+ Floating Point Format.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.MIPS.InsInfo.Condition">
+<summary>
+ Condition.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.MIPS.InsInfo.NumBytes">
+<summary>
+ Instruction length.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.MIPS.InsInfo.Address">
+<summary>
+ Address.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.MIPS.InsInfo">
+<summary>
+ Basic information obtained by parsing a MIPS instruction.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.InvalOP">
+<summary>
+ Invalid Opcode.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.XORI">
+<summary>
+ Exclusive OR Immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.XOR">
+<summary>
+ Exclusive OR.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.WSBH">
+<summary>
+ Word Swap Bytes Within Halfwords.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.TRUNCW">
+<summary>
+ Floating Point Truncate to Word Fixed Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.TRUNCL">
+<summary>
+ Floating Point Truncate to Long Fixed Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.TEQ">
+<summary>
+ Trap if Equal.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SWR">
+<summary>
+ Store Word Right.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SWL">
+<summary>
+ Store Word Left.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SWC1">
+<summary>
+ Store Word from Floating Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SW">
+<summary>
+ Store Word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SUBU">
+<summary>
+ Subtract Unsigned Word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SUB">
+<summary>
+ Subtract Word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SSNOP">
+<summary>
+ Superscalar No Operation.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SRLV">
+<summary>
+ Shift Word Right Logical Variable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SRL">
+<summary>
+ Shift Word Right Logical.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SRA">
+<summary>
+ Shift Word Right Arithmetic.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SLTU">
+<summary>
+ Set on Less Than Unsigned.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SLTIU">
+<summary>
+ Set on Less Than Immediate Unsigned.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SLTI">
+<summary>
+ Set on Less Than Immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SLT">
+<summary>
+ Set on Less Than.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SLLV">
+<summary>
+ Shift Word Left Logical Variable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SLL">
+<summary>
+ Shift Word Left Logical.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SH">
+<summary>
+ Store Halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SEH">
+<summary>
+ Sign-Extend Halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SEB">
+<summary>
+ Sign-Extend Byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SDR">
+<summary>
+ Store Doubleword Right.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SDL">
+<summary>
+ Store Doubleword Left.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SDC1">
+<summary>
+ Store Doubleword from Floating Point
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SD">
+<summary>
+ Store Doubleword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.SB">
+<summary>
+ Store Byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.ROTR">
+<summary>
+ Rotate Word Right.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.PAUSE">
+<summary>
+ Wait for the LLBit to clear.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.ORI">
+<summary>
+ Or Immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.OR">
+<summary>
+ Or.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.NOR">
+<summary>
+ Not Or.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.NOP">
+<summary>
+ No Operation.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.MULTU">
+<summary>
+ Multiply Unsigned Word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.MULT">
+<summary>
+ Multiply Word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.MUL">
+<summary>
+ Multiply Word to GPR.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.MTC1">
+<summary>
+ Move Word to Floating Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.MOVZ">
+<summary>
+ Move Conditional on Zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.MOVN">
+<summary>
+ Move Conditional on Not Zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.MOV">
+<summary>
+ Floating Point Move.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.MFLO">
+<summary>
+ Move From LO Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.MFHI">
+<summary>
+ Move From HI Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.MFC1">
+<summary>
+ Move Word From Floating Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.MADD">
+<summary>
+ Multiply and Add Word to Hi, Lo.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.LWU">
+<summary>
+ Load Word Unsigned.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.LWC1">
+<summary>
+ Load Word to Floating Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.LW">
+<summary>
+ Load Word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.LUI">
+<summary>
+ Load Upper Immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.LHU">
+<summary>
+ Load Halfword Unsigned.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.LH">
+<summary>
+ Load Halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.LDC1">
+<summary>
+ Load Doubleword to Floating Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.LD">
+<summary>
+ Load Doubleword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.LBU">
+<summary>
+ Load Byte Unsigned.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.LB">
+<summary>
+ Load Byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.JRHB">
+<summary>
+ Jump Register with Hazard Barrier.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.JR">
+<summary>
+ Jump Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.JALRHB">
+<summary>
+ Jump and Link Register with Hazard Barrier.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.JALR">
+<summary>
+ Jump and Link Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.INS">
+<summary>
+ Insert Bit Field.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.EXT">
+<summary>
+ Extract Bit Field.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.EHB">
+<summary>
+ Execution Hazard Barrier.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DSUBU">
+<summary>
+ Doubleword Subtract Unsigned.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DSRLV">
+<summary>
+ Doubleword Shift Right Logical Variable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DSRL32">
+<summary>
+ Doubleword Shift Right Logical Plus 32.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DSRL">
+<summary>
+ Doubleword Shift Right Logical.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DSRA32">
+<summary>
+ Doubleword Shift Right Arithmetic Plus 32.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DSRA">
+<summary>
+ Doubleword Shift Right Arithmetic.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DSLLV">
+<summary>
+ Doubleword Shift Left Logical Variable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DSLL32">
+<summary>
+ Doubleword Shift Left Logical Plus 32.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DSLL">
+<summary>
+ Doubleword Shift Left Logical.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DROTR">
+<summary>
+ Doubleword Rotate Right.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DMULTU">
+<summary>
+ Doubleword Multiply Unsigned.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DMULT">
+<summary>
+ Doubleword Multiply.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DMTC1">
+<summary>
+ Doubleword Move to Floating Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DMFC1">
+<summary>
+ Doubleword Move from Floating Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DIVU">
+<summary>
+ Divide Unsigned Word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DIV">
+<summary>
+ Divide Word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DINSU">
+<summary>
+ Doubleword Insert Bit Field Upper.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DINSM">
+<summary>
+ Doubleword Insert Bit Field Middle.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DINS">
+<summary>
+ Doubleword Insert Bit Field.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DEXTU">
+<summary>
+ Doubleword Extract Bit Field Upper.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DEXTM">
+<summary>
+ Doubleword Extract Bit Field Middle.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DEXT">
+<summary>
+ Doubleword Extract Bit Field.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DDIVU">
+<summary>
+ Doubleword Divide Unsigned.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DCLZ">
+<summary>
+ Count Leading Zeros in Doubleword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DBITSWAP">
+<summary>
+ Swaps (reverses) bits in each byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DALIGN">
+<summary>
+ Concatenate two GPRs, and extract a contiguous subset at a byte position.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DADDU">
+<summary>
+ Doubleword Add Unsigned.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.DADDIU">
+<summary>
+ Doubleword Add Immediate Unsigned.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.CVTS">
+<summary>
+ Floating Point Convert to Single Floating Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.CVTD">
+<summary>
+ Floating Point Convert to Double Floating Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.CTC1">
+<summary>
+ Move Control Word to Floating Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.CLZ">
+<summary>
+ Count Leading Zeros in Word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.CFC1">
+<summary>
+ Move Control Word From Floating Point.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.C">
+<summary>
+ Floating Point Compare.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.BNE">
+<summary>
+ Branch on Not Equal.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.BLTZ">
+<summary>
+ Branch on Less Than Zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.BLEZ">
+<summary>
+ Branch on Less Than or Equal to Zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.BITSWAP">
+<summary>
+ Swaps (reverses) bits in each byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.BGTZ">
+<summary>
+ Branch on Greater Than Zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.BGEZAL">
+<summary>
+ Branch on Greater Than or Equal to Zero and Link.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.BGEZ">
+<summary>
+ Branch on Greater Than or Equal to Zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.BEQ">
+<summary>
+ Branch on Equal.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.BC1T">
+<summary>
+ Branch on FP True.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.BC1F">
+<summary>
+ Branch on FP False.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.BAL">
+<summary>
+ Branch and Link.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.B">
+<summary>
+ Unconditional Branch.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.AUI">
+<summary>
+ Add Immediate to Upper Bits.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.ANDI">
+<summary>
+ And immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.AND">
+<summary>
+ And.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.ALIGN">
+<summary>
+ Concatenate two GPRs, and extract a contiguous subset at a byte position.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.ADDU">
+<summary>
+ Add Unsigned Word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.ADDIU">
+<summary>
+ Add Immediate Unsigned Word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Opcode.ADD">
+<summary>
+ Add Word.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.MIPS.Opcode">
+ <summary>
+   MIPS opcodes. This type should be generated using
+   <c>scripts/genOpcode.fsx</c> from the `MIPSSupportedOpcode.txt` file.
+ </summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Fmt.UNINTERPRETED_DOUBLEWORD">
+<summary>
+ UNINTERPRETED DOUBLEWORD.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Fmt.UNINTERPRETED_WORD">
+<summary>
+ UNINTERPRETED WORD.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Fmt.QH">
+<summary>
+ QH.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Fmt.OB">
+<summary>
+ OB.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Fmt.PS">
+<summary>
+ PS.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Fmt.L">
+<summary>
+ L.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Fmt.W">
+<summary>
+ W.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Fmt.D">
+<summary>
+ D.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Fmt.S">
+<summary>
+ S.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.MIPS.Fmt">
+<summary>
+ MIPS floating point format.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Condition.NE">
+<summary>
+ Not Equal.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Condition.LE">
+<summary>
+ Less Then or Equal.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Condition.LT">
+<summary>
+ Less Then.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Condition.GE">
+<summary>
+ Greater Then.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Condition.EQ">
+<summary>
+ Equal.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Condition.UN">
+<summary>
+ Unordered.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.Condition.F">
+<summary>
+ Always False.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.MIPS.Condition">
+<summary>
+ MIPS Condition.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.MIPSInstruction.Info@">
+<summary>
+ Basic instruction information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.MIPS.MIPSInstruction.Info">
+<summary>
+ Basic instruction information.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.MIPS.MIPSInstruction">
+<summary>
+ The internal representation for a MIPS instruction used by our
+ disassembler and lifter.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.MIPS.MIPSParser">
+<summary>
+ Parser for MIPS instructions. Parser will return a platform-agnostic
+ instruction type (Instruction).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.MIPS.MIPSTranslationContext.RegExprs@">
+<summary>
+ Register expressions.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.MIPS.MIPSTranslationContext.RegExprs">
+<summary>
+ Register expressions.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.MIPS.MIPSTranslationContext">
+<summary>
+ Translation context for MIPS instructions.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.MIPS.RegisterModule">
+<summary>
+ This module exposes several useful functions to handle MIPS registers.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.MIPS.Parser.parse(B2R2.BinReader,B2R2.Architecture,B2R2.WordSize,System.UInt64,System.Int32)">
+<summary>
+ Read in bytes and return a parsed instruction for MIPS. This function
+ returns MIPSInstruction, which is a specialized type for MIPS. If you want
+ to handle instructions in a platform-agnostic manner, you&apos;d better use the
+ MIPS class.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.MIPS.Parser">
+<summary>
+ MIPS instruction parser.
+</summary>
+</member>
+</members>
+</doc>

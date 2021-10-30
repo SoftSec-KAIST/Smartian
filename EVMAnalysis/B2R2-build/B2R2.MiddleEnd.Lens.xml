@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>B2R2.MiddleEnd.Lens</name></assembly>
+<members>
+<member name="M:B2R2.MiddleEnd.Lens.ILens`1.Filter(B2R2.MiddleEnd.BinGraph.DiGraph{B2R2.MiddleEnd.BinEssence.IRBasicBlock,B2R2.MiddleEnd.BinEssence.CFGEdgeKind},Microsoft.FSharp.Collections.FSharpList{B2R2.MiddleEnd.BinGraph.Vertex{B2R2.MiddleEnd.BinEssence.IRBasicBlock}},B2R2.MiddleEnd.BinEssence.BinEssence)">
+ <summary>
+ The main function of the ILens interface, which will essentially convert a
+ given CFG into another graph.
+ </summary>
+ <param name="graph">The given CFG.</param>
+ <param name="root">The list of root nodes of the CFG.</param>
+ <returns>
+ A converted graph along with its root node.
+ </returns>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.ILens`1">
+<summary>
+ The Lens interface, which is a converter from a graph to another graph. In
+ B2R2, An IR-level SCFG forms the basis, and we should apply different lenses
+ to obtain different graphs. For example, we can get disassembly-based CFG by
+ applying DisasmLens to the SCFG.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.DisasmLens">
+<summary>
+ A graph lens for obtaining DisasmCFG.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.DisasmVMap">
+<summary>
+ A mapping from an address to a DisasmCFG vertex.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.DisasmCFG">
+<summary>
+ Disassembly-based CFG, where each node contains disassembly code.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.DisasmBBlock">
+<summary>
+ Basic block type for a disassembly-based CFG (DisasmCFG).
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Lens.SSABBlock.HasIndirectBranch">
+<summary>
+ Does this block has indirect branch?
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Lens.SSABBlock.GetLastStmt">
+<summary>
+ Get the last statement of the bblock.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.SSABBlock">
+<summary>
+ Basic block type for an SSA-based CFG (SSACFG).
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.IDStack">
+<summary>
+ Variable ID stack.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.VarCountMap">
+<summary>
+ Counter for each variable.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.DefsPerNode">
+<summary>
+ Defined variables per node in a SSACFG.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.DefSites">
+<summary>
+ Mapping from a variable to a set of defining SSA basic blocks.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.FakeVMap">
+<summary>
+ This is a mapping from an edge to a dummy vertex (for external function
+ calls). We first separately create dummy vertices even if they are
+ associated with the same node (address) in order to compute dominance
+ relationships without introducing incorrect paths or cycles. For
+ convenience, we will always consider as a key &quot;a return edge&quot; from a fake
+ vertex to a fall-through vertex.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.SSAVMap">
+<summary>
+ A mapping from an address to a SSACFG vertex.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.SSACFG">
+<summary>
+ SSA-based CFG, where each node contains disassembly code.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.SSALens">
+<summary>
+ A graph lens for obtaining SSACFG.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.CallGraphLens">
+<summary>
+ A graph lens for obtaining CallGraph.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.CallVMap">
+<summary>
+ A mapping from an address to a CallCFG vertex.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.CallCFG">
+<summary>
+ Call graph, where each node represents a function.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Lens.CallGraphBBlock">
+<summary>
+ Basic block type for a call graph (CallCFG).
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Lens.DisasmCFGModule.init(B2R2.MiddleEnd.BinGraph.GraphImplementationType)">
+<summary>
+ Initialize IRCFG based on the implementation type.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Lens.SSABlockHelper.computeDefinedVars(B2R2.MiddleEnd.BinEssence.BinEssence,System.UInt64)">
+<summary>
+ This is currently intra-procedural.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Lens.SSABlockHelper.isGetPCThunk(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64)">
+<summary>
+ This is a heuristic to discover __x86.get_pc_thunk- family functions.
+ 1. If a function name symbol exists and its name matches, then we know it
+ is __x86.get_pc_thunk- family
+ 2. But there are some cases we don&apos;t have symbols for them. In such cases,
+ we directly compare first 4 bytes of byte code. Because
+ __x86.get_pc_thunk- family only has 4 bytes for its function body and
+ their values are fixed.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Lens.SSACFGModule.init(B2R2.MiddleEnd.BinGraph.GraphImplementationType)">
+<summary>
+ Initialize SSACFG based on the implementation type.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Lens.SSAEdges.EdgeInfo.Defs">
+<summary>
+ A mapping from an SSA var to its def stmt.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Lens.SSAEdges.EdgeInfo.Uses">
+<summary>
+ A mapping from an SSA var to a set of use locations.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Lens.SSAEdges.compute``1(B2R2.MiddleEnd.BinGraph.DiGraph{B2R2.MiddleEnd.Lens.SSABBlock,``0})">
+<summary>
+ Compute SSA edge map (SSA Var -&gt; a set of (VertexID, Stmt idx)). From a
+ given ssa var, this function returns a set of SSA-edge destination.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Lens.CallCFGModule.init(B2R2.MiddleEnd.BinGraph.GraphImplementationType)">
+<summary>
+ Initialize CallCFG based on the implementation type.
+</summary>
+</member>
+</members>
+</doc>

@@ -1,0 +1,4296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>B2R2.FrontEnd.BinLifter.ARM64</name></assembly>
+<members>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.R">
+<summary>
+ Shortcut for Register type.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.FPSR">
+<summary>
+ Floating-point Status Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.FPCR">
+<summary>
+ Floating-point Control Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.TPIDREL0">
+<summary>
+ EL0 Read/Write Software Thread ID Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.HPFAREL2">
+<summary>
+ Hypervisor IPA Fault Address Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.ESREL3">
+<summary>
+ Exception Syndrome Register (EL3).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.ESREL2">
+<summary>
+ Exception Syndrome Register (EL2).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.ESREL1">
+<summary>
+ Exception Syndrome Register (EL1).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.DCZIDEL0">
+<summary>
+ Data Cache Zero ID register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.DACR32EL2">
+<summary>
+ Domain Access Control Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.CTREL0">
+<summary>
+ Cache Type Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.CSSELREL1">
+<summary>
+ Cache Size Selection Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.CPTREL3">
+<summary>
+ Architectural Feature Trap Register (EL3).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.CPTREL2">
+<summary>
+ Architectural Feature Trap Register (EL2).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.CPACREL1">
+<summary>
+ Architectural Feature Access Control Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.CONTEXTIDREL1">
+<summary>
+ Context ID Register (EL1).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.CLIDREL1">
+<summary>
+ Cache Level ID Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.CCSIDREL1">
+<summary>
+ Current Cache Size ID Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.AMAIREL3">
+<summary>
+ Auxiliary Memory Attribute Indirection Register (EL3).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.AMAIREL2">
+<summary>
+ Auxiliary Memory Attribute Indirection Register (EL2).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.AMAIREL1">
+<summary>
+ Auxiliary Memory Attribute Indirection Register (EL1).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.AIDREL1">
+<summary>
+ Auxiliary ID Register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.AFSR1EL3">
+<summary>
+ Auxiliary Fault Status Register 1 (EL3).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.AFSR1EL2">
+<summary>
+ Auxiliary Fault Status Register 1 (EL2).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.AFSR1EL1">
+<summary>
+ Auxiliary Fault Status Register 1 (EL1).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.AFSR0EL3">
+<summary>
+ Auxiliary Fault Status Register 0 (EL3).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.AFSR0EL2">
+<summary>
+ Auxiliary Fault Status Register 0 (EL2).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.AFSR0EL1">
+<summary>
+ Auxiliary Fault Status Register 0 (EL1).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.ACTLREL3">
+<summary>
+ Auxiliary Control Register (EL3).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.ACTLREL2">
+<summary>
+ Auxiliary Control Register (EL2).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.ACTLREL1">
+<summary>
+ Auxiliary Control Register (EL1).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V">
+<summary>
+ Overflow condition flag.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C">
+<summary>
+ Carry condition flag.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Z">
+<summary>
+ Zero condition flag.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.N">
+<summary>
+ Negative condition flag.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C15">
+<summary>
+ C15.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C14">
+<summary>
+ C14.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C13">
+<summary>
+ C13.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C12">
+<summary>
+ C12.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C11">
+<summary>
+ C11.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C10">
+<summary>
+ C10.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C9">
+<summary>
+ C9.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C8">
+<summary>
+ C8.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C7">
+<summary>
+ C7.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C6">
+<summary>
+ C6
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C5">
+<summary>
+ C5.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C4">
+<summary>
+ C4.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C3">
+<summary>
+ C3.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C2">
+<summary>
+ C2.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C1">
+<summary>
+ C1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.C0">
+<summary>
+ Co-processor register
+ C0.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q31">
+<summary>
+ Q31.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q30">
+<summary>
+ Q30.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q29">
+<summary>
+ Q29.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q28">
+<summary>
+ Q28.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q27">
+<summary>
+ Q27.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q26">
+<summary>
+ Q26.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q25">
+<summary>
+ Q25.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q24">
+<summary>
+ Q24.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q23">
+<summary>
+ Q23.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q22">
+<summary>
+ Q22.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q21">
+<summary>
+ Q21.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q20">
+<summary>
+ Q20.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q19">
+<summary>
+ Q19.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q18">
+<summary>
+ Q18.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q17">
+<summary>
+ Q17.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q16">
+<summary>
+ Q16.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q15">
+<summary>
+ Q15.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q14">
+<summary>
+ Q14.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q13">
+<summary>
+ Q13.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q12">
+<summary>
+ Q12.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q11">
+<summary>
+ Q11.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q10">
+<summary>
+ Q10.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q9">
+<summary>
+ Q9.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q8">
+<summary>
+ Q8.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q7">
+<summary>
+ Q7.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q6">
+<summary>
+ Q6.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q5">
+<summary>
+ Q5.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q4">
+<summary>
+ Q4.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q3">
+<summary>
+ Q3.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q2">
+<summary>
+ Q2.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q1">
+<summary>
+ Q1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.Q0">
+<summary>
+ Q0.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D31">
+<summary>
+ D31.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D30">
+<summary>
+ D30.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D29">
+<summary>
+ D29.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D28">
+<summary>
+ D28.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D27">
+<summary>
+ D27.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D26">
+<summary>
+ D26.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D25">
+<summary>
+ D25.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D24">
+<summary>
+ D24.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D23">
+<summary>
+ D23.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D22">
+<summary>
+ D22.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D21">
+<summary>
+ D21.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D20">
+<summary>
+ D20.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D19">
+<summary>
+ D19.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D18">
+<summary>
+ D18.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D17">
+<summary>
+ D17.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D16">
+<summary>
+ D16.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D15">
+<summary>
+ D15.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D14">
+<summary>
+ D14.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D13">
+<summary>
+ D13.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D12">
+<summary>
+ D12.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D11">
+<summary>
+ D11.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D10">
+<summary>
+ D10.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D9">
+<summary>
+ D9.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D8">
+<summary>
+ D8.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D7">
+<summary>
+ D7.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D6">
+<summary>
+ D6.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D5">
+<summary>
+ D5.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D4">
+<summary>
+ D4.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D3">
+<summary>
+ D3.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D2">
+<summary>
+ D2.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D1">
+<summary>
+ D1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.D0">
+<summary>
+ D0.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S31">
+<summary>
+ S31.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S30">
+<summary>
+ S30.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S29">
+<summary>
+ S29.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S28">
+<summary>
+ S28.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S27">
+<summary>
+ S27.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S26">
+<summary>
+ S26.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S25">
+<summary>
+ S25.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S24">
+<summary>
+ S24.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S23">
+<summary>
+ S23.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S22">
+<summary>
+ S22.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S21">
+<summary>
+ S21.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S20">
+<summary>
+ S20.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S19">
+<summary>
+ S19.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S18">
+<summary>
+ S18.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S17">
+<summary>
+ S17.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S16">
+<summary>
+ S16.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S15">
+<summary>
+ S15.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S14">
+<summary>
+ S14.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S13">
+<summary>
+ S13.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S12">
+<summary>
+ S12.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S11">
+<summary>
+ S11.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S10">
+<summary>
+ S10.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S9">
+<summary>
+ S9.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S8">
+<summary>
+ S8.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S7">
+<summary>
+ S7.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S6">
+<summary>
+ S6.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S5">
+<summary>
+ S5.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S4">
+<summary>
+ S4.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S3">
+<summary>
+ S3.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S2">
+<summary>
+ S2.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S1">
+<summary>
+ S1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.S0">
+<summary>
+ S0.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H31">
+<summary>
+ H31.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H30">
+<summary>
+ H30.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H29">
+<summary>
+ H29.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H28">
+<summary>
+ H28.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H27">
+<summary>
+ H27.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H26">
+<summary>
+ H26.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H25">
+<summary>
+ H25.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H24">
+<summary>
+ H24.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H23">
+<summary>
+ H23.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H22">
+<summary>
+ H22.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H21">
+<summary>
+ H21.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H20">
+<summary>
+ H20.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H19">
+<summary>
+ H19.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H18">
+<summary>
+ H18.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H17">
+<summary>
+ H17.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H16">
+<summary>
+ H16.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H15">
+<summary>
+ H15.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H14">
+<summary>
+ H14.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H13">
+<summary>
+ H13.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H12">
+<summary>
+ H12.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H11">
+<summary>
+ H11.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H10">
+<summary>
+ H10.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H9">
+<summary>
+ H9.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H8">
+<summary>
+ H8.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H7">
+<summary>
+ H7.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H6">
+<summary>
+ H6.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H5">
+<summary>
+ H5.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H4">
+<summary>
+ H4.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H3">
+<summary>
+ H3.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H2">
+<summary>
+ H2.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H1">
+<summary>
+ H1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.H0">
+<summary>
+ H0.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B31">
+<summary>
+ B31.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B30">
+<summary>
+ B30.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B29">
+<summary>
+ B29.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B28">
+<summary>
+ B28.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B27">
+<summary>
+ B27.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B26">
+<summary>
+ B26.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B25">
+<summary>
+ B25.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B24">
+<summary>
+ B24.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B23">
+<summary>
+ B23.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B22">
+<summary>
+ B22.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B21">
+<summary>
+ B21.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B20">
+<summary>
+ B20.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B19">
+<summary>
+ B19.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B18">
+<summary>
+ B18.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B17">
+<summary>
+ B17.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B16">
+<summary>
+ B16.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B15">
+<summary>
+ B15.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B14">
+<summary>
+ B14.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B13">
+<summary>
+ B13.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B12">
+<summary>
+ B12.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B11">
+<summary>
+ B11.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B10">
+<summary>
+ B10.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B9">
+<summary>
+ B9.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B8">
+<summary>
+ B8.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B7">
+<summary>
+ B7.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B6">
+<summary>
+ B6.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B5">
+<summary>
+ B5.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B4">
+<summary>
+ B4.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B3">
+<summary>
+ B3.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B2">
+<summary>
+ B2.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B1">
+<summary>
+ B1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.B0">
+<summary>
+ B0.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V31">
+<summary>
+ V31.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V30">
+<summary>
+ V30.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V29">
+<summary>
+ V29.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V28">
+<summary>
+ V28.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V27">
+<summary>
+ V27.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V26">
+<summary>
+ V26.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V25">
+<summary>
+ V25.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V24">
+<summary>
+ V24.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V23">
+<summary>
+ V23.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V22">
+<summary>
+ V22.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V21">
+<summary>
+ V21.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V20">
+<summary>
+ V20.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V19">
+<summary>
+ V19.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V18">
+<summary>
+ V18.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V17">
+<summary>
+ V17.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V16">
+<summary>
+ V16.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V15">
+<summary>
+ V15.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V14">
+<summary>
+ V14.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V13">
+<summary>
+ V13.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V12">
+<summary>
+ V12.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V11">
+<summary>
+ V11.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V10">
+<summary>
+ v10.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V9">
+<summary>
+ V9.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V8">
+<summary>
+ V8.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V7">
+<summary>
+ V7.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V6">
+<summary>
+ V6.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V5">
+<summary>
+ V5.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V4">
+<summary>
+ V4.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V3">
+<summary>
+ V3.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V2">
+<summary>
+ V2.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V1">
+<summary>
+ V1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.V0">
+<summary>
+ V0.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.PC">
+<summary>
+ Program counter.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.WSP">
+<summary>
+ Stack pointer (32bit).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.SP">
+<summary>
+ Stack pointer (64bit).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.WZR">
+<summary>
+ WZR.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W30">
+<summary>
+ W30.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W29">
+<summary>
+ W29.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W28">
+<summary>
+ W28.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W27">
+<summary>
+ W27.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W26">
+<summary>
+ W26.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W25">
+<summary>
+ W25.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W24">
+<summary>
+ W24.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W23">
+<summary>
+ W23.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W22">
+<summary>
+ W22.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W21">
+<summary>
+ W21.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W20">
+<summary>
+ W20.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W19">
+<summary>
+ W19.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W18">
+<summary>
+ W18.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W17">
+<summary>
+ W17.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W16">
+<summary>
+ W16.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W15">
+<summary>
+ W15.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W14">
+<summary>
+ W14.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W13">
+<summary>
+ W13.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W12">
+<summary>
+ W12.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W11">
+<summary>
+ W11.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W10">
+<summary>
+ W10.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W9">
+<summary>
+ W9.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W8">
+<summary>
+ W8.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W7">
+<summary>
+ W7.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W6">
+<summary>
+ W6.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W5">
+<summary>
+ W5.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W4">
+<summary>
+ W4.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W3">
+<summary>
+ W3.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W2">
+<summary>
+ W2.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W1">
+<summary>
+ W1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.W0">
+<summary>
+ W0.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.XZR">
+<summary>
+ XZR.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X30">
+<summary>
+ X30.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X29">
+<summary>
+ X29 (FP).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X28">
+<summary>
+ X28.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X27">
+<summary>
+ X27.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X26">
+<summary>
+ X26.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X25">
+<summary>
+ X25.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X24">
+<summary>
+ X24.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X23">
+<summary>
+ X23.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X22">
+<summary>
+ X22.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X21">
+<summary>
+ X21.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X20">
+<summary>
+ X20.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X19">
+<summary>
+ X19.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X18">
+<summary>
+ X18.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X17">
+<summary>
+ X17.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X16">
+<summary>
+ X16.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X15">
+<summary>
+ X15.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X14">
+<summary>
+ X14.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X13">
+<summary>
+ X13.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X12">
+<summary>
+ X12.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X11">
+<summary>
+ X11.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X10">
+<summary>
+ X10.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X9">
+<summary>
+ X9.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X8">
+<summary>
+ X8.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X7">
+<summary>
+ X7.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X6">
+<summary>
+ X6.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X5">
+<summary>
+ X5.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X4">
+<summary>
+ X4.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X3">
+<summary>
+ X3.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X2">
+<summary>
+ X2.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X1">
+<summary>
+ X1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Register.X0">
+<summary>
+ X0.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Register">
+ <summary>
+   ARMv8 registers. Below is how we encode register as a 20-bit integer.
+   <para/>
+   <code>
+   19 18 17 16 15        ...        00 (bit position)
+   +----------+----------------------+
+   | Kind     |  Register ID.        |
+   +----------+----------------------+
+
+   # Kind (19 - 16)
+   - 0000 : General purpose registers.
+   - 0001 : SIMD registers.
+   - 0010 : VFP registers.
+   - 0011 : Co-processor registers.
+   - 0100 : Control flags.
+   - 0101 : Control register.
+   </code>
+ </summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.RegExprs.V@">
+<summary>
+ Overflow condition flag
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.RegExprs.C@">
+<summary>
+ Carry condition flag
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.RegExprs.Z@">
+<summary>
+ Zero condition flag
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.RegExprs.N@">
+<summary>
+ Negative condition flag
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.ARM64.RegExprs.Z">
+<summary>
+ Zero condition flag
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.ARM64.RegExprs.V">
+<summary>
+ Overflow condition flag
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.ARM64.RegExprs.N">
+<summary>
+ Negative condition flag
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.ARM64.RegExprs.C">
+<summary>
+ Carry condition flag
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.ARM64.InsInfo.OprSize">
+<summary>
+ Operation size.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.ARM64.InsInfo.Operands">
+<summary>
+ Operands.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.ARM64.InsInfo.Opcode">
+<summary>
+ Opcode.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.ARM64.InsInfo.Condition">
+<summary>
+ Condition.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.ARM64.InsInfo.NumBytes">
+<summary>
+ Instruction length.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.ARM64.InsInfo.Address">
+<summary>
+ Address.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.InsInfo">
+<summary>
+ Basic information for a single ARMv8 instruction obtained after parsing.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.RegisterOffset.ExtRegOffset">
+<summary>
+ Extended register offset.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.RegisterOffset.ShiftOffset">
+<summary>
+ Register offset.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.SIMDVectorRegisterWithIndex">
+<summary>
+ SIMD vector register with element index
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.SIMDVectorRegister">
+<summary>
+ SIMD vector register
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.SIMDFPscalRegister">
+<summary>
+ SIMD&amp;FP Register
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ZIP2">
+<summary>
+ Zip vectors (secondary).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ZIP1">
+<summary>
+ Zip vectors (primary).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.XTN2">
+<summary>
+ Extract narrow.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.XTN">
+<summary>
+ Extract narrow.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.WFI">
+<summary>
+ Wait for interrupt.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.WFE">
+<summary>
+ Wait for event.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UZP2">
+<summary>
+ Unzip vectors (secondary).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UZP1">
+<summary>
+ Unzip vectors (primary).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UXTH">
+<summary>
+ Unsigned extend halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UXTB">
+<summary>
+ Unsigned extend byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.USUBW2">
+<summary>
+ Unsigned subtract wide.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.USUBW">
+<summary>
+ Unsigned subtract wide.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.USUBL2">
+<summary>
+ Unsigned subtract long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.USUBL">
+<summary>
+ Unsigned subtract long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.USRA">
+<summary>
+ Unsigned shift right and accumulate immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.USQADD">
+<summary>
+ Unsigned saturating accumulate of signed value.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.USHR">
+<summary>
+ Unsigned shift right immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.USHLL2">
+<summary>
+ Unsigned shift left long immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.USHLL">
+<summary>
+ Unsigned shift left long immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.USHL">
+<summary>
+ Unsigned shift left (register).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.URSRA">
+<summary>
+ Unsigned integer rounding shift right and accumulate immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.URSQRTE">
+<summary>
+ Unsigned reciprocal square root estimate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.URSHR">
+<summary>
+ Unsigned rounding shift right immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.URSHL">
+<summary>
+ Unsigned rounding shift left (register).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.URHADD">
+<summary>
+ Unsigned rounding halving add.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.URECPE">
+<summary>
+ Unsigned reciprocal estimate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UQXTN2">
+<summary>
+ Unsigned saturating extract narrow.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UQXTN">
+<summary>
+ Unsigned saturating extract narrow.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UQSUB">
+<summary>
+ Unsigned saturating subtract.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UQSHRN2">
+<summary>
+ Unsigned saturating shift right narrow immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UQSHRN">
+<summary>
+ Unsigned saturating shift right narrow immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UQSHL">
+<summary>
+ Unsigned saturating shift left (register).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UQRSHRN2">
+<summary>
+ Unsigned saturating rounded shift right narrow immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UQRSHRN">
+<summary>
+ Unsigned saturating rounded shift right narrow immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UQRSHL">
+<summary>
+ Unsigned saturating rounding shift left (register).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UQADD">
+<summary>
+ Unsigned saturating add.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMULL2">
+<summary>
+ Unsigned multiply long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMULL">
+<summary>
+ Unsigned multiply long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMULH">
+<summary>
+ Unsigned multiply high.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMSUBL">
+<summary>
+ Unsigned multiply-subtract long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMOV">
+<summary>
+ Unsigned move vector element to general-purpose register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMNEGL">
+<summary>
+ Unsigned multiply-negate long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMLSL2">
+<summary>
+ Unsigned multiply-subtract long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMLSL">
+<summary>
+ Unsigned multiply-subtract long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMLAL2">
+<summary>
+ Unsigned multiply-add long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMLAL">
+<summary>
+ Unsigned multiply-add long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMINV">
+<summary>
+ Unsigned minimum (across vector).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMINP">
+<summary>
+ Unsigned minimum pairwise.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMIN">
+<summary>
+ Unsigned minimum.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMAXV">
+<summary>
+ Unsigned maximum (across vector).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMAXP">
+<summary>
+ Unsigned maximum pairwise.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMAX">
+<summary>
+ Unsigned maximum.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UMADDL">
+<summary>
+ Unsigned multiply-add long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UHSUB">
+<summary>
+ Unsigned halving subtract.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UHADD">
+<summary>
+ Unsigned halving add.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UDIV">
+<summary>
+ Unsigned divide.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UCVTF">
+<summary>
+ Unsigned integer scalar convert to FP, using the current rounding mode.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UBFX">
+<summary>
+ Unsigned bitfield extract.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UBFM">
+<summary>
+ Unsigned bitfield move (32-bit).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UBFIZ">
+<summary>
+ Unsigned bitfield insert in zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UADDW2">
+<summary>
+ Unsigned add wide.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UADDW">
+<summary>
+ Unsigned add wide.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UADDLV">
+<summary>
+ Unsigned add long (across vector).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UADDLP">
+<summary>
+ Unsigned add long pairwise.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UADDL2">
+<summary>
+ Unsigned add long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UADDL">
+<summary>
+ Unsigned add long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UADALP">
+<summary>
+ Unsigned add and accumulate long pairwise.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UABDL2">
+<summary>
+ Unsigned absolute difference long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UABDL">
+<summary>
+ Unsigned absolute difference long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UABD">
+<summary>
+ Unsigned absolute difference.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UABAL2">
+<summary>
+ Unsigned absolute difference and accumulate long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UABAL">
+<summary>
+ Unsigned absolute difference and accumulate long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.UABA">
+<summary>
+ Unsigned absolute difference and accumulate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.TST">
+<summary>
+ Test bits.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.TRN2">
+<summary>
+ Transpose vectors (secondary).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.TRN1">
+<summary>
+ Transpose vectors (primary).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.TBZ">
+<summary>
+ Test bit and branch if zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.TBX">
+<summary>
+ Table vector lookup extension.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.TBNZ">
+<summary>
+ Test bit and branch if nonzero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.TBL">
+<summary>
+ Table vector lookup.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SYSL">
+<summary>
+ System instruction with result.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SYS">
+<summary>
+ System instruction.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SXTW">
+<summary>
+ Sign-extend word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SXTH">
+<summary>
+ Sign-extend halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SXTB">
+<summary>
+ Sign-extend byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SVC">
+<summary>
+ Generate exception targeting Exception level 1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SUQADD">
+<summary>
+ Signed saturating accumulate of unsigned value.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SUBS">
+<summary>
+ Subtract and set flags.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SUBHN2">
+<summary>
+ Subtract returning high, narrow.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SUBHN">
+<summary>
+ Subtract returning high, narrow.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SUB">
+<summary>
+ Subtract.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STXRH">
+<summary>
+ Store Exclusive halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STXRB">
+<summary>
+ Store Exclusive byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STXR">
+<summary>
+ Store Exclusive register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STXP">
+<summary>
+ Store Exclusive pair.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STURH">
+<summary>
+ Store halfword (unscaled offset).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STURB">
+<summary>
+ Store byte (unscaled offset).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STUR">
+<summary>
+ Store register (unscaled offset).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STTRH">
+<summary>
+ Store unprivileged halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STTRB">
+<summary>
+ Store unprivileged byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STTR">
+<summary>
+ Store unprivileged register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STRH">
+<summary>
+ Store halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STRB">
+<summary>
+ Store byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STR">
+<summary>
+ Store register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STP">
+<summary>
+ Store Pair.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STNP">
+<summary>
+ Store Non-temporal Pair.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STLXRH">
+<summary>
+ Store-Release Exclusive halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STLXRB">
+<summary>
+ Store-Release Exclusive byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STLXR">
+<summary>
+ Store-Release Exclusive register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STLXP">
+<summary>
+ Store-Release Exclusive pair.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STLRH">
+<summary>
+ Store-Release halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STLRB">
+<summary>
+ Store-Release byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.STLR">
+<summary>
+ Store-Release register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ST4">
+<summary>
+ Store multiple 4-element structures from four consecutive registers.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ST3">
+<summary>
+ Store multiple 3-element structures from three consecutive registers.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ST2">
+<summary>
+ Store multiple 2-element structures from two consecutive registers.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ST1">
+<summary>
+ Store single 1-element structure from one lane of one register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SSUBW2">
+<summary>
+ Signed subtract wide.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SSUBW">
+<summary>
+ Signed subtract wide.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SSUBL2">
+<summary>
+ Signed subtract long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SSUBL">
+<summary>
+ Signed subtract long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SSRA">
+<summary>
+ Signed integer shift right and accumulate immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SSHR">
+<summary>
+ Signed shift right immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SSHLL2">
+<summary>
+ Signed shift left long immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SSHLL">
+<summary>
+ Signed shift left long immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SSHL">
+<summary>
+ Signed shift left (register).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SRSRA">
+<summary>
+ Signed rounding shift right and accumulate immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SRSHR">
+<summary>
+ Signed rounding shift right immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SRSHL">
+<summary>
+ Signed rounding shift left (register).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SRI">
+<summary>
+ Shift right and insert immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SRHADD">
+<summary>
+ Signed rounding halving add.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQXTUN2">
+<summary>
+ Signed saturating extract unsigned narrow.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQXTUN">
+<summary>
+ Signed saturating extract unsigned narrow.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQXTN2">
+<summary>
+ Signed saturating extract narrow.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQXTN">
+<summary>
+ Signed saturating extract narrow.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQSUB">
+<summary>
+ Signed saturating subtract.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQSHRUN2">
+<summary>
+ Signed saturating shift right unsigned narrow immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQSHRUN">
+<summary>
+ Signed saturating shift right unsigned narrow immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQSHRN2">
+<summary>
+ Signed saturating shift right narrow immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQSHRN">
+<summary>
+ Signed saturating shift right narrow immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQSHLU">
+<summary>
+ Signed saturating shift left unsigned immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQSHL">
+<summary>
+ Signed saturating shift left.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQRSHRUN2">
+<summary>
+ Signed saturating shift right unsigned narrow immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQRSHRUN">
+<summary>
+ Signed saturating shift right unsigned narrow immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQRSHRN2">
+<summary>
+ Signed saturating rounded shift right narrow immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQRSHRN">
+<summary>
+ Signed saturating rounded shift right narrow immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQRSHL">
+<summary>
+ Signed saturating rounding shift left (register).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQRDMULH">
+<summary>
+ Signed saturating rounding doubling multiply returning high half.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQNEG">
+<summary>
+ Signed saturating negate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQDMULL2">
+<summary>
+ Signed saturating doubling multiply long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQDMULL">
+<summary>
+ Signed saturating doubling multiply long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQDMULH">
+<summary>
+ Signed saturating doubling multiply returning high half.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQDMLSL2">
+<summary>
+ Signed saturating doubling multiply-subtract long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQDMLSL">
+<summary>
+ Signed saturating doubling multiply-subtract long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQDMLAL2">
+<summary>
+ Signed saturating doubling multiply-add long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQDMLAL">
+<summary>
+ Signed saturating doubling multiply-add long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQADD">
+<summary>
+ Signed saturating add.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SQABS">
+<summary>
+ Signed saturating absolute value.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMULL2">
+<summary>
+ Signed multiply long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMULL">
+<summary>
+ Signed multiply long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMULH">
+<summary>
+ Signed multiply high.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMSUBL">
+<summary>
+ Signed multiply-subtract long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMOV">
+<summary>
+ Signed move vector element to general-purpose register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMNEGL">
+<summary>
+ Signed multiply-negate long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMLSL2">
+<summary>
+ Signed multiply-subtract long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMLSL">
+<summary>
+ Signed multiply-subtract long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMLAL2">
+<summary>
+ Signed multiply-add long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMLAL">
+<summary>
+ Signed multiply-add long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMINV">
+<summary>
+ Signed minimum (across vector).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMINP">
+<summary>
+ Signed minimum pairwise.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMIN">
+<summary>
+ Signed minimum (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMC">
+<summary>
+ Generate exception targeting Exception level 3.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMAXV">
+<summary>
+ Signed maximum (across vector).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMAXP">
+<summary>
+ Signed maximum pairwise.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMAX">
+<summary>
+ Signed maximum (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SMADDL">
+<summary>
+ Signed multiply-add long.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SLI">
+<summary>
+ Shift left and insert immediate (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHSUB">
+<summary>
+ Signed halving subtract (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHRN2">
+<summary>
+ Shift right narrow immediate (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHRN">
+<summary>
+ Shift right narrow immediate (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHLL2">
+<summary>
+ Shift left long (by element size) (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHLL">
+<summary>
+ Shift left long (by element size) (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHL">
+<summary>
+ Shift left immediate (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHADD">
+<summary>
+ Signed halving add (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHA256SU1">
+<summary>
+ SHA256 schedule update 1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHA256SU0">
+<summary>
+ SHA256 schedule update 0.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHA256H2">
+<summary>
+ SHA256 hash update (part 2).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHA256H">
+<summary>
+ SHA256 hash update (part 1).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHA1SU1">
+<summary>
+ SHA1 schedule update 1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHA1SU0">
+<summary>
+ SHA1 schedule update 0.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHA1P">
+<summary>
+ SHA1 hash update (parity).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHA1M">
+<summary>
+ SHA1 hash update (majority).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHA1H">
+<summary>
+ SHA1 fixed rotate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SHA1C">
+<summary>
+ SHA1 hash update (choose).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SEVL">
+<summary>
+ Send event local.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SEV">
+<summary>
+ Send event.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SDIV">
+<summary>
+ Signed divide.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SCVTF">
+<summary>
+ Signed integer scalar convert to FP, using the current rounding mode.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SBFX">
+<summary>
+ Signed bitfield extract.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SBFM">
+<summary>
+ Signed bitfield move.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SBFIZ">
+<summary>
+ Signed bitfield insert in zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SBCS">
+<summary>
+ Subtract with carry and set flags.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SBC">
+<summary>
+ Subtract with carry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SADDW2">
+<summary>
+ Signed add wide (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SADDW">
+<summary>
+ Signed add wide (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SADDLV">
+<summary>
+ Signed add long (across vector).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SADDLP">
+<summary>
+ Signed add long pairwise (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SADDL2">
+<summary>
+ Signed add long (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SADDL">
+<summary>
+ Signed add long (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SADALP">
+<summary>
+ Signed add and accumulate long pairwise (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SABDL2">
+<summary>
+ Signed absolute difference long (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SABDL">
+<summary>
+ Signed absolute difference long (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SABD">
+<summary>
+ Signed absolute difference (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SABAL2">
+<summary>
+ Signed absolute difference and accumulate long (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SABAL">
+<summary>
+ Signed absolute difference and accumulate long (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.SABA">
+<summary>
+ Signed absolute difference and accumulate (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.RSUBHN2">
+<summary>
+ Rounding subtract returning high, narrow (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.RSUBHN">
+<summary>
+ Rounding subtract returning high, narrow (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.RSHRN2">
+<summary>
+ Rounding shift right narrow immediate (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.RSHRN">
+<summary>
+ Rounding shift right narrow immediate (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.RORV">
+<summary>
+ Rotate right variable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ROR">
+<summary>
+ Rotate right.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.REV64">
+<summary>
+ Reverse elements in 64-bit doublewords (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.REV32">
+<summary>
+ Reverses bytes in words.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.REV16">
+<summary>
+ Reverse bytes in halfwords.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.REV">
+<summary>
+ Reverse bytes in register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.RET">
+<summary>
+ Return from subroutine.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.RBIT">
+<summary>
+ Reverse bit order.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.RADDHN2">
+<summary>
+ Rounding add returning high, narrow (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.RADDHN">
+<summary>
+ Rounding add returning high, narrow (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.PRFUM">
+<summary>
+ Prefetch memory (unscaled offset).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.PRFM">
+<summary>
+ Prefetch memory.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.PMULL2">
+<summary>
+ Polynomial multiply long (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.PMULL">
+<summary>
+ Polynomial multiply long (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.PMUL">
+<summary>
+ Polynomial multiply (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ORR">
+<summary>
+ Bitwise inclusive OR.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ORN">
+<summary>
+ Bitwise inclusive OR NOT.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.NOT">
+<summary>
+ Bitwise NOT.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.NOP">
+<summary>
+ No operation.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.NGCS">
+<summary>
+ Negate with carry and set flags.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.NGC">
+<summary>
+ Negate with carry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.NEGS">
+<summary>
+ Negate and set flags.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.NEG">
+<summary>
+ Negate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MVNI">
+<summary>
+ Move inverted immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MVN">
+<summary>
+ Bitwise NOT.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MUL">
+<summary>
+ Multiply.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MSUB">
+<summary>
+ Multiply-subtract.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MSR">
+<summary>
+ Move general-purpose register to System register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MRS">
+<summary>
+ Move System register to general-purpose register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MOVZ">
+<summary>
+ Move wide with zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MOVN">
+<summary>
+ Move wide with NOT.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MOVK">
+<summary>
+ Move wide with keep.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MOVI">
+<summary>
+ Move immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MOV">
+<summary>
+ Move.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MNEG">
+<summary>
+ Multiply-negate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MLS">
+<summary>
+ Multiply-subtract from accumulator.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MLA">
+<summary>
+ Multiply-add to accumulator.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.MADD">
+<summary>
+ Multiply-add.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LSRV">
+<summary>
+ Logical shift right variable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LSR">
+<summary>
+ Logical shift right.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LSLV">
+<summary>
+ Logical shift left variable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LSL">
+<summary>
+ Logical shift left.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDXRH">
+<summary>
+ Load Exclusive halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDXRB">
+<summary>
+ Load Exclusive byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDXR">
+<summary>
+ Load Exclusive register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDXP">
+<summary>
+ Load Exclusive pair.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDURSW">
+<summary>
+ Load signed word (unscaled offset).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDURSH">
+<summary>
+ Load signed halfword (unscaled offset).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDURSB">
+<summary>
+ Load signed byte (unscaled offset).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDURH">
+<summary>
+ Load halfword (unscaled offset).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDURB">
+<summary>
+ Load byte (unscaled offset).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDUR">
+<summary>
+ Load register (unscaled offset).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDTRSW">
+<summary>
+ Load unprivileged signed word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDTRSH">
+<summary>
+ Load unprivileged signed halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDTRSB">
+<summary>
+ Load unprivileged signed byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDTRH">
+<summary>
+ Load unprivileged halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDTRB">
+<summary>
+ Load unprivileged byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDTR">
+<summary>
+ Load unprivileged register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDRSW">
+<summary>
+ Load signed word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDRSH">
+<summary>
+ Load signed halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDRSB">
+<summary>
+ Load signed byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDRH">
+<summary>
+ Load halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDRB">
+<summary>
+ Load byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDR">
+<summary>
+ Load register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDPSW">
+<summary>
+ Load Pair signed words.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDP">
+<summary>
+ Load Pair.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDNP">
+<summary>
+ Load Non-temporal Pair.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDAXRH">
+<summary>
+ Load-Acquire Exclusive halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDAXRB">
+<summary>
+ Load-Acquire Exclusive byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDAXR">
+<summary>
+ Load-Acquire Exclusive register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDAXP">
+<summary>
+ Load-Acquire Exclusive pair.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDARH">
+<summary>
+ Load-Acquire halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDARB">
+<summary>
+ Load-Acquire byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LDAR">
+<summary>
+ Load-Acquire register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LD4R">
+<summary>
+ Load single 4-element structure and replicate to all lanes of four regs.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LD4">
+<summary>
+ Load multiple 4-element structures to four consecutive registers.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LD3R">
+<summary>
+ Load single 3-element structure and replicate to all lanes of three regs.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LD3">
+<summary>
+ Load multiple 3-element structures to three consecutive registers.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LD2R">
+<summary>
+ Load single 2-element structure and replicate to all lanes of two regs.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LD2">
+<summary>
+ Load multiple 2-element structures to two consecutive registers.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LD1R">
+<summary>
+ Load single 1-element structure and replicate to all lanes of one reg.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.LD1">
+<summary>
+ Load single 1-element structure to one lane of one register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ISB">
+<summary>
+ Instruction synchronization barrier.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.INS">
+<summary>
+ Insert vector element from general-purpose register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.HVC">
+<summary>
+ Generate exception targeting Exception level 2.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.HLT">
+<summary>
+ Halt Instruction.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.HINT">
+<summary>
+ Unallocated hint.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FSUB">
+<summary>
+ Floating-point subtract.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FSQRT">
+<summary>
+ Floating-point square root,
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FRSQRTS">
+<summary>
+ Floating-point reciprocal square root step (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FRSQRTE">
+<summary>
+ Floating-point reciprocal square root estimate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FRINTZ">
+<summary>
+ Floating-point round to integral, toward zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FRINTX">
+<summary>
+ Floating-point round to integral exact, using current rounding mode.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FRINTP">
+<summary>
+ Floating-point round to integral, toward positive infinity.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FRINTN">
+<summary>
+ Floating-point round to integral, to nearest with ties to even.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FRINTM">
+<summary>
+ Floating-point round to integral, toward minus infinity.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FRINTI">
+<summary>
+ Floating-point round to integral, using current rounding mode.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FRINTA">
+<summary>
+ Floating-point round to integral, to nearest with ties to away.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FRECPX">
+<summary>
+ Floating-point reciprocal square root (scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FRECPS">
+<summary>
+ Floating-point reciprocal step (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FRECPE">
+<summary>
+ Floating-point reciprocal estimate (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FNMUL">
+<summary>
+ Floating-point scalar multiply-negate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FNMSUB">
+<summary>
+ Floating-point scalar negated fused multiply-subtract.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FNMADD">
+<summary>
+ Floating-point scalar negated fused multiply-add.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FNEG">
+<summary>
+ Floating-point negate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMULX">
+<summary>
+ Floating-point multiply extended.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMUL">
+<summary>
+ Floating-point multiply.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMSUB">
+<summary>
+ Floating-point scalar fused multiply-subtract.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMOV">
+<summary>
+ Floating-point move immediate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMLS">
+<summary>
+ Floating-point fused multiply-subtract.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMLA">
+<summary>
+ Floating-point fused multiply-add.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMINV">
+<summary>
+ Floating-point minimum (across vector).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMINP">
+<summary>
+ Floating-point minimum pairwise (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMINNMV">
+<summary>
+ Floating-point minimum number (across vector).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMINNMP">
+<summary>
+ Floating-point minimum number pairwise (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMINNM">
+<summary>
+ Floating-point minimum number.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMIN">
+<summary>
+ Floating-point minimum.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMAXV">
+<summary>
+ Floating-point maximum (across vector).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMAXP">
+<summary>
+ Floating-point maximum pairwise (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMAXNMV">
+<summary>
+ Floating-point maximum number (across vector).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMAXNMP">
+<summary>
+ Floating-point maximum number pairwise (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMAXNM">
+<summary>
+ Floating-point maximum number.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMAX">
+<summary>
+ Floating-point maximum.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FMADD">
+<summary>
+ Floating-point scalar fused multiply-add.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FDIV">
+<summary>
+ Floating-point divide.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTZU">
+<summary>
+ FP convert to unsigned integer, rounding toward zero (vector and scalar).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTZS">
+<summary>
+ FP convert to signed integer, rounding toward zero (vector and scalar).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTXN2">
+<summary>
+ FP convert to lower precision narrow, rounding to odd (vector and scalar).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTXN">
+<summary>
+ FP convert to lower precision narrow, rounding to odd (vector and scalar).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTPU">
+<summary>
+ FP convert to unsigned integer, rounding toward positive infinity.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTPS">
+<summary>
+ FP convert to signed integer, rounding toward positive infinity.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTNU">
+<summary>
+ FP convert to unsigned integer, rounding to nearest with ties to even.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTNS">
+<summary>
+ FP convert to signed integer, rounding to nearest with ties to even.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTN2">
+<summary>
+ Floating-point convert to lower precision narrow (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTN">
+<summary>
+ Floating-point convert to lower precision narrow (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTMU">
+<summary>
+ FP convert to unsigned integer, rounding toward minus infinity.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTMS">
+<summary>
+ Floating-point convert to signed integer, rounding toward minus infinity.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTL2">
+<summary>
+ Floating-point convert to higher precision long (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTL">
+<summary>
+ Floating-point convert to higher precision long (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTAU">
+<summary>
+ FP convert to unsigned integer, rounding to nearest with ties to away.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVTAS">
+<summary>
+ FP convert to signed integer, rounding to nearest with ties to away.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCVT">
+<summary>
+ Floating-point convert precision (scalar).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCSEL">
+<summary>
+ Floating-point scalar conditional select.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCMPE">
+<summary>
+ Floating-point signaling compare.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCMP">
+<summary>
+ Floating-point quiet compare.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCMLT">
+<summary>
+ Floating-point compare less than zero (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCMLE">
+<summary>
+ Floating-point compare less than or equal to zero (vector and scalar).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCMGT">
+<summary>
+ Floating-point compare greater than (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCMGE">
+<summary>
+ Floating-point compare greater than or equal (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCMEQ">
+<summary>
+ Floating-point compare equal (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCCMPE">
+<summary>
+ Floating-point conditional signaling compare.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FCCMP">
+<summary>
+ Floating-point conditional quiet compare.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FADDP">
+<summary>
+ Floating-point add pairwise (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FADD">
+<summary>
+ Floating-point add (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FACGT">
+<summary>
+ Floating-point absolute compare greater than (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FACGE">
+<summary>
+ Floating-point absolute compare greater than or equal.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FABS">
+<summary>
+ Floating-point absolute (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.FABD">
+<summary>
+ Floating-point absolute difference (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.EXTR">
+<summary>
+ Extract register from pair.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.EXT">
+<summary>
+ Extract vector from a pair of vectors.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ERET">
+<summary>
+ Exception return using current ELR and SPSR.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.EOR">
+<summary>
+ Bitwise exclusive OR.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.EON">
+<summary>
+ Bitwise exclusive OR NOT.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.DUP">
+<summary>
+ Duplicate general-purpose register to vector.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.DSB">
+<summary>
+ Data synchronization barrier.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.DRPS">
+<summary>
+ Debug restore PE state.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.DMB">
+<summary>
+ Data memory barrier.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.DCPS3">
+<summary>
+ Debug switch to Exception level 3.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.DCPS2">
+<summary>
+ Debug switch to Exception level 2.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.DCPS1">
+<summary>
+ Debug switch to Exception level 1.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.DC">
+<summary>
+ Data cache maintenance
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CSNEG">
+<summary>
+ Conditional select negation.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CSINV">
+<summary>
+ Conditional select inversion.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CSINC">
+<summary>
+ Conditional select increment.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CSETM">
+<summary>
+ Conditional set mask.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CSET">
+<summary>
+ Conditional set.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CSEL">
+<summary>
+ Conditional select.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CRC32X">
+<summary>
+ CRC-32 sum from doubleword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CRC32W">
+<summary>
+ CRC-32 sum from word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CRC32H">
+<summary>
+ CRC-32 sum from halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CRC32CX">
+<summary>
+ CRC-32C sum from doubleword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CRC32CW">
+<summary>
+ CRC-32C sum from word.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CRC32CH">
+<summary>
+ CRC-32C sum from halfword.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CRC32CB">
+<summary>
+ CRC-32C sum from byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CRC32B">
+<summary>
+ CRC-32 sum from byte.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CNT">
+<summary>
+ Population count per byte (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CNEG">
+<summary>
+ Conditional negate.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CMTST">
+<summary>
+ Compare bitwise test bits nonzero (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CMP">
+<summary>
+ Compare negative.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CMN">
+<summary>
+ Compare negative.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CMLT">
+<summary>
+ Compare signed less than zero (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CMLE">
+<summary>
+ Compare signed less than or equal to zero (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CMHS">
+<summary>
+ Compare unsigned higher or same (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CMHI">
+<summary>
+ Compare unsigned higher (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CMGT">
+<summary>
+ Compare signed greater than (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CMGE">
+<summary>
+ Compare signed greater than or equal (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CMEQ">
+<summary>
+ Compare bitwise equal (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CLZ">
+<summary>
+ Count leading zero bits.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CLS">
+<summary>
+ Count leading sign bits.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CLREX">
+<summary>
+ Clear exclusive monitor.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CINV">
+<summary>
+ Conditional invert.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CINC">
+<summary>
+ Conditional increment.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CCMP">
+<summary>
+ Conditional compare (register or immediate).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CCMN">
+<summary>
+ Conditional compare negative (register or immediate).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CBZ">
+<summary>
+ Compare and branch if zero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.CBNZ">
+<summary>
+ Compare and branch if nonzero.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BVS">
+<summary>
+ Branch conditionally (VS).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BVC">
+<summary>
+ Branch conditionally (VC).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BSL">
+<summary>
+ Bitwise select (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BRK">
+<summary>
+ Breakpoint Instruction.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BR">
+<summary>
+ Branch to register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BPL">
+<summary>
+ Branch conditionally (PL).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BNV">
+<summary>
+ Branch conditionally (NV).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BNE">
+<summary>
+ Branch conditionally (NE).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BMI">
+<summary>
+ Branch conditionally (MI).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BLT">
+<summary>
+ Branch conditionally (LT).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BLS">
+<summary>
+ Branch conditionally (LS).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BLR">
+<summary>
+ Branch with link to register.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BLO">
+<summary>
+ Branch conditionally (LO).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BLE">
+<summary>
+ Branch conditionally (LE).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BL">
+<summary>
+ Branch with link.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BIT">
+<summary>
+ Bitwise insert if true (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BIF">
+<summary>
+ Bitwise insert if false (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BICS">
+<summary>
+ Bitwise bit clear and set flags.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BIC">
+<summary>
+ Bitwise bit clear.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BHS">
+<summary>
+ Branch conditionally (HS).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BHI">
+<summary>
+ Branch conditionally (HI).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BGT">
+<summary>
+ Branch conditionally (GT).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BGE">
+<summary>
+ Branch conditionally (GE).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BFXIL">
+<summary>
+ Bitfield extract and insert low.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BFI">
+<summary>
+ Bitfield insert.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BEQ">
+<summary>
+ Branch conditionally (EQ).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BCS">
+<summary>
+ Branch conditionally (CS).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BCC">
+<summary>
+ Branch conditionally (CC).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.BAL">
+<summary>
+ Branch conditionally (AL).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.B">
+<summary>
+ Branch unconditionally.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ASRV">
+<summary>
+ Arithmetic shift right variable.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ASR">
+<summary>
+ Arithmetic shift right.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ANDS">
+<summary>
+ Bitwise AND and set flags.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.AND">
+<summary>
+ Bitwise AND.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.AESMC">
+<summary>
+ AES mix columns.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.AESIMC">
+<summary>
+ AES inverse mix columns.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.AESE">
+<summary>
+ AES single round encryption.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.AESD">
+<summary>
+ AES single round decryption.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ADRP">
+<summary>
+ Compute address of 4KB page at a PC-relative offset.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ADR">
+<summary>
+ Compute address of label at a PC-relative offset.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ADDV">
+<summary>
+ Add (across vector).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ADDS">
+<summary>
+ Add and set flags.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ADDP">
+<summary>
+ Add pairwise (vector and scalar form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ADDHN2">
+<summary>
+ Add returning high, narrow (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ADDHN">
+<summary>
+ Add returning high, narrow (vector form).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ADD">
+<summary>
+ Add.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ADCS">
+<summary>
+ Add with carry and set flags.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ADC">
+<summary>
+ Add with carry.
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.Opcode.ABS">
+<summary>
+ Absolute value (vector and scalar form).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Opcode">
+ <summary>
+   ARMv8 (AArch64) opcodes. This type should be generated using
+   <c>scripts/genOpcode.fsx</c> from the `ARM64SupportedOpcodes.txt` file.
+ </summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.NV">
+<summary>
+ Always/Always (Any).
+ The condition code NV exists only to provide a valid disassembly of
+ the 0b1111 encoding, otherwise its behavior is identical to AL.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.AL">
+<summary>
+ Always/Always (Any).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.LE">
+<summary>
+ Signed less than or equal/Less than, equal, or unordered
+ (!(Z == 0 &amp;&amp; N == V)).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.GT">
+<summary>
+ Signed greater than Greater than (Z == 0 &amp;&amp; N == V).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.LT">
+<summary>
+ Signed less than/Less than, or unordered (N! = V).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.GE">
+<summary>
+ Signed greater than or equal/Greater than or equal (N == V).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.LS">
+<summary>
+ Unsigned lower or same/Less than or equal (!(C ==1 &amp;&amp; Z ==0)).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.HI">
+<summary>
+ Unsigned higher/Greater than, or unordered (C ==1 &amp;&amp; Z == 0).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.VC">
+<summary>
+ No overflow/Ordered (V == 0).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.VS">
+<summary>
+ Overflow/Unordered (V == 1).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.PL">
+<summary>
+ Plus, positive or zero/Greater than, equal, or unordered (N == 0).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.MI">
+<summary>
+ Minus, negative/Less than (N == 1).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.CC">
+<summary>
+ Carry clear/Less than (C == 0).
+ LO (unsigned lower) is a synonym for CC.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.CS">
+<summary>
+ Carry set/Greater than, equal, or unordered (C == 1).
+ HS (unsigned higher or same) is a synonym for CS.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.NE">
+<summary>
+ Not equal/Not equal or unordered (Z == 0).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition.EQ">
+<summary>
+ Equal/Equal (Z == 1).
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Condition">
+ <summary>
+   Condition Code. The A64 ISA has some instructions that set condition flags
+   or test condition codes or both.
+ </summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.ARM64Instruction.Info@">
+<summary>
+ Basic instruction information.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.ARM64.ARM64Instruction.Info">
+<summary>
+ Basic instruction information.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.ARM64Instruction">
+<summary>
+ The internal representation for an ARM64 instruction used by our
+ disassembler and lifter.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.ARM64Parser">
+<summary>
+ Parser for 64-bit ARM instructions. Parser will return a platform-agnostic
+ instruction type (Instruction).
+</summary>
+</member>
+<member name="F:B2R2.FrontEnd.BinLifter.ARM64.ARM64TranslationContext.RegExprs@">
+<summary>
+ Register expressions.
+</summary>
+</member>
+<member name="P:B2R2.FrontEnd.BinLifter.ARM64.ARM64TranslationContext.RegExprs">
+<summary>
+ Register expressions.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.ARM64TranslationContext">
+<summary>
+ Translation context for 64-bit ARM instructions.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.InvalidRegAccessException">
+<summary>
+ This is a fatal error that happens when B2R2 tries to access non-existing
+ register symbol. This exception should not happen in general.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.RegisterModule">
+<summary>
+ This module exposes several useful functions to handle ARMv8 registers.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.Utils.signExtend(System.Int32,System.Int32,System.UInt64)">
+<summary>
+ Manual util functions
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.Utils.intToBits(System.UInt32,System.Int32)">
+<summary>
+ n : uint32
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.OperandHelper.resNone``1(``0)">
+<summary>
+ Reserved check function
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.OperandHelper.VTs1(System.UInt32,Microsoft.FSharp.Core.FSharpFunc{System.UInt32,System.UInt32})">
+<summary>
+ Operand type
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.OperandHelper.getWidthByOption``1(``0,``0,System.UInt32)">
+<summary>
+ Operand element type
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.OperandHelper.conImm5Q(System.UInt32)">
+<summary>
+ Concat value
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.OperandHelper.valA(System.UInt32)">
+<summary>
+ Extract value (* FIXME: Deduplication *)
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.OperandHelper.getOprSizeByMSB(System.UInt32)">
+<summary>
+ Operand size functions
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.OperandHelper.getFloatingPointConstantValues(System.UInt32)">
+<summary>
+ Table C2-2 Floating-point constant values
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.OperandHelper.getCondition(System.Byte)">
+<summary>
+ Table C1-1 Condition codes.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.OperandHelper.getShiftAmountByImmh2(System.UInt32,System.UInt32)">
+<summary>
+ UInt(immh:immb) - x : left shift amount
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.OperandHelper.getShiftAmountByImmh1(System.UInt32,System.UInt32)">
+<summary>
+ x - UInt(immh:immb) : right shift amount
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.Lifter.translate(B2R2.FrontEnd.BinLifter.ARM64.InsInfo,B2R2.FrontEnd.BinLifter.TranslationContext)">
+<summary>
+ Translate IR.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.Lifter.distLogcalShift(B2R2.FrontEnd.BinLifter.ARM64.InsInfo,B2R2.FrontEnd.BinLifter.TranslationContext,System.UInt64)">
+<summary>
+ The logical shift left(or right) is the alias of LS{L|R}V and UBFM.
+ Therefore, it is necessary to distribute to the original instruction.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.Lifter.add(B2R2.FrontEnd.BinLifter.ARM64.InsInfo,B2R2.FrontEnd.BinLifter.TranslationContext,System.UInt64)">
+<summary>
+ A module for all AArch64-IR translation functions
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.Lifter.highestSetBitForIR(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr,System.Int32,System.Int32,B2R2.FrontEnd.BinLifter.IRBuilder)">
+<summary>
+ Condition flag values in the set &apos;111x&apos; indicate always true
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.Lifter.getElemNumAndSizeBySIMDVector(B2R2.FrontEnd.BinLifter.ARM64.SIMDVector)">
+<summary>
+ Number and size of elements
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinLifter.ARM64.Parser.parse(B2R2.BinReader,System.UInt64,System.Int32)">
+<summary>
+ Read in bytes and return a parsed instruction for ARMv8. This function
+ returns ARM64Instruction, which is a specialized type for 64-bit ARM. If you
+ want to handle instructions in a platform-agnostic manner, you&apos;d better use
+ the ARM64Parser class.
+</summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinLifter.ARM64.Parser">
+<summary>
+ ARMv8 instruction parser.
+</summary>
+</member>
+</members>
+</doc>

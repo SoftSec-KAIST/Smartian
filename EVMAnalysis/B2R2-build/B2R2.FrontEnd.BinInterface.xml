@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>B2R2.FrontEnd.BinInterface</name></assembly>
+<members>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.UpdateCode(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64,System.Byte[])">
+ <summary>
+   Update BinHandle to have new code at a new address (addr). BinHandle
+   is *immutable*.
+ </summary>
+ <param name="hdl">The BinHandle to update.</param>
+ <param name="addr">The new address to use.</param>
+ <param name="bs">The new code in bytes.</param>
+ <returns>New BinHandle.</returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.TryReadUInt(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinFile.BinaryPointer,System.Int32)">
+ <summary>
+   Return the corresponding unsigned integer option value of the size from
+   the given BinHandle (hdl), which is pointed to by the binary pointer
+   (bp).
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="bp">BinaryPointer.</param>
+ <param name="size">The size of the integer in bytes. Maximum 8 bytes is
+ possible.</param>
+ <returns>
+   Return the corresponding unsigned integer (uint64) if the address and
+   the size is valid. Otherwise, ErrorCase.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.TryReadUInt(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64,System.Int32)">
+ <summary>
+   Return the corresponding unsigned integer option value at the addr of
+   the size from the given BinHandle.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="addr">The address.</param>
+ <param name="size">The size of the integer in bytes. Maximum 8 bytes is
+ possible.</param>
+ <returns>
+   Return the corresponding unsigned integer (uint64) if the address and
+   the size is valid. Otherwise, ErrorCase.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.TryReadInt(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinFile.BinaryPointer,System.Int32)">
+ <summary>
+   Return the corresponding integer option value of the size from the given
+   BinHandle (hdl), which is pointed to by the binary pointer (bp).
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="bp">BinaryPointer.</param>
+ <param name="size">The size of the integer in bytes. Maximum 8 bytes is
+ possible.</param>
+ <returns>
+   Return the corresponding value (int64) if the address and the size is
+   valid. Otherwise ErrorCase.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.TryReadInt(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64,System.Int32)">
+ <summary>
+   Return the corresponding integer option value at the addr of the size
+   from the given BinHandle.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="addr">The address.</param>
+ <param name="size">The size of the integer in bytes. Maximum 8 bytes is
+ possible.</param>
+ <returns>
+   Return the corresponding value (int64) if the address and the size is
+   valid. Otherwise ErrorCase.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.TryReadBytes(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinFile.BinaryPointer,System.Int32)">
+ <summary>
+   Return the byte array of size (nBytes) from the BinHandler (hdl), which
+   is pointed to by the BinaryPointer (bp). The return value is an option
+   type. When the given address is invalid, this function returns None.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="bp">BinaryPointer.</param>
+ <param name="nBytes">The size of the byte array (in bytes).</param>
+ <returns>
+   Return (byte []) if succeeded, (ErrorCase) otherwise.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.TryReadBytes(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64,System.Int32)">
+ <summary>
+   Return the byte array of size (nBytes) at the addr from the given
+   BinHandle (hdl). The return value is an option type. When the given
+   address is invalid, this function returns None.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="addr">The address.</param>
+ <param name="nBytes">The size of the byte array (in bytes).</param>
+ <returns>
+   Return (byte []) if succeeded, (ErrorCase) otherwise.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.TryParseInstr(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinFile.BinaryPointer)">
+ <summary>
+   Parse one instruction pointed to by the binary pointer (bp) from the
+   BinHandle, and return the corresponding instruction. This function does
+   not raise an exception, but returns an option type.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="bp">BinaryPointer.</param>
+ <returns>
+   Parsed instruction (option type).
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.TryParseInstr(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64)">
+ <summary>
+   Parse one instruction at the given address (addr) from the BinHandle,
+   and return the corresponding instruction. This function does not raise
+   an exception, but returns an option type.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="addr">The address.</param>
+ <returns>
+   Parsed instruction (option type).
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadUInt(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinFile.BinaryPointer,System.Int32)">
+ <summary>
+   Return the corresponding unsigned integer value of the size from the
+   given BinHandle (hdl), which is pointed to by the binary pointer (bp).
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="bp">BinaryPointer.</param>
+ <param name="size">The size of the integer in bytes. Maximum 8 bytes is
+ possible.</param>
+ <returns>
+   Return the corresponding unsigned integer (uint64).
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadUInt(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64,System.Int32)">
+ <summary>
+   Return the corresponding unsigned integer value at the addr of the size
+   from the given BinHandle.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="addr">The address.</param>
+ <param name="size">The size of the integer in bytes. Maximum 8 bytes is
+ possible.</param>
+ <returns>
+   Return the corresponding unsigned integer (uint64).
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadUInt(B2R2.FrontEnd.BinFile.BinaryPointer,System.Int32)">
+ <summary>
+   Return the corresponding unsigned integer value of the size from the
+   binary, which is pointed to by the binary pointer (bp).
+ </summary>
+ <param name="bp">BinaryPointer.</param>
+ <param name="size">The size of the integer in bytes. Maximum 8 bytes is
+ possible.</param>
+ <returns>
+   Return the corresponding unsigned integer (uint64).
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadUInt(System.UInt64,System.Int32)">
+ <summary>
+   Return the corresponding unsigned integer value at the addr of the size
+   from the binary.
+ </summary>
+ <param name="addr">The address.</param>
+ <param name="size">The size of the integer in bytes. Maximum 8 bytes is
+ possible.</param>
+ <returns>
+   Return the corresponding unsigned integer (uint64).
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadInt(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinFile.BinaryPointer,System.Int32)">
+ <summary>
+   Return the corresponding integer value of the size from the given
+   BinHandle (hdl), which is pointed to by the binary pointer (bp).
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="bp">BinaryPointer.</param>
+ <param name="size">The size of the integer in bytes. Maximum 8 bytes is
+ possible.</param>
+ <returns>
+   Return the corresponding integer (int64).
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadInt(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64,System.Int32)">
+ <summary>
+   Return the corresponding integer value at the addr of the size from the
+   given BinHandle.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="addr">The address.</param>
+ <param name="size">The size of the integer in bytes. Maximum 8 bytes is
+ possible.</param>
+ <returns>
+   Return the corresponding integer (int64).
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadInt(B2R2.FrontEnd.BinFile.BinaryPointer,System.Int32)">
+ <summary>
+   Return the corresponding integer value of the size from the current
+   binary, which is pointed to by the binary pointer (bp).
+ </summary>
+ <param name="addr">The address.</param>
+ <param name="size">The size of the integer in bytes. Maximum 8 bytes is
+ possible.</param>
+ <returns>
+   Return the corresponding integer (int64).
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadInt(System.UInt64,System.Int32)">
+ <summary>
+   Return the corresponding integer value at the addr of the size from the
+   current binary.
+ </summary>
+ <param name="addr">The address.</param>
+ <param name="size">The size of the integer in bytes. Maximum 8 bytes is
+ possible.</param>
+ <returns>
+   Return the corresponding integer (int64).
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadBytes(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinFile.BinaryPointer,System.Int32)">
+ <summary>
+   Return the byte array of size (nBytes) from the given BinHandle, which
+   is pointed to by the BinaryPointer (bp).
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="bp">BinaryPointer.</param>
+ <param name="nBytes">The size of the byte array (in bytes).</param>
+ <returns>
+   Return the byte array if succeed. Otherwise, raise an exception.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadBytes(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64,System.Int32)">
+ <summary>
+   Return the byte array of size (nBytes) at the addr from the given
+   BinHandle.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="addr">The address.</param>
+ <param name="nBytes">The size of the byte array (in bytes).</param>
+ <returns>
+   Return the byte array if succeed. Otherwise, raise an exception.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadBytes(B2R2.FrontEnd.BinFile.BinaryPointer,System.Int32)">
+ <summary>
+   Return the byte array of size (nBytes) pointed to by the binary pointer
+   (bp).
+ </summary>
+ <param name="bp">BInaryPointer.</param>
+ <param name="nBytes">The size of the byte array (in bytes).</param>
+ <returns>
+   Return the byte array if succeed. Otherwise, raise an exception.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadBytes(System.UInt64,System.Int32)">
+ <summary>
+   Return the byte array of size (nBytes) at the addr from the current
+   binary.
+ </summary>
+ <param name="addr">The address.</param>
+ <param name="nBytes">The size of the byte array (in bytes).</param>
+ <returns>
+   Return the byte array if succeed. Otherwise, raise an exception.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadASCII(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinFile.BinaryPointer)">
+ <summary>
+   Return the ASCII string pointed to by the binary pointer from the given
+   BinHandle.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="bp">BinaryPointer.</param>
+ <returns>
+   Return the corresponding ASCII string.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadASCII(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64)">
+ <summary>
+   Return the ASCII string at the addr from the given BinHandle.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="addr">The address.</param>
+ <returns>
+   Return the corresponding ASCII string.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadASCII(System.UInt64)">
+ <summary>
+   Return the ASCII string pointed to by the binary pointer from the given
+   BinHandle.
+ </summary>
+ <param name="bp">BinaryPointer.</param>
+ <returns>
+   Return the corresponding ASCII string.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ReadASCII(System.UInt64)">
+ <summary>
+   Return the ASCII string at the addr from the given BinHandle.
+ </summary>
+ <param name="addr">The address.</param>
+ <returns>
+   Return the corresponding ASCII string.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.PatchCode(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64,System.Byte[])">
+ <summary>
+   Update BinHandle to patch the code at the address (addr). BinHandle
+   is *immutable*.
+ </summary>
+ <param name="hdl">The BinHandle to update.</param>
+ <param name="addr">The new address to use.</param>
+ <param name="bs">The new code in bytes.</param>
+ <returns>
+   Return (BinHandle) if succeeded, (ErrorCase) otherwise.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ParseInstr(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinFile.BinaryPointer)">
+ <summary>
+   Parse one instruction pointed to by binary pointer (bp) from the
+   BinHandle, and return the corresponding instruction. This function
+   raises an exception if the parsing process failed.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="bp">BinaryPointer.</param>
+ <returns>
+   Parsed instruction.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ParseInstr(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64)">
+ <summary>
+   Parse one instruction at the given address (addr) from the BinHandle,
+   and return the corresponding instruction. This function raises an
+   exception if the parsing process failed.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="addr">The address.</param>
+ <returns>
+   Parsed instruction.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ParseBBlock(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinFile.BinaryPointer)">
+<summary>
+ Parse a basic block pointed to by the binary pointer (bp), and return the
+ sequence of the instructions of the basic block. This function may return
+ an incomplete basic block as an Error type. This function can be safely
+ used for any ISAs, and thus, this should be the main parsing function.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.ParseBBlock(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64)">
+<summary>
+ Parse a basic block from the given address, and return the sequence of the
+ instructions of the basic block. This function may return an incomplete
+ basic block as an Error type. This function can be safely used for any
+ ISAs, and thus, this should be the main parsing function.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.Optimize(B2R2.BinIR.LowUIR.Stmt[])">
+ <summary>
+ Return optimized statements from the given statements.
+ </summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.LiftOptimizedInstr(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinLifter.Instruction)">
+<summary>
+ Lift a parsed instruction (Instruction) to produce an array of optimized
+ IR statements from a given BinHandle.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.LiftInstr(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinLifter.Instruction)">
+<summary>
+ Lift a parsed instruction (Instruction) to produce an array of IR
+ statements from a given BinHandle.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.LiftBBlock(B2R2.FrontEnd.BinInterface.BinHandle,B2R2.FrontEnd.BinFile.BinaryPointer)">
+<summary>
+ Return the lifted IR (an array of statements) of a basic block pointed to
+ by the binary pointer (bp). This function returns a partial bblock with
+ Error, if the parsing of the bblock was not successful.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.LiftBBlock(B2R2.FrontEnd.BinInterface.BinHandle,System.UInt64)">
+<summary>
+ Return the lifted IR (an array of statements) of a basic block at the
+ given address. This function returns a partial bblock with Error, if the
+ parsing of the bblock was not successful.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.Init(B2R2.ISA)">
+ <summary>
+   Initialize an empty BinHandle solely from an ISA, assuming that the
+   archMode is NoMode, and the format is RawBinary. This function is useful
+   when you want to delay loading the actual body of your binary blob.
+ </summary>
+ <param name="isa">ISA.</param>
+ <returns>BinHandle.</returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.Init(B2R2.ISA,B2R2.ArchOperationMode)">
+ <summary>
+   Initialize an empty BinHandle. This function is useful when you want to
+   delay loading the actual body of your binary blob.
+ </summary>
+ <param name="isa">ISA.</param>
+ <param name="archMode">ArchOperatinoMode.</param>
+ <returns>BinHandle.</returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.Init(B2R2.ISA,System.Byte[])">
+ <summary>
+   Initialize a BinHandle from an ISA and a byte sequence, assuming that
+   the archMode is NoMode, and the format is RawBinary.
+ </summary>
+ <param name="isa">ISA.</param>
+ <param name="bytes">Byte sequence.</param>
+ <returns>BinHandle.</returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.Init(B2R2.ISA,System.String)">
+ <summary>
+   Initialize a BinHandle from an ISA and a binary file path, assuming
+   that the archMode is NoMode. B2R2 will automatically detect the file
+   format of the given binary file, but it will refer to the given ISA
+   parameter either when the binary has multiple architectures, e.g., a fat
+   binary on macOS, or when B2R2 cannot recognize the given file format. If
+   the given binary file does not follow the known formats, then B2R2
+   consider it as a raw binary with base address at 0.
+ </summary>
+ <param name="isa">ISA.</param>
+ <param name="fileName">Binary file path.</param>
+ <returns>BinHandle.</returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.Init(B2R2.ISA,Microsoft.FSharp.Core.FSharpOption{System.UInt64},System.Byte[])">
+ <summary>
+   Initialize a BinHandle from an ISA and a byte sequence, assuming that
+   the archMode is NoMode. This function behaves the same as the 2-argument
+   constructor Init (isa, bytes), with a difference of using the specified
+   base address when initializing the BinHandle.
+ </summary>
+ <param name="isa">ISA.</param>
+ <param name="baseAddr">Base address.</param>
+ <param name="bytes">Byte sequence.</param>
+ <returns>BinHandle.</returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.Init(B2R2.ISA,Microsoft.FSharp.Core.FSharpOption{System.UInt64},System.String)">
+ <summary>
+   Initialize a BinHandle from an ISA and a binary file path, assuming
+   that the archMode is NoMode. This function behaves the same as the
+   2-argument constructor Init (isa, fileName), with a difference of using
+   the specified base address when initializing the BinHandle.
+ </summary>
+ <param name="isa">ISA.</param>
+ <param name="baseAddr">Base address.</param>
+ <param name="fileName">Binary file path.</param>
+ <returns>BinHandle.</returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.Init(B2R2.ISA,B2R2.ArchOperationMode,System.Boolean,Microsoft.FSharp.Core.FSharpOption{System.UInt64},System.String)">
+ <summary>
+   Initialize a BinHandle from a given binary file (fileName). This
+   function will read the file and parse it. It will automatically detect
+   the file format if autoDetect is true. Otherwise, it will cnosider the
+   file as a raw binary.
+ </summary>
+ <param name="isa">ISA.</param>
+ <param name="archMode">ArchOperatinoMode.</param>
+ <param name="autoDetect">Whether to perform auto format detection.</param>
+ <param name="baseAddr">Base address for calculating instruction
+ addresses.</param>
+ <param name="fileName">Binary file.</param>
+ <returns>BinHandle.</returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.Init(B2R2.ISA,B2R2.ArchOperationMode,System.Boolean,Microsoft.FSharp.Core.FSharpOption{System.UInt64},System.Byte[])">
+ <summary>
+   Initialize a BInHnalder from a given binary byte sequence. This function
+   will read the byte sequence and automatically detect its binary format
+   if autoDetect is true. Otherwise, it will consider the given binary
+   sequence as a raw binary (just a series of machine instructions without
+   specific file format).
+ </summary>
+ <param name="isa">ISA.</param>
+ <param name="archMode">ArchOperatinoMode.</param>
+ <param name="autoDetect">Perform auto format detection or not.</param>
+ <param name="baseAddr">Base address for calculating instruction
+ addresses.</param>
+ <param name="bytes">Raw binary sequence.</param>
+ <returns>BinHandle.</returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.DisasmInstrSimple(B2R2.FrontEnd.BinLifter.Instruction)">
+ <summary>
+   Return a disassembled string from the parsed instruction. This function
+   returns a simplified disassembly, which does not contain the instruction
+   address nor symbols.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="ins">The instruction to disassemble.</param>
+ <returns>
+   Disassembled string.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.DisasmInstr(B2R2.FrontEnd.BinInterface.BinHandle,System.Boolean,System.Boolean,B2R2.FrontEnd.BinLifter.Instruction)">
+ <summary>
+   Return a disassembled string from the parsed instruction.
+ </summary>
+ <param name="hdl">BinHandle.</param>
+ <param name="showAddr">Whether to show the instruction address or
+ not.</param>
+ <param name="resolveSymbol">Whether to resolve symbols while disassembling
+ the instruction.</param>
+ <param name="ins">The instruction to disassemble.</param>
+ <returns>
+   Disassembled string.
+ </returns>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.DisasmBBlock(B2R2.FrontEnd.BinInterface.BinHandle,System.Boolean,System.Boolean,B2R2.FrontEnd.BinFile.BinaryPointer)">
+ <summary>
+   Return the disassembled string for a basic block starting at address
+   pointed to by the binary pointer (bp) along with the fall-through
+   address of the block. This function returns a partial disassembly if
+   parsing of the bblock was not successful.
+ </summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.BinHandle.DisasmBBlock(B2R2.FrontEnd.BinInterface.BinHandle,System.Boolean,System.Boolean,System.UInt64)">
+ <summary>
+   Return the disassembled string for a basic block starting at the given
+   address along with the fall-through address of the block. This function
+   returns a partial disassembly if parsing of the bblock was not
+   successful.
+ </summary>
+</member>
+<member name="T:B2R2.FrontEnd.BinInterface.BinHandle">
+<summary>
+ The main hdl for reading/parsing a binary code. BinHandle essentially
+ provides a basic interface for a chunk of binary code either from a string
+ or from an actual binary file.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.Helper.classifyRanges(B2R2.AddrRange,System.Collections.Generic.IEnumerable{B2R2.AddrRange})">
+<summary>
+ Classify ranges to be either in-file or not-in-file. The second parameter
+ (notinfiles) is a sequence of (exclusive) ranges within the myrange, which
+ represent the not-in-file ranges. This function will simply divide the
+ myrange into subranges where each subrange is labeled with either true or
+ false, where true means in-file, and false means not-in-file.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.CallingConvention.IsNonVolatile(B2R2.FrontEnd.BinInterface.BinHandle,System.Int32)">
+<summary>
+ Check if the given register is non-volatile register in the given binary.
+ Non-volatile registers are preserved by callee, i.e., callee-saved
+ registers.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.CallingConvention.SyscallArgRegister(B2R2.FrontEnd.BinInterface.BinHandle,System.Int32)">
+<summary>
+ Obtain the register ID used for the nth syscall parameter.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.CallingConvention.SyscallNumRegister(B2R2.FrontEnd.BinInterface.BinHandle)">
+<summary>
+ Obtain the register ID used for storing a syscall number.
+</summary>
+</member>
+<member name="M:B2R2.FrontEnd.BinInterface.CallingConvention.ReturnRegister(B2R2.FrontEnd.BinInterface.BinHandle)">
+<summary>
+ Obtain the register ID used for storing syscall return values.
+</summary>
+</member>
+</members>
+</doc>

@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>B2R2.BinIR</name></assembly>
+<members>
+<member name="T:B2R2.BinIR.Symbol">
+<summary>
+ Representation of symbolic data.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.StartPos">
+<summary>
+ Represent a start position.
+</summary>
+</member>
+<member name="F:B2R2.BinIR.UnOpType.FATAN">
+<summary>
+ Arc Tangent
+</summary>
+</member>
+<member name="F:B2R2.BinIR.UnOpType.FTAN">
+<summary>
+ Tangent
+</summary>
+</member>
+<member name="F:B2R2.BinIR.UnOpType.FSIN">
+<summary>
+ Sine
+</summary>
+</member>
+<member name="F:B2R2.BinIR.UnOpType.FCOS">
+<summary>
+ Cosine
+</summary>
+</member>
+<member name="F:B2R2.BinIR.UnOpType.FSQRT">
+<summary>
+ Square root
+</summary>
+</member>
+<member name="F:B2R2.BinIR.UnOpType.NOT">
+<summary>
+ Bitwise not (One&apos;s complement)
+</summary>
+</member>
+<member name="F:B2R2.BinIR.UnOpType.NEG">
+<summary>
+ Make it negative (Two&apos;s complement)
+</summary>
+</member>
+<member name="T:B2R2.BinIR.UnOpType">
+<summary>
+ Unary operator types.
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.FLOG">
+<summary>
+ Log (log of x2 in base x1)
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.FPOW">
+<summary>
+ Power (x1^x2)
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.FDIV">
+<summary>
+ Floating point division
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.FMUL">
+<summary>
+ Floating point multiplication
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.FSUB">
+<summary>
+ Floating point subtraction
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.FADD">
+<summary>
+ Floating point addition
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.CONS">
+<summary>
+ Cons arguments of function
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.APP">
+<summary>
+ Apply a function
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.CONCAT">
+<summary>
+ Concat two reg values
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.XOR">
+<summary>
+ Bitwise xor
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.OR">
+<summary>
+ Bitwise or
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.AND">
+<summary>
+ Bitwise and
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.SAR">
+<summary>
+ Sign-extended shift right
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.SHR">
+<summary>
+ Shift right
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.SHL">
+<summary>
+ Shift left
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.SMOD">
+<summary>
+ Signed modulo
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.MOD">
+<summary>
+ Unsigned modulo
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.SDIV">
+<summary>
+ Signed division
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.DIV">
+<summary>
+ Unsigned division
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.MUL">
+<summary>
+ Multiplication
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.SUB">
+<summary>
+ Subtraction
+</summary>
+</member>
+<member name="F:B2R2.BinIR.BinOpType.ADD">
+<summary>
+ Addition
+</summary>
+</member>
+<member name="T:B2R2.BinIR.BinOpType">
+<summary>
+ Binary operator types.
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.FLE">
+<summary>
+ Floating point less than or equal
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.FLT">
+<summary>
+ Floating point less than
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.FGE">
+<summary>
+ Floating point greater than or equal
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.FGT">
+<summary>
+ Floating point greater than
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.SLE">
+<summary>
+ Signed less than or equal
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.SLT">
+<summary>
+ Signed less than
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.LE">
+<summary>
+ Unsigned less than or equal
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.LT">
+<summary>
+ Unsigned less than
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.SGE">
+<summary>
+ Signed greater than or equal
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.SGT">
+<summary>
+ Signed greater than
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.GE">
+<summary>
+ Unsigned greater than or equal
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.GT">
+<summary>
+ Unsigned greater than
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.NEQ">
+<summary>
+ Not equal
+</summary>
+</member>
+<member name="F:B2R2.BinIR.RelOpType.EQ">
+<summary>
+ Equal
+</summary>
+</member>
+<member name="T:B2R2.BinIR.RelOpType">
+<summary>
+ Relative operator types.
+</summary>
+</member>
+<member name="F:B2R2.BinIR.CastKind.FloatCast">
+<summary>
+ Float to Float conversion with different precisions
+</summary>
+</member>
+<member name="F:B2R2.BinIR.CastKind.FtoITrunc">
+<summary>
+ Float to Integer truncated conversion
+</summary>
+</member>
+<member name="F:B2R2.BinIR.CastKind.FtoIFloor">
+<summary>
+ Float to Integer rounded down conversion
+</summary>
+</member>
+<member name="F:B2R2.BinIR.CastKind.FtoICeil">
+<summary>
+ Float to Integer rounded up conversion
+</summary>
+</member>
+<member name="F:B2R2.BinIR.CastKind.FtoIRound">
+<summary>
+ Float to Nearest Integer rounded conversion
+</summary>
+</member>
+<member name="F:B2R2.BinIR.CastKind.IntToFloat">
+<summary>
+ Integer to float conversion
+</summary>
+</member>
+<member name="F:B2R2.BinIR.CastKind.ZeroExt">
+<summary>
+ Zero-extending conversion
+</summary>
+</member>
+<member name="F:B2R2.BinIR.CastKind.SignExt">
+<summary>
+ Sign-extending conversion
+</summary>
+</member>
+<member name="T:B2R2.BinIR.CastKind">
+<summary>
+ Casting kinds.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.UnsupportedExtension">
+<summary>
+ Unsupported processor extension
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.UnsupportedFAR">
+<summary>
+ Unsupported FAR branching.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.UnsupportedPrivInstr">
+<summary>
+ Unsupported privileged instructions.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.UnsupportedFP">
+<summary>
+ Unsupported floating point operations.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.UndefinedInstr">
+<summary>
+ Explicitly undefined instruction, e.g., UD2 on x86.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.SysCall">
+<summary>
+ System call.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.ProcessorID">
+<summary>
+ Access CPU details, e.g., CPUID on x86.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.Lock">
+<summary>
+ Locking, e.g., LOCK prefix on x86.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.Exception">
+<summary>
+ Synchronous event generated when the execution encounters error condition.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.Interrupt">
+<summary>
+ Asynchronous event triggered by software (e.g. INT on x86) or hardware.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.Terminate">
+<summary>
+ Terminate the execution.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.Delay">
+<summary>
+ Delay the execution for a while, e.g. HLT, PAUSE on x86.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.Fence">
+<summary>
+ Memory fence operations, e.g., LFENCE/MFENCE/SFENCE on x86.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.ClockCounter">
+<summary>
+ CPU clock access, e.g., RDTSC on x86.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect.Breakpoint">
+<summary>
+ Software breakpoint.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SideEffect">
+<summary>
+ Side effect kinds.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.PrettyPrinter.ToString(B2R2.BinIR.SSA.Stmt[])">
+ <summary>
+   Given a list of SSA statements, return a well-formated string.
+ </summary>
+ <param name="stmts">LowUIR statements.</param>
+</member>
+<member name="M:B2R2.BinIR.PrettyPrinter.ToString(B2R2.BinIR.LowUIR.Stmt[])">
+ <summary>
+   Given a list of LowUIR statements, return a well-formated string.
+ </summary>
+ <param name="stmts">LowUIR statements.</param>
+</member>
+<member name="T:B2R2.BinIR.PrettyPrinter">
+<summary>
+ Pretty printer module for B2R2&apos;s IR.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.InvalidFloatTypeException">
+<summary>
+ Raised when an illegal number of bits is used to represent floats.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.TypeCheckException">
+<summary>
+ Raised when an expression does not type-check.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.InvalidExprException">
+<summary>
+ Rasied when an invalid expression is encountered during type checking or
+ evaluation.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.InvalidAssignmentException">
+<summary>
+ Raised when an assignment expression has an invalid destination expression.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.IllegalASTTypeException">
+<summary>
+ Raised when an illegal AST type is used. This should never be raised in
+ normal situation.
+</summary>
+</member>
+<member name="P:B2R2.BinIR.LowUIR.Stmt.S">
+<summary>
+ The actual AST node.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.Stmt">
+<summary>
+ When hash-consing is not used, we simply create a wrapper for an AST node.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.S.SideEffect">
+<summary>
+ This represents an instruction with side effects such as a system call.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.S.InterCJmp">
+<summary>
+ This is a conditional jump instruction to another instruction. The first
+ argument specifies a jump condition. If the condition is true, change the
+ program counter to jump to the address specified by the second argument.
+ Otherwise, jump to the address specified by the third argument.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.S.InterJmp">
+<summary>
+ This is an unconditional jump instruction to another instruction. This is
+ an inter-instruction jump unlike Jmp statement. The first argument is the
+ jump target address.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.S.CJmp">
+<summary>
+ This statement represents a conditional jump to an LMark. The first
+ argument specifies a jump condition. If the condition is true, jump to
+ the address specified by the second argument. Otherwise, jump to the
+ address specified by the third argument.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.S.Jmp">
+<summary>
+ This statement represents a jump (unconditional) to an LMark. The first
+ argument specifies the target address.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.S.Store">
+<summary>
+ This statement stores a value into a memory. The first argument
+ represents the endianness, the second argument is a destination operand,
+ and the third argument is a value to store.
+
+ Example: Store(LE, T_1:I32, T_2:I32)
+ stores a 32-bit value T_2 into the address T_1
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.S.Put">
+<summary>
+ This statement puts a value into a register. The first argument is a
+ destination operand, and the second argument is a source operand. The
+ destination operand should have either a Var or a TempVar.
+
+ Example: [Put(T_1:I32, Load(LE, T_2:I32))]
+ loads a 32-bit value from the address T2, and store the value to the
+ temporary register T1.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.S.LMark">
+<summary>
+ Metadata representing a label (as in an assembly language). LMark is only
+ valid within a machine instruction.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.S.IEMark">
+<summary>
+ Metadata representing the end of a machine instruction. It contains the
+ length of the current instruction.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.S.ISMark">
+<summary>
+ Metadata representing the start of a machine instruction. More
+ specifically, it contains the length of the instruction. There must be a
+ single IMark per a machine instruction.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.S">
+<summary>
+ IL Statements.
+ NOTE: You MUST create Expr/Stmt through the AST module. *NEVER* directly
+ construct Expr nor Stmt.
+</summary>
+</member>
+<member name="P:B2R2.BinIR.LowUIR.Expr.E">
+<summary>
+ The actual AST node.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.Expr">
+<summary>
+ When hash-consing is not used, we simply create a wrapper for an AST node.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.Undefined">
+<summary>
+ Undefined expression. This is rarely used, and it is a fatal error when we
+ encounter this expression while evaluating a program. Some CPU manuals
+ explicitly say that a register value is undefined after a certain
+ operation. We model such cases with this expression.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.Extract">
+<summary>
+ Extraction expression. The first argument is target expression, and the
+ second argument is the number of bits for extraction, and the third is
+ the start position.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.Cast">
+<summary>
+ Type casting expression. The first argument is a casting type, and the
+ second argument is a result type.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.Ite">
+<summary>
+ If-then-else expression. The first expression is a condition, and the
+ second and the third are true and false expression respectively.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.Load">
+<summary>
+ Memory loading such as LE:[T_1:I32]
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.RelOp">
+<summary>
+ Relative operation such as eq, lt, etc.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.BinOp">
+<summary>
+ Binary operation such as add, sub, etc. The second argument is a result
+ type after applying BinOp.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.FuncName">
+<summary>
+ Name of uninterpreted function.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.Name">
+<summary>
+ Symbolic constant for labels.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.UnOp">
+<summary>
+ Unary operation such as negation.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.TempVar">
+<summary>
+ A temporary variable represents an internal (imaginary) register. Names
+ of temporary variables should always be affixed by an underscore (_) and
+ a number. This is to make sure that any temporary variable is unique in
+ a CFG. For example, a temporary variable T can be represented as
+ (T_2:I32), where 2 is a unique number assigned to the variable.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.PCVar">
+<summary>
+ A variable that represents a Program Counter (PC) of a CPU.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.Nil">
+<summary>
+ Nil to represent cons cells. This should only be used with BinOpType.CONS.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.Var">
+<summary>
+ A variable that represents a register of a CPU. Var (t, r, n) indicates
+ a variable of type (t) that has RegisterID r and name (n).
+ For example, (EAX:I32) represents the EAX register (of type I32).
+ Note that name (n) is additional information that doesn&apos;t be used
+ internally.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E.Num">
+<summary>
+ A number. For example, (0x42:I32) is a 32-bit number 0x42
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.E">
+<summary>
+ IR Expressions.
+ NOTE: You MUST create Expr/Stmt through the AST module. *NEVER* directly
+ construct Expr nor Stmt.
+</summary>
+</member>
+<member name="P:B2R2.BinIR.LowUIR.ExprInfo.TempVarsUsed">
+<summary>
+ A set of temp variables (their IDs) used in this expression.
+</summary>
+</member>
+<member name="P:B2R2.BinIR.LowUIR.ExprInfo.VarsUsed">
+<summary>
+ A set of registers (their regids) used in this expression.
+</summary>
+</member>
+<member name="P:B2R2.BinIR.LowUIR.ExprInfo.HasLoad">
+<summary>
+ Is this expression contains memory load(s).
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.ExprInfo">
+<summary>
+ ExprInfo summarizes several abstract information about the Expr. This is
+ useful for writing an efficient post analyses.
+</summary>
+</member>
+<member name="F:B2R2.BinIR.LowUIR.InterJmpKind.SwitchToThumb">
+<summary>
+ A branch instructino that modifies the operation mode from ARM to Thumb.
+</summary>
+</member>
+<member name="F:B2R2.BinIR.LowUIR.InterJmpKind.SwitchToARM">
+<summary>
+ A branch instructino that modifies the operation mode from Thumb to ARM.
+</summary>
+</member>
+<member name="F:B2R2.BinIR.LowUIR.InterJmpKind.IsExit">
+<summary>
+ An exit, which will terminate the process.
+</summary>
+</member>
+<member name="F:B2R2.BinIR.LowUIR.InterJmpKind.IsRet">
+<summary>
+ A return from a function.
+</summary>
+</member>
+<member name="F:B2R2.BinIR.LowUIR.InterJmpKind.IsCall">
+<summary>
+ A call to a function.
+</summary>
+</member>
+<member name="F:B2R2.BinIR.LowUIR.InterJmpKind.Base">
+<summary>
+ The base case, i.e., a simple jump instruction.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.InterJmpKind">
+<summary>
+ The kind of an InterJmp. Multiple kinds can present for a jump instruction.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.Pp">
+<summary>
+ Pretty printer for LowUIR.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.TypeCheck.typeOf(B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Get the type of an expression.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.ValueOptimizer">
+<summary>
+ Concrete value optimization.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.SideEffect(B2R2.BinIR.SideEffect)">
+<summary>
+ A SideEffect statement.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InterCJmp(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ A InterCJmp statement.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InterJmp(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.InterJmpKind)">
+<summary>
+ An InterJmp statement.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.CJmp(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ A CJmp statement.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Jmp(B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ A Jmp statement.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Assign(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ An assignment statement.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Store(B2R2.Endian,B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ A Store statement.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Put(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ A Put statement.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.LMark(System.String,System.Int32)">
+<summary>
+ An LMark statement.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.IEMark(System.UInt32)">
+<summary>
+ An IEMark statement.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.ISMark(System.UInt32)">
+<summary>
+ An ISMark statement.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FATan(B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point arc tangent.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FTan(B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point tangent.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FCos(B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point cosine.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FSin(B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point sine.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FSqrt(B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point square root.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FLog(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point logarithm.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FPow(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point power.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FLe(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point less than or equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FLt(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point less than.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FGe(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point greater than or equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FGt(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point greater than.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FDiv(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point division.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FMul(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point multiplication.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FSub(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point subtract two expressions.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FAdd(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Floating point add two expressions.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Not(B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Logical not.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Neg(B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Negation (Two&apos;s complement).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Shl(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Shift logical left.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Shr(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Shift logical right.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Sar(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Shift arithmetic right.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Xor(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Bitwise XOR.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Or(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Bitwise OR.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.And(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Bitwise AND.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.SLe(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed less than or equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.SLt(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed less than.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Le(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Unsigned less than or equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Lt(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Unsigned less than.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.SGe(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed greater than or equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.SGt(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed greater than.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Ge(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Unsigned greater than or equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Gt(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Unsigned greater than.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Neq(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Not equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Eq(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.SMod(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed modulus.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Mod(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Unsigned modulus.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.SDiv(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed division.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Div(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Unsigned division.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Mul(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Multiply two expressions.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Sub(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Subtract two expressions.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Add(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Add two expressions.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.XtHi(System.Int32,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Take the high half bits of an expression.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.XtLo(System.Int32,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Take the low half bits of an expression.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.SExt(System.Int32,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Sign-extend an expression.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.ZExt(System.Int32,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Zero-extend an expression.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Unwrap(B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Unwrap (casted) expression.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Concat(B2R2.BinIR.LowUIR.Expr[])">
+<summary>
+ Concatenate an array of expressions.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Concat(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Concatenation.
+</summary>
+</member>
+<member name="P:B2R2.BinIR.LowUIR.AST.B1">
+<summary>
+ Num expression for a one-bit number one.
+</summary>
+</member>
+<member name="P:B2R2.BinIR.LowUIR.AST.B0">
+<summary>
+ Num expression for a one-bit number zero.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Num1(System.Int32)">
+<summary>
+ Construct a (Num 1) of size t.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Num0(System.Int32)">
+<summary>
+ Construct a (Num 0) of size t.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Undef(System.Int32,System.String)">
+<summary>
+ Undefined expression.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Extract(B2R2.BinIR.LowUIR.Expr,System.Int32,System.Int32)">
+<summary>
+ Construct a extract expression (Extract).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Cast(B2R2.BinIR.CastKind,System.Int32,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Construct a cast expression (Cast).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Ite(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Construct an ITE (if-then-else) expression (Ite).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.LoadBE(System.Int32,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Construct a load expression in big-endian.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.LoadLE(System.Int32,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Construct a load expression in little-endian.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Load(B2R2.Endian,System.Int32,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Construct a load expression (Load).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.RelOp(B2R2.BinIR.RelOpType,B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Construct a relative operator (RelOp).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.App(System.String,Microsoft.FSharp.Collections.FSharpList{B2R2.BinIR.LowUIR.Expr},System.Int32)">
+<summary>
+ Construct a function application.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.FuncName(System.String)">
+<summary>
+ Function name.
+</summary>
+</member>
+<member name="P:B2R2.BinIR.LowUIR.AST.Nil">
+<summary>
+ Nil.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Cons(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Consing two expr.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.BinOp(B2R2.BinIR.BinOpType,B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Construct a binary operator (BinOp).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Name(System.String,System.Int32)">
+<summary>
+ Construct a symbolic name (Name).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.UnOp(B2R2.BinIR.UnOpType,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Construct an unary operator (UnOp).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Symbol(System.String,System.Int32)">
+<summary>
+ Construct a symbol (for a label) from a string and a IDCounter.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.TmpVar(System.Int32,System.Int32)">
+<summary>
+ Construct a temporary variable (TempVar) with the given ID.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.PCVar(System.Int32,System.String)">
+<summary>
+ Construct a pc variable (PCVar).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Var(System.Int32,System.Int32,System.String,B2R2.RegisterSet)">
+<summary>
+ Construct a variable (Var).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.Num(B2R2.BitVector)">
+<summary>
+ Construct a number (Num).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.GetExprInfo(B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Get the expression info from the given expression (Expr).
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_ComposeLeft(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Shift logical left.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_ComposeRight(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Shift logical right.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_QmarkGreaterGreater(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Shift arithmetic right.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_LessPlusGreater(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Bitwise XOR.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_DotBar(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Bitwise OR.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_DotAmp(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Bitwise AND.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_QmarkLessEquals(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed less than or equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_QmarkLess(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed less than.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_DotLessEquals(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed less than or equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_DotLess(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed less than.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_QmarkGreaterEquals(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed greater than or equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_QmarkGreater(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed greater than.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_DotGreaterEquals(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Unsigned greater than or equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_DotGreater(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Unsigned greater than.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_BangEquals(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Not equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_EqualsEquals(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Equal.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_QmarkPercent(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed modulus.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_DotPercent(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Unsigned modulus.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_QmarkDivide(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Signed division.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_DotDivide(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Unsigned division.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_DotMultiply(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Multiplication.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_DotMinus(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Subtraction.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_DotPlus(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Addition.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.LowUIR.AST.InfixOp.op_ColonEquals(B2R2.BinIR.LowUIR.Expr,B2R2.BinIR.LowUIR.Expr)">
+<summary>
+ Assignment.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.LowUIR.AST">
+<summary>
+ LowUIR AST construction must be done through this module.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Prog">
+<summary>
+ A program is a list of statements.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Stmt.SideEffect">
+<summary>
+ This represents an instruction with side effects such as a system call.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Stmt.Jmp">
+<summary>
+ Branch statement.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Stmt.Phi">
+<summary>
+ Phi function.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Stmt.Def">
+<summary>
+ Assignment in SSA.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Stmt.LMark">
+<summary>
+ A label (as in an assembly language). LMark is only valid within a
+ machine instruction.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Stmt">
+<summary>
+ IR Statements.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.JmpType.InterCJmp">
+<summary>
+ Conditional jump. The first Expr is the condition, and the second and the
+ third Expr refer to true and false branch addresses, respectively.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.JmpType.InterJmp">
+<summary>
+ Jump to another instruction. The Expr is the jump address.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.JmpType.IntraCJmp">
+<summary>
+ Conditional jump to a label.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.JmpType.IntraJmp">
+<summary>
+ Jump to a label.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Label">
+<summary>
+ IR Label. Since we don&apos;t distinguish instruction boundary in SSA level, we
+ want to specify where the label comes from.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.ReturnVal">
+<summary>
+ Value returned from a function located at the address. The second argument
+ indicates the return address, and the third argument indicates the live
+ definition of previously defined variable.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.Undefined">
+<summary>
+ Undefined expression. It is a fatal error when we encounter this
+ expression while evaluating a program. This expression is useful when we
+ encode a label that should not really jump to (e.g., divide-by-zero
+ case).
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.Extract">
+<summary>
+ Extraction expression. The first argument is target expression, and the
+ second argument is the number of bits for extraction, and the third is
+ the start position.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.Cast">
+<summary>
+ Type casting expression. The first argument is a casting type, and the
+ second argument is a result type.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.Ite">
+<summary>
+ If-then-else expression. The first expression is a condition, second
+ argument is a result type, and the third and the fourth are true and
+ false expression respectively.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.RelOp">
+<summary>
+ Relative operation such as eq, lt, etc. The second argument is a result
+ type.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.BinOp">
+<summary>
+ Binary operation such as add, sub, etc. The second argument is a result
+ type after applying BinOp.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.UnOp">
+<summary>
+ Unary operation such as negation. The second argument is a result type.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.FuncName">
+<summary>
+ Name of uninterpreted function.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.Store">
+<summary>
+ Memory update such as [T_1] &lt;- T_2. The second argument is a type of
+ stored value.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.Load">
+<summary>
+ Memory lookup such as [T_1]:I32
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.Nil">
+<summary>
+ Nil value for cons cells.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.Var">
+<summary>
+ A variable.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr.Num">
+<summary>
+ A number. For example, (0x42:I32) is a 32-bit number 0x42
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Expr">
+<summary>
+ Basic expressions similar to LowUIR.Expr.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Variable">
+<summary>
+ SSA variables always have their own identifier.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.VariableKind">
+<summary>
+ Type representing destination of an assignment.
+</summary>
+</member>
+<member name="T:B2R2.BinIR.SSA.Pp">
+<summary>
+ Pretty printer for SSA.
+</summary>
+</member>
+<member name="M:B2R2.BinIR.SSA.AST.translateStmtAux(System.Int32,System.UInt64,B2R2.BinIR.LowUIR.Stmt)">
+<summary>
+ Name
+</summary>
+</member>
+<member name="M:B2R2.BinIR.Utils.isBranch(B2R2.BinIR.LowUIR.S)">
+<summary>
+ Is this IR statement a branch statement?
+</summary>
+</member>
+</members>
+</doc>

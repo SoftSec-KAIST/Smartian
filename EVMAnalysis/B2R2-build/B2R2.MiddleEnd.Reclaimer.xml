@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>B2R2.MiddleEnd.Reclaimer</name></assembly>
+<members>
+<member name="P:B2R2.MiddleEnd.Reclaimer.AnalysisHint.PotentialTableIndBranches">
+<summary>
+ Pairs of an indirect jump instruction addr and its jump table address.
+ This involves all observed jump-table-based indirect jumps  before
+ connecting indirect edges. These branches are currently unreachable, and
+ will be deleted from the set when they become reachable.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.AnalysisHint.BranchRecoveryPerformed">
+<summary>
+ Addresses of functions where branch recovery has been performed.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.AnalysisHint.NoReturnPerformed">
+<summary>
+ Addresses of functions where no-return analysis has been performed.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.AnalysisHint.Empty">
+<summary>
+ Empty hint.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.AnalysisHint">
+<summary>
+ AnalysisHint stores inter-analysis information that survive through
+ analyses. It can potentially improve the speed and quality of the analyses.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.IAnalysis.Name">
+<summary>
+ Name of the analysis.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.IAnalysis.Run(B2R2.MiddleEnd.BinEssence.BinEssence,B2R2.MiddleEnd.Reclaimer.AnalysisHint)">
+<summary>
+ Run the analysis.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.IAnalysis">
+<summary>
+ CFG analysis that we perform in the middle-end. An analysis includes
+ no-return analysis, libc start address analysis, switch-case recovery
+ analysis, etc.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.ConditionRetriever.RetrievePattern6(System.Tuple{B2R2.MiddleEnd.Reclaimer.ComparisonKind,B2R2.BinIR.SSA.Expr,B2R2.BitVector})">
+<summary>
+ Pattern 6: (OF = SF). (negation of pattern 4)
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.ConditionRetriever.RetrievePattern5(System.Tuple{B2R2.MiddleEnd.Reclaimer.ComparisonKind,B2R2.BinIR.SSA.Expr,B2R2.BitVector})">
+<summary>
+ Pattern 5: ((not ZF) &amp; (OF = SF)). (negation of pattern 3)
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.ConditionRetriever.RetrievePattern4(System.Tuple{B2R2.MiddleEnd.Reclaimer.ComparisonKind,B2R2.BinIR.SSA.Expr,B2R2.BitVector})">
+<summary>
+ Pattern 4: (OF &lt;&gt; SF).
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.ConditionRetriever.RetrievePattern3(System.Tuple{B2R2.MiddleEnd.Reclaimer.ComparisonKind,B2R2.BinIR.SSA.Expr,B2R2.BitVector})">
+<summary>
+ Pattern 3: (ZF | (OF &lt;&gt; SF)).
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.ConditionRetriever.RetrievePattern2(System.Tuple{B2R2.MiddleEnd.Reclaimer.ComparisonKind,B2R2.BinIR.SSA.Expr,B2R2.BitVector})">
+<summary>
+ Pattern 2: (CF | ZF).
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.ConditionRetriever.RetrievePattern1(B2R2.BinIR.SSA.Variable,System.Tuple{B2R2.MiddleEnd.Reclaimer.ComparisonKind,B2R2.BinIR.SSA.Expr,B2R2.BitVector})">
+<summary>
+ Pattern 1: CF (or ZF).
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.ConditionRetriever.Retrieve(B2R2.MiddleEnd.BinEssence.BinEssence,B2R2.MiddleEnd.BinGraph.Vertex{B2R2.MiddleEnd.Lens.SSABBlock},B2R2.BinIR.SSA.Expr)">
+<summary>
+ Retrieve a condition based on the patterns defined in WYSINWYX: What You
+ See Is Not What You eXecute p. 24.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.ConditionRetriever.FindComparison(B2R2.MiddleEnd.BinEssence.BinEssence,B2R2.MiddleEnd.BinGraph.Vertex{B2R2.MiddleEnd.Lens.SSABBlock},B2R2.BinIR.SSA.Variable)">
+<summary>
+ Find the corresponding comparison instruction from the given variable, and
+ return its operands.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.ConditionRetriever.FindAddr``1(B2R2.BinIR.SSA.Variable,System.UInt64,Microsoft.FSharp.Collections.FSharpList{System.Tuple{``0,B2R2.BinIR.SSA.Stmt}})">
+<summary>
+ Find an address where myVar is defined.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.ConditionRetriever">
+<summary>
+ Retrieve a high-level condition from a given condition expression pattern.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.ComparisonInfo">
+<summary>
+ Final information about a comparison instruction.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.IntermediateComparisonInfo">
+<summary>
+ Intermediate information about a comparison instruction.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.ComparisonKind">
+<summary>
+ How do we compare vars? For example, in x86, there are two comparison
+ instructions: CMP vs. TEST.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.FunctionLevelJmpTableInfo.CPInfo">
+<summary>
+ Constant propagation state and the current SSA graph.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.FunctionLevelJmpTableInfo.TableMax">
+<summary>
+ The maximum possible jump table entry address for this function.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.FunctionLevelJmpTableInfo.JumpTables">
+<summary>
+ Map from an indirect branch instruction address to its jump table.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.FunctionLevelJmpTableInfo.FunctionBoundary">
+<summary>
+ The function boundary.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.FunctionLevelJmpTableInfo.FunctionEntry">
+<summary>
+ The entry of the function.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.FunctionLevelJmpTableInfo">
+<summary>
+ Function-level jump table info. This exists for every function that has a
+ jump-table indirect branch.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.FunctionLevelJmpTables">
+<summary>
+ Per-function jump tables, which map an indirect jump instruction address to
+ its jump table info. This map exists per function.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch.RecoveryStatus">
+<summary>
+ Recovery status.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch.TargetAddresses">
+<summary>
+ Jump targets of the indirect branch.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch.JTEntrySize">
+<summary>
+ Jump table entry size.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch.JTMaxEnd">
+<summary>
+ Maximum end address of the jump table.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch.JTFixedEnd">
+<summary>
+ Currently confirmed (fixed) end address of the jump table. As we analyze
+ more branch targets, this can grow.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch.JTStartAddr">
+<summary>
+ Start address of the jump table.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch.BranchBaseAddr">
+<summary>
+ The base address of the jump target.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch.InsAddr">
+<summary>
+ Address of the indirect branch instruction.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch.BBLAddr">
+<summary>
+ Address of the basic block containing the indirect branch instruction.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch.HostFunctionEnd">
+<summary>
+ End address of the function containing the indirect branch instruction.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch.HostFunctionStart">
+<summary>
+ Start address of the function containing the indirect branch instruction.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch">
+<summary>
+ Indirect branch that uses a jump table.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.TableRecoveryStatus.Continue">
+<summary>
+ Recovery needs to be continued.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.TableRecoveryStatus.Done">
+<summary>
+ Recovery is done for the jump table.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.TableRecoveryStatus">
+<summary>
+ Current recovery status for a jump table.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.ConstantIndirectBranch.InsAddr">
+<summary>
+ Address of the indirect branch instruction.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.ConstantIndirectBranch.TargetAddr">
+<summary>
+ Constant branch target.
+</summary>
+</member>
+<member name="P:B2R2.MiddleEnd.Reclaimer.ConstantIndirectBranch.HostFunctionAddr">
+<summary>
+ The address of the owner function of the indirect branch.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.ConstantIndirectBranch">
+<summary>
+ Indirect branch whose target is a constant.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.BranchPattern.UnknownPattern">
+<summary>
+ Unknown pattern.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.BranchPattern.ConstPattern">
+<summary>
+ Jump to a constant target.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.BranchPattern.JmpTablePattern">
+<summary>
+ This encodes an indirect jump with a jump table where baseAddr is the jump
+ target&apos;s base address, tblAddr is the start address of a jump table, and
+ rt is the size of each entry in the jump table.
+</summary>
+</member>
+<member name="T:B2R2.MiddleEnd.Reclaimer.BranchPattern">
+<summary>
+ We mainly consider two types of indirect branches: jump-table and const
+ address pattern.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.BranchRecoveryHelper.syncBBLAddr(B2R2.MiddleEnd.Reclaimer.FunctionLevelJmpTableInfo)">
+<summary>
+ Once BinEssence is updated, basic blocks in the CFG can change due to the
+ basic block splitting. So we sync JumpTables with new CFG.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.BranchRecoveryHelper.updateJmpTblInfo(B2R2.MiddleEnd.BinEssence.BinEssence,B2R2.MiddleEnd.Reclaimer.AnalysisHint,B2R2.MiddleEnd.Reclaimer.FunctionLevelJmpTableInfo)">
+<summary>
+ Update info.JumpTables since CFG is updated and new ind jumps are found.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.BranchRecoveryHelper.recoverJmpTblEntries(B2R2.MiddleEnd.BinEssence.BinEssence,B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch,System.UInt64)">
+<summary>
+ Recover jump table entries until meeting the max address (maxAddr).
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.BranchRecoveryHelper.findPromisingIndBranches(B2R2.MiddleEnd.Reclaimer.IAnalysis,B2R2.MiddleEnd.BinEssence.BinEssence,B2R2.MiddleEnd.Reclaimer.AnalysisHint,B2R2.MiddleEnd.Reclaimer.FunctionLevelJmpTableInfo)">
+<summary>
+ Promising indirect branch here means a newly recovered indirect branch
+ that we can potentially trust. If a newly found indirect branch of a valid
+ address has a valid JTStartAddr, then we say it is a promising indirect
+ branch. However, even a promising indirect branch may become invalid later
+ on, in which case we may have to roll-back.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.BranchRecoveryHelper.recoverJmpTblEntry(B2R2.MiddleEnd.BinEssence.BinEssence,B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch)">
+<summary>
+ Recover one entry from the jump table of the indirect branch (br).
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.BranchRecoveryHelper.checkNewlyFoundIndJump(B2R2.MiddleEnd.Reclaimer.IAnalysis,Microsoft.FSharp.Collections.FSharpSet{System.UInt64},B2R2.MiddleEnd.BinEssence.BinEssence,B2R2.MiddleEnd.Reclaimer.AnalysisHint,B2R2.MiddleEnd.Reclaimer.FunctionLevelJmpTableInfo,B2R2.MiddleEnd.Reclaimer.JmpTableIndirectBranch)">
+<summary>
+ Check if there exist new valid indirect jumps after recovering one entry.
+</summary>
+</member>
+<member name="M:B2R2.MiddleEnd.Reclaimer.SpeculativeGapCompletionHelper.findGaps(B2R2.MiddleEnd.BinEssence.BinEssence,System.UInt64,System.UInt64)">
+<summary>
+ XXX: Should be fixed
+</summary>
+</member>
+</members>
+</doc>
