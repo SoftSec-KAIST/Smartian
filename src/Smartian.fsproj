@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Core/Config.fs" />
+    <Compile Include="Core/Utils.fs" />
+    <Compile Include="Core/BytesUtils.fs" />
+    <Compile Include="Core/Extension.fs" />
+    <Compile Include="Core/Queue.fs" />
+    <Compile Include="Core/Typedef.fs" />
+    <Compile Include="Core/Address.fs" />
+    <Compile Include="Seed/TestCase.fs" />
+    <Compile Include="Seed/ByteVal.fs" />
+    <Compile Include="Seed/Element.fs" />
+    <Compile Include="Seed/Arg.fs" />
+    <Compile Include="Seed/Transaction.fs" />
+    <Compile Include="Seed/Seed.fs" />
+    <Compile Include="GreyConcolic/BranchInfo.fs" />
+    <Compile Include="Fuzz/Options.fs" />
+    <Compile Include="Fuzz/Executor.fs" />
+    <Compile Include="Fuzz/TCManage.fs" />
+    <Compile Include="GreyConcolic/BranchTrace.fs" />
+    <Compile Include="GreyConcolic/Linearity.fs" />
+    <Compile Include="GreyConcolic/LinearEquation.fs" />
+    <Compile Include="GreyConcolic/LinearInequality.fs" />
+    <Compile Include="GreyConcolic/Monotonicity.fs" />
+    <Compile Include="GreyConcolic/BranchTree.fs" />
+    <Compile Include="GreyConcolic/PathConstraint.fs" />
+    <Compile Include="GreyConcolic/Solve.fs" />
+    <Compile Include="GreyConcolic/GreyConcolic.fs" />
+    <Compile Include="Fuzz/RandomFuzz.fs" />
+    <Compile Include="Fuzz/SeedQueue.fs" />
+    <Compile Include="Fuzz/Fuzz.fs" />
+    <Compile Include="Main/Replay.fs" />
+    <Compile Include="Main/Main.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Data" Version="4.0.1" />
+    <PackageReference Include="FSharp.Core" Version="5.0.0" />
+    <PackageReference Include="Argu" Version="5.1.0" />
+    <PackageReference Include="MathNet.Numerics" Version="4.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\nethermind\src\Dirichlet\Nethermind.Dirichlet.Numerics\Nethermind.Dirichlet.Numerics.csproj" />
+    <ProjectReference Include="..\nethermind\src\Nethermind\Nethermind.Evm\Nethermind.Evm.csproj" />
+    <ProjectReference Include="..\nethermind\src\Nethermind\Nethermind.Evm.Test\Nethermind.Evm.Test.csproj" />
+    <ProjectReference Include="..\nethermind\src\Nethermind\Nethermind.Core\Nethermind.Core.csproj" />
+    <ProjectReference Include="..\nethermind\src\Nethermind\Nethermind.Core.Test\Nethermind.Core.Test.csproj" />
+    <ProjectReference Include="..\nethermind\src\Nethermind\Nethermind.Abi\Nethermind.Abi.csproj" />
+    <ProjectReference Include="..\EVMAnalysis\src\EVMAnalysis.fsproj" />
+  </ItemGroup>
+
+
+</Project>
