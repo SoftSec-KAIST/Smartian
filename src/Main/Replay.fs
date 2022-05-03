@@ -88,8 +88,8 @@ let runReportMode opt =
       execute tc true traceDU checkOptionalBugs useOthersOracle
       |> ignore
     let elapsed = i * timeInterval
-    let edges = accumEdges.Count
-    printfn "%02dm: %d Edges, %d Instrs" elapsed edges accumInstrs.Count
+    let edges = accumRuntimeEdges.Count
+    printfn "%02dm: %d Edges, %d Instrs" elapsed edges accumRuntimeInstrs.Count
 
 let runDefaultMode opt =
   let testcaseDir = opt.TestcaseDir
@@ -107,8 +107,8 @@ let runDefaultMode opt =
     stopWatch.Stop()
     totalElapsed <- totalElapsed + stopWatch.Elapsed.TotalMilliseconds
     TCManage.printBugInfo feedback.BugSet
-  log "Covered Edges : %d" accumEdges.Count
-  log "Covered Instructions: %d" accumInstrs.Count
+  log "Covered Edges : %d" accumRuntimeEdges.Count
+  log "Covered Instructions: %d" accumRuntimeInstrs.Count
   log "Elapsed time (ms): %.4f" totalElapsed
 
 /// Replay test cases in the given directory on target program.

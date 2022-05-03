@@ -31,9 +31,10 @@ type Feedback = {
 }
 
 // Set of edge hashes.
-let mutable accumEdges = SortedSet<int>()
+let mutable accumDeployEdges = SortedSet<int>()
+let mutable accumRuntimeEdges = SortedSet<int>()
 // Set of program counters.
-let mutable accumInstrs = SortedSet<int>()
+let mutable accumRuntimeInstrs = SortedSet<int>()
 // Set of (Def PC * Use PC * Storage Index)
 let mutable accumDUChains = SortedSet<struct(int * int * UInt256)>()
 // Set of (BugClass * PC)
@@ -146,8 +147,9 @@ let private sendTx env covFlag hadDepTx isRedirect tx =
   runTx env tx.From tx.To null null tx.Value tx.Data tx.Timestamp tx.Blocknum
   |> ignore
   if covFlag then
-    accumEdges.UnionWith(vm.VisitedEdgeSet)
-    accumInstrs.UnionWith(vm.VisitedInstrs)
+    accumDeployEdges.UnionWith(vm.VisitedDeployEdges)
+    accumRuntimeEdges.UnionWith(vm.VisitedRuntimeEdges)
+    accumRuntimeInstrs.UnionWith(vm.VisitedRuntimeInstrs)
     accumDUChains.UnionWith(vm.DefUseChainSet)
     accumBugs <- Set.ofSeq vm.BugSet
                  |> Set.map (fun struct (bugClass, pc) -> bugClass, pc)
@@ -197,11 +199,14 @@ let execute tc covFlag traceDU checkOptional useOthersOracle =
   List.iter (setupEntity env tc) tc.Entities
   setupTarget env tc.TargetDeployer tc.TargetContract tc.DeployTx
   env.VM.TraceDU <- traceDU
-  let oldEdgeCount = accumEdges.Count
+  let oldDeployEdgeCount = accumDeployEdges.Count
+  let oldRuntimeEdgeCount = accumRuntimeEdges.Count
   let oldDUChainCount = accumDUChains.Count
   let bugs = List.foldi (processTx env tc covFlag) (Set.empty, false) tc.Txs
              |> fst |> filterBugs checkOptional useOthersOracle
-  let covGain = accumEdges.Count > oldEdgeCount
+  let deployCovGain = accumDeployEdges.Count > oldDeployEdgeCount
+  let runtimeCovGain = accumRuntimeEdges.Count > oldRuntimeEdgeCount
+  let covGain = deployCovGain || runtimeCovGain
   let duGain = accumDUChains.Count > oldDUChainCount
   let conv struct (pc, op, oprnd1, oprnd2) = (uint64 pc, op, oprnd1, oprnd2)
   let cmpList = List.map conv (List.ofSeq env.VM.CmpList)

@@ -42,8 +42,8 @@ let printStatistics () =
   log "Total Executions: %d" totalExecutions
   log "Deployment failures: %d" deployFailCount
   log "Test Cases: %d" totalTC
-  log "Covered Edges: %d" accumEdges.Count
-  log "Covered Instructions: %d" accumInstrs.Count
+  log "Covered Edges: %d" accumRuntimeEdges.Count
+  log "Covered Instructions: %d" accumRuntimeInstrs.Count
   log "Covered Def-Use Chains: %d" accumDUChains.Count
   log "Found Bugs:"
   log "  Assertion Failure: %d" totalAF
