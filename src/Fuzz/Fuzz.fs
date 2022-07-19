@@ -121,15 +121,18 @@ let rec private fuzzLoop opt contSpec concQ randQ =
   if not (TCManage.shallStop opt) then
       fuzzLoop opt contSpec concQ randQ
 
-let private fuzzingTimer opt = async {
-  let timespan = System.TimeSpan (0, 0, 0, opt.Timelimit)
-  System.Threading.Thread.Sleep (timespan)
-  printLine "Fuzzing timeout expired."
+let private exitWith opt msg = 
+  printLine msg
   if opt.CheckOptionalBugs then TCManage.checkFreezingEtherBug ()
   log "===== Statistics ====="
   TCManage.printStatistics ()
   log "Done, clean up and exit..."
   exit (0)
+
+let private fuzzingTimer opt = async {
+  let timespan = System.TimeSpan (0, 0, 0, opt.Timelimit)
+  System.Threading.Thread.Sleep (timespan)
+  exitWith opt "Fuzzing timeout expired."
 }
 
 let run args =
@@ -148,3 +151,4 @@ let run args =
   let randQ = List.fold RandFuzzQueue.enqueue (RandFuzzQueue.init ()) initSeeds
   log "Start main fuzzing phase"
   fuzzLoop opt contSpec concQ randQ
+  exitWith opt "Fuzzing Stopped"
