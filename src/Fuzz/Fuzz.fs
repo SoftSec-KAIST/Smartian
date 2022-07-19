@@ -118,7 +118,8 @@ let rec private fuzzLoop opt contSpec concQ randQ =
   let concQ, randQ = repeatGreyConcolic opt concQ randQ concolicBudget
   // Perform random fuzzing
   let concQ, randQ = repeatRandFuzz opt contSpec concQ randQ randFuzzBudget
-  fuzzLoop opt contSpec concQ randQ
+  if not (TCManage.shallStop opt) then
+      fuzzLoop opt contSpec concQ randQ
 
 let private fuzzingTimer opt = async {
   let timespan = System.TimeSpan (0, 0, 0, opt.Timelimit)
