@@ -11,6 +11,7 @@ type ReplayerCLI =
   | [<Unique>] NoDDFA
   | [<Unique>] CheckOptionalBugs
   | [<Unique>] UseOthersOracle
+  | [<Unique>] InitEther of amount: uint64
 with
   interface IArgParserTemplate with
     member s.Usage =
@@ -24,6 +25,7 @@ with
       | UseOthersOracle ->
         "Report bugs using other tools' oracles as well.\n\
         Currently we support (BD/IB/ME/RE) X (sFuzz/ILF/Mythril/MANTICORE)."
+      | InitEther _ -> "Initialize the target contract to have initial ether"
 
 type ReplayOption = {
   Program           : string
@@ -32,6 +34,7 @@ type ReplayOption = {
   DynamicDFA        : bool
   CheckOptionalBugs : bool
   UseOthersOracle   : bool
+  InitEther         : uint64
 }
 
 let parseReplayOption args =
@@ -44,7 +47,8 @@ let parseReplayOption args =
     TimeInterval = r.GetResult (<@ Interval @>, defaultValue = 0)
     DynamicDFA = not (r.Contains(<@ NoDDFA @>)) // Enabled by default.
     CheckOptionalBugs = r.Contains(<@ CheckOptionalBugs @>)
-    UseOthersOracle = r.Contains(<@ UseOthersOracle @>) }
+    UseOthersOracle = r.Contains(<@ UseOthersOracle @>)
+    InitEther = r.GetResult (<@ InitEther @>, defaultValue = 0UL) }
 
 let extractElapsedTime (tcFile: string) =
   let name = System.IO.Path.GetFileName(tcFile)
@@ -77,6 +81,7 @@ let bucketizeTCs timeInterval tcDir =
 let runReportMode opt =
   let testcaseDir = opt.TestcaseDir
   let timeInterval = opt.TimeInterval
+  let initEther = opt.InitEther
   let traceDU = opt.DynamicDFA
   let checkOptionalBugs = opt.CheckOptionalBugs
   let useOthersOracle = opt.UseOthersOracle
@@ -85,7 +90,7 @@ let runReportMode opt =
     for file in buckets.[i] do
       let tcStr = System.IO.File.ReadAllText file
       let tc = TestCase.fromJson tcStr
-      execute tc true traceDU checkOptionalBugs useOthersOracle
+      execute tc true initEther traceDU checkOptionalBugs useOthersOracle
       |> ignore
     let elapsed = i * timeInterval
     let edges = accumRuntimeEdges.Count
@@ -93,6 +98,7 @@ let runReportMode opt =
 
 let runDefaultMode opt =
   let testcaseDir = opt.TestcaseDir
+  let initEther = opt.InitEther
   let traceDU = opt.DynamicDFA
   let checkOptionalBugs = opt.CheckOptionalBugs
   let useOthersOracle = opt.UseOthersOracle
@@ -103,10 +109,11 @@ let runDefaultMode opt =
     let tc = TestCase.fromJson tcStr
     let stopWatch = System.Diagnostics.Stopwatch.StartNew()
     log "Replaying test case: %s" file
-    let feedback = execute tc true traceDU checkOptionalBugs useOthersOracle
+    let res =
+      execute tc true initEther traceDU checkOptionalBugs useOthersOracle
     stopWatch.Stop()
     totalElapsed <- totalElapsed + stopWatch.Elapsed.TotalMilliseconds
-    TCManage.printBugInfo feedback.BugSet
+    TCManage.printBugInfo res.BugSet
   log "Covered Edges : %d" accumRuntimeEdges.Count
   log "Covered Instructions: %d" accumRuntimeInstrs.Count
   log "Elapsed time (ms): %.4f" totalElapsed

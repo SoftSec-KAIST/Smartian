@@ -127,7 +127,7 @@ let private setupEntity env tc entity =
     state.AddToBalance(contAddr, &entity.Balance, spec)
     if targDeployer <> contAddr then vm.RegisterUser(contAddr)
 
-let private setupTarget env deployer addr tx =
+let private setupTarget env initEther deployer addr tx =
   let vm = env.VM
   let value = tx.Value
   let data = tx.Data
@@ -135,6 +135,10 @@ let private setupTarget env deployer addr tx =
   let blocknum = tx.Blocknum
   vm.IsDeployingTarget <- true
   deploy env deployer addr targCode value data timestamp blocknum
+  if initEther > 0UL then
+    let initEtherU256 = UInt256 initEther
+    let spec = env.SpecProvider.GetSpec(blocknum)
+    env.State.AddToBalance(addr, &initEtherU256, spec)
   vm.IsDeployingTarget <- false
   vm.TargetContractAddr <- addr
   vm.TargetOwnerAddr <- deployer
@@ -194,10 +198,10 @@ let private filterBugs checkOptional useOthersOracle bugs =
   Set.filter (not << shouldSkip) bugs
 
 /// Execute a seed (= transaction list) on EVM and return feedback.
-let execute tc isAcc traceDU checkOptional useOthersOracle =
+let execute tc isAcc initEther traceDU checkOptional useOthersOracle =
   let env = initTestingEnv ()
   List.iter (setupEntity env tc) tc.Entities
-  setupTarget env tc.TargetDeployer tc.TargetContract tc.DeployTx
+  setupTarget env initEther tc.TargetDeployer tc.TargetContract tc.DeployTx
   env.VM.TraceDU <- traceDU
   let oldDeployEdgeCount = accumDeployEdges.Count
   let oldRuntimeEdgeCount = accumRuntimeEdges.Count
@@ -286,7 +290,11 @@ let private parseBranchTrace tryVal cmpList =
 let private runEVM opt seed isAcc =
   incrExecutionCount ()
   let tc = Seed.concretize seed
-  execute tc isAcc opt.DynamicDFA opt.CheckOptionalBugs opt.UseOthersOracle
+  let initEther = opt.InitEther
+  let traceDU = opt.DynamicDFA
+  let checkOptional = opt.CheckOptionalBugs
+  let useOthersOracle = opt.UseOthersOracle
+  execute tc isAcc initEther traceDU checkOptional useOthersOracle
 
 (*** Top-level executor functions ***)
 

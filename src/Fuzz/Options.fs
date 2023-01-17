@@ -13,6 +13,7 @@ type FuzzerCLI =
   | [<Unique>] NoDDFA
   | [<Unique>] CheckOptionalBugs
   | [<Unique>] UseOthersOracle
+  | [<Unique>] InitEther of amount: uint64
 with
   interface IArgParserTemplate with
     member s.Usage =
@@ -29,6 +30,7 @@ with
       | UseOthersOracle ->
         "Report bugs using other tools' oracles as well.\n\
         Currently we support (BD/IB/ME/RE) X (sFuzz/ILF/Mythril/MANTICORE)."
+      | InitEther _ -> "Initialize the target contract to have initial ether"
 
 type FuzzOption = {
   Verbosity         : int
@@ -40,6 +42,7 @@ type FuzzOption = {
   DynamicDFA        : bool
   CheckOptionalBugs : bool
   UseOthersOracle   : bool
+  InitEther         : uint64
 }
 
 let parseFuzzOption (args: string array) =
@@ -55,4 +58,5 @@ let parseFuzzOption (args: string array) =
     StaticDFA = not (r.Contains(<@ NoSDFA @>))  // Enabled by default.
     DynamicDFA = not (r.Contains(<@ NoDDFA @>)) // Enabled by default.
     CheckOptionalBugs = r.Contains(<@ CheckOptionalBugs @>)
-    UseOthersOracle = r.Contains(<@ UseOthersOracle @>) }
+    UseOthersOracle = r.Contains(<@ UseOthersOracle @>)
+    InitEther = r.GetResult (<@ InitEther @>, defaultValue = 0UL) }
