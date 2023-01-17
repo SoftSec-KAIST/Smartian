@@ -139,14 +139,14 @@ let private setupTarget env deployer addr tx =
   vm.TargetContractAddr <- addr
   vm.TargetOwnerAddr <- deployer
 
-let private sendTx env covFlag hadDepTx isRedirect tx =
+let private sendTx env isAcc hadDepTx isRedirect tx =
   let vm = env.VM
   vm.ResetPerTx()
   vm.HadDeployerTx <- hadDepTx
   vm.IsRedirected <- isRedirect
   runTx env tx.From tx.To null null tx.Value tx.Data tx.Timestamp tx.Blocknum
   |> ignore
-  if covFlag then
+  if isAcc then
     accumDeployEdges.UnionWith(vm.VisitedDeployEdges)
     accumRuntimeEdges.UnionWith(vm.VisitedRuntimeEdges)
     accumRuntimeInstrs.UnionWith(vm.VisitedRuntimeInstrs)
@@ -157,31 +157,31 @@ let private sendTx env covFlag hadDepTx isRedirect tx =
 
 // Check ether gain of users only if there was no previous deployer TX, because
 // such TX can transfer the ownership to other users. Also, we check against
-// both the initial balance and (immediate) previous balance to make sure that
-// an attacker is actively, not passively, gaining ether.
-let private checkEtherLeak (env: Env) sender hadDepTx initBal prevBal accBugs =
+// both the initial balance and the (immediate) previous balance to make sure
+// that an attacker is actively, not passively, gaining ether.
+let private checkEtherLeak env isAcc sender hadDepTx initBal prevBal accBugs =
   let bug = (BugClass.EtherLeak, env.VM.BugOracle.LastEtherSendPC)
-  if Set.contains bug accumBugs || hadDepTx then accBugs
+  if not isAcc || Set.contains bug accumBugs || hadDepTx then accBugs
   elif env.State.GetBalance(sender) <= initBal then accBugs
   elif env.State.GetBalance(sender) <= prevBal then accBugs
   else accumBugs <- Set.add bug accumBugs
        Set.add bug accBugs
 
-let private processTx env tc covFlag (accNewBugs, hadDepTx) i tx =
+let private processTx env tc isAcc (accNewBugs, hadDepTx) i tx =
   // Since we removed the foremost deploying transaction, sould +1 to the index.
   let i = i + 1
   let sender = tx.From
   let isDepTx = (sender = tc.TargetDeployer)
   let hadDepTx = hadDepTx || isDepTx
-  let initBalance, isRedirect =
+  let initBal, isRedirect =
     match List.tryFind (fun e -> Entity.getSender e = sender) tc.Entities with
     | Some entity -> (entity.Balance, Entity.isTXRedirected tx.To entity)
     | None -> failwithf "Invalid sender: %s" (Address.toStr sender)
-  let prevBalance = env.State.GetBalance(sender)
+  let prevBal = env.State.GetBalance(sender)
   let prevBugs = accumBugs
-  sendTx env covFlag hadDepTx isRedirect tx
+  sendTx env isAcc hadDepTx isRedirect tx
   let accNewBugs = Set.difference accumBugs prevBugs
-                   |> checkEtherLeak env sender hadDepTx initBalance prevBalance
+                   |> checkEtherLeak env isAcc sender hadDepTx initBal prevBal
                    |> Set.map (fun (bug, pc) -> (bug, pc, i))
                    |> Set.union accNewBugs
   (accNewBugs, hadDepTx)
@@ -194,7 +194,7 @@ let private filterBugs checkOptional useOthersOracle bugs =
   Set.filter (not << shouldSkip) bugs
 
 /// Execute a seed (= transaction list) on EVM and return feedback.
-let execute tc covFlag traceDU checkOptional useOthersOracle =
+let execute tc isAcc traceDU checkOptional useOthersOracle =
   let env = initTestingEnv ()
   List.iter (setupEntity env tc) tc.Entities
   setupTarget env tc.TargetDeployer tc.TargetContract tc.DeployTx
@@ -202,7 +202,7 @@ let execute tc covFlag traceDU checkOptional useOthersOracle =
   let oldDeployEdgeCount = accumDeployEdges.Count
   let oldRuntimeEdgeCount = accumRuntimeEdges.Count
   let oldDUChainCount = accumDUChains.Count
-  let bugs = List.foldi (processTx env tc covFlag) (Set.empty, false) tc.Txs
+  let bugs = List.foldi (processTx env tc isAcc) (Set.empty, false) tc.Txs
              |> fst |> filterBugs checkOptional useOthersOracle
   let deployCovGain = accumDeployEdges.Count > oldDeployEdgeCount
   let runtimeCovGain = accumRuntimeEdges.Count > oldRuntimeEdgeCount
@@ -283,10 +283,10 @@ let private parseBranchTrace tryVal cmpList =
 
 (*** Tracer execute functions ***)
 
-let private runEVM opt seed covFlag =
+let private runEVM opt seed isAcc =
   incrExecutionCount ()
   let tc = Seed.concretize seed
-  execute tc covFlag opt.DynamicDFA opt.CheckOptionalBugs opt.UseOthersOracle
+  execute tc isAcc opt.DynamicDFA opt.CheckOptionalBugs opt.UseOthersOracle
 
 (*** Top-level executor functions ***)
 
