@@ -12,7 +12,7 @@ ASE 2021.
 Smartian is written in F#, so you have to install .NET to run Smartian.
 Installation step differs for each Linux distribution, so please refer to this
 [link](https://docs.microsoft.com/en-us/dotnet/core/install/) and install
-net5.0. Then, you can simply clone and build Smartian as follow.
+net6.0. Then, you can simply clone and build Smartian as follow.
 
 ```
 $ git clone https://github.com/SoftSec-KAIST/Smartian
