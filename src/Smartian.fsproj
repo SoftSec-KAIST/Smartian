@@ -41,7 +41,6 @@
 
   <ItemGroup>
     <PackageReference Include="FSharp.Data" Version="4.0.1" />
-    <PackageReference Include="FSharp.Core" Version="5.0.0" />
     <PackageReference Include="Argu" Version="5.1.0" />
     <PackageReference Include="MathNet.Numerics" Version="4.9.0" />
   </ItemGroup>
