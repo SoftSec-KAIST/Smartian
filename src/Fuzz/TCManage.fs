@@ -126,3 +126,5 @@ let evalAndSave opt seed =
   if not covGain && duGain && opt.Verbosity >= 2 then
     log "[*] Internal new seed: %s" (Seed.toString seed)
   covGain || duGain // Returns whether this seed is meaningful.
+
+let shallStop opt = (opt.BenchToBug && totalBug > 0)
