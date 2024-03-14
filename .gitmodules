@@ -1,3 +1,6 @@
 [submodule "nethermind"]
 	path = nethermind
 	url = https://github.com/SoftSec-KAIST/Smartian-nethermind.git
+[submodule "EVMAnalysis/B2R2"]
+	path = EVMAnalysis/B2R2
+	url = https://github.com/infosec-sogang/B2R2.git

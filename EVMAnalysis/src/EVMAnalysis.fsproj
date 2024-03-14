@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,8 +18,8 @@
     <Compile Include="Domain/Signature.fs" />
     <Compile Include="Domain/Functor.fs" />
     <Compile Include="Domain/FlatInt.fs" />
-    <Compile Include="Domain/Taint.fs" />
     <Compile Include="Domain/ShaOutput.fs" />
+    <Compile Include="Domain/Taint.fs" />
     <Compile Include="Domain/AbsVal.fs" />
     <Compile Include="Domain/RegMap.fs" />
     <Compile Include="Domain/Stack.fs" />
@@ -37,33 +37,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="B2R2.Core">
-      <HintPath>..\B2R2-build\B2R2.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="B2R2.BinIR">
-      <HintPath>..\B2R2-build\B2R2.BinIR.dll</HintPath>
-    </Reference>
-    <Reference Include="B2R2.FrontEnd.BinLifter.Core">
-      <HintPath>..\B2R2-build\B2R2.FrontEnd.BinLifter.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="B2R2.FrontEnd.BinInterface">
-      <HintPath>..\B2R2-build\B2R2.FrontEnd.BinInterface.dll</HintPath>
-    </Reference>
-    <Reference Include="B2R2.FrontEnd.BinFile">
-      <HintPath>..\B2R2-build\B2R2.FrontEnd.BinFile.dll</HintPath>
-    </Reference>
-    <Reference Include="B2R2.MiddleEnd.BinGraph">
-      <HintPath>..\B2R2-build\B2R2.MiddleEnd.BinGraph.dll</HintPath>
-    </Reference>
-    <Reference Include="B2R2.MiddleEnd.BinEssence">
-      <HintPath>..\B2R2-build\B2R2.MiddleEnd.BinEssence.dll</HintPath>
-    </Reference>
-    <Reference Include="B2R2.MiddleEnd.Lens">
-      <HintPath>..\B2R2-build\B2R2.MiddleEnd.Lens.dll</HintPath>
-    </Reference>
-    <Reference Include="B2R2.MiddleEnd.Reclaimer">
-      <HintPath>..\B2R2-build\B2R2.MiddleEnd.Reclaimer.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\B2R2\src\MiddleEnd\BinGraph\B2R2.MiddleEnd.BinGraph.fsproj" />
+    <ProjectReference Include="..\B2R2\src\FrontEnd\BinInterface\B2R2.FrontEnd.BinInterface.fsproj" />
+    <ProjectReference Include="..\B2R2\src\MiddleEnd\BinEssence\B2R2.MiddleEnd.BinEssence.fsproj" />
+    <ProjectReference Include="..\B2R2\src\Core\B2R2.Core.fsproj" />
+    <ProjectReference Include="..\B2R2\src\MiddleEnd\Reclaimer\B2R2.MiddleEnd.Reclaimer.fsproj" />
   </ItemGroup>
 
   <ItemGroup>

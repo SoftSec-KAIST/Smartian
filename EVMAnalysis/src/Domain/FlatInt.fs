@@ -57,17 +57,17 @@ type FlatIntModule () =
   // Checker functions.
 
   member __.isZero = function
-    | Bot _ | Top _ -> false
+    | Bot | Top -> false
     | Fixed i -> i = 0I
 
   member __.isConst = function
-    | Bot _ | Top _ -> false
+    | Bot | Top -> false
     | Fixed _ -> true
 
   // Getter function.
 
   member __.tryGetConst = function
-    | Bot _ | Top _ -> None
+    | Bot | Top -> None
     | Fixed i -> Some i
 
   // Arithmetic and logical operations.
