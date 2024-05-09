@@ -29,8 +29,9 @@ $ make
 
 ```bash
 brew install dotnet@8
+dotnet workload install macos
 mkdir -p build
-dotnet publish --configuration Release --framework net8.0 --runtime osx-arm64
+dotnet build -c Release -o build --framework net8.0 --runtime osx-arm64 src/Smartian.fsproj
 ```
 
 ### linux
