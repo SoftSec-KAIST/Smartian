@@ -12,13 +12,41 @@ ASE 2021.
 Smartian is written in F#, so you have to install .NET to run Smartian.
 Installation step differs for each Linux distribution, so please refer to this
 [link](https://docs.microsoft.com/en-us/dotnet/core/install/) and install
-net5.0. Then, you can simply clone and build Smartian as follow.
+net8.0. Then, you can simply clone and build Smartian as follow.
+
+### Windows
 
 ```
 $ git clone https://github.com/SoftSec-KAIST/Smartian
 $ cd Smartian
 $ git submodule update --init --recursive
 $ make
+```
+
+### macOS
+
+> For Apple M1. for x64 replace with runtime with osx-x64
+
+```bash
+brew install dotnet@8
+mkdir -p build
+dotnet publish --configuration Release --framework net8.0 --runtime osx-arm64
+```
+
+### linux
+
+```bash
+dotnet publish --configuration Release --framework net8.0 --runtime linux-x64 
+```
+#### CLI
+
+```console
+$ ./build/Smartian
+Usage: 'dotnet Smartian.dll <fuzz|replay> <options...>'
+fuzz : Mode for test case generation with fuzzing.
+       Use 'dotnet Smartian.dll fuzz --help' for details.
+replay : Mode for replaying generated test cases.
+         Use 'dotnet Smartian.dll replay --help' for details.
 ```
 
 # Usage
