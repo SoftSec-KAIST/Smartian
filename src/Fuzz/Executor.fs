@@ -14,21 +14,19 @@ open Config
 open BytesUtils
 open Options
 
-type Env = {
-  State : StateProvider
-  SpecProvider: MainNetSpecProvider
-  VM : VirtualMachine
-  TxProcessor : TransactionProcessor
-}
+type Env =
+  { State: StateProvider
+    SpecProvider: MainNetSpecProvider
+    VM: VirtualMachine
+    TxProcessor: TransactionProcessor }
 
-type Feedback = {
-  CovGain : bool
-  DUGain : bool
-  // PC, Op, Oprnd1, Oprnd2.
-  CmpList : (uint64 * string * bigint * bigint) list
-  // Bug class, Bug PC, Triggerring TX index.
-  BugSet : Set<(BugClass * int * int)>
-}
+type Feedback =
+  { CovGain: bool
+    DUGain: bool
+    // PC, Op, Oprnd1, Oprnd2.
+    CmpList: (uint64 * string * bigint * bigint) list
+    // Bug class, Bug PC, Triggerring TX index.
+    BugSet: Set<(BugClass * int * int)> }
 
 // Set of edge hashes.
 let mutable accumEdges = SortedSet<int>()
@@ -42,11 +40,15 @@ let mutable accumBugs = Set.empty
 let mutable deployFailCount = 0
 
 let mutable receivedEther = false
+
 let mutable useDelegateCall = false
+
 let mutable canSendEther = false
 
 let mutable private targCode = [||]
+
 let mutable private smartianAgentCode = [||]
+
 let mutable private sFuzzAgentCode = [||]
 
 let initialize targetPath =
@@ -88,13 +90,13 @@ let private runTx env from ``to`` code reqAddr value data timestamp blocknum =
                                        Value = value,
                                        Data = data,
                                        GasLimit = TX_GASLIMIT,
-                                       GasPrice = UInt256 (TX_GASPRICE: int64))
+                                       GasPrice = UInt256(TX_GASPRICE: int64))
   processor.Execute(tx, block.Header, tracer)
   tracer.StatusCode
 
 let private deploy env deployer addr code value data timestamp blocknum =
   let code = Array.append code data
-  let status = runTx env deployer null code addr value [| |] timestamp blocknum
+  let status = runTx env deployer null code addr value [||] timestamp blocknum
   if status <> StatusCode.Success then deployFailCount <- deployFailCount + 1
 
 let private setupAgent env deployer addr agentCode =
@@ -153,10 +155,6 @@ let private sendTx env covFlag hadDepTx isRedirect tx =
                  |> Set.map (fun struct (bugClass, pc) -> bugClass, pc)
                  |> Set.union accumBugs
 
-// Check ether gain of users only if there was no previous deployer TX, because
-// such TX can transfer the ownership to other users. Also, we check against
-// both the initial balance and (immediate) previous balance to make sure that
-// an attacker is actively, not passively, gaining ether.
 let private checkEtherLeak (env: Env) sender hadDepTx initBal prevBal accBugs =
   let bug = (BugClass.EtherLeak, env.VM.BugOracle.LastEtherSendPC)
   if Set.contains bug accumBugs || hadDepTx then accBugs
@@ -217,24 +215,30 @@ let execute tc covFlag traceDU checkOptional useOthersOracle =
 (*** Statistics ***)
 
 let mutable totalExecutions = 0
+
 let mutable phaseExecutions = 0
 
 let getTotalExecutions () = totalExecutions
+
 let getPhaseExecutions () = phaseExecutions
+
 let resetPhaseExecutions () = phaseExecutions <- 0
 
 (*** Resource scheduling ***)
 
 let mutable allowedExecutions = 0
+
 let allocateResource n = allowedExecutions <- n
+
 let isExhausted () = allowedExecutions <= 0
+
 let incrExecutionCount () =
   allowedExecutions <- allowedExecutions - 1
   totalExecutions <- totalExecutions + 1
   phaseExecutions <- phaseExecutions + 1
 
 let private parseBranchInfo tryVal cmp =
-  let addr, opStr, (oprnd1: bigint), (oprnd2: bigint)= cmp
+  let addr, opStr, (oprnd1: bigint), (oprnd2: bigint) = cmp
   let dist = oprnd1 - oprnd2
   let brType =
     match opStr with
@@ -265,7 +269,7 @@ let rec private parseBranchInfoAtAux tryVal targPoint accMap cmpList =
     // Caution : we count first visit as '1', instead of '0'.
     let count = if Map.containsKey addr accMap then Map.find addr accMap else 1
     if (addr, count) = (targPoint.Addr, targPoint.Idx) then
-      Some (parseBranchInfo tryVal headCmp)
+      Some(parseBranchInfo tryVal headCmp)
     else
       let newMap = Map.add addr (count + 1) accMap
       parseBranchInfoAtAux tryVal targPoint newMap tailCmpList

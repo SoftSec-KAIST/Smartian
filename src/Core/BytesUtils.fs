@@ -9,12 +9,12 @@ type Endian = LE | BE
 
 let allBytes = [ Byte.MinValue .. Byte.MaxValue ]
 
-let bytesToStr (bytes: byte[]) = String (Array.map char bytes)
+let bytesToStr (bytes: byte[]) = String(Array.map char bytes)
 
-let strToBytes (str: string) = str.ToCharArray () |> Array.map byte
+let strToBytes (str: string) = str.ToCharArray() |> Array.map byte
 
 let hexStrToBytes (s: string) =
-  let s = if s.StartsWith("0x") || s.StartsWith("0X") then s.[2..] else s
+  let s = if s.StartsWith("0x") || s.StartsWith("0X") then s[2..] else s
   if s.Length % 2 <> 0 then failwith "Odd length string as input"
   let indices = { 0 .. (s.Length / 2 - 1) } |> Seq.toArray
   let idxToByte i =
@@ -25,10 +25,10 @@ let hexStrToBytes (s: string) =
 
 let bytesToHexStr (bytes: byte[]) =
   bytes
-  |> Array.map (fun (x : byte) -> String.Format("{0:X2}", x))
+  |> Array.map (fun (x: byte) -> String.Format("{0:X2}", x))
   |> String.concat String.Empty
 
-// Auxiliary function for bytesTo*BigInt().
+(* Auxiliary function for bytesTo*BigInt(). *)
 let rec private bytesToBigIntAux accumBigInt bytes =
   match bytes with
   | [] -> accumBigInt
@@ -50,7 +50,7 @@ let bytesToUnsignedBigInt endian (bytes: byte[]) =
   |> if endian = LE then List.rev else identity
   |> bytesToBigIntAux 0I
 
-// Auxiliary function for bigIntToBytes().
+(* Auxiliary function for bigIntToBytes(). *)
 let rec private bigIntToBytesAux accBytes leftSize value =
   if leftSize = 0 then accBytes else
     let accBytes = (byte (value &&& bigint 0xFF)) :: accBytes

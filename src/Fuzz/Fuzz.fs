@@ -36,7 +36,8 @@ let private allocResource () =
   let randFuzzEff = RandomFuzz.evaluateEfficiency ()
   let concolicRatio = concolicEff / (concolicEff + randFuzzEff)
   // Bound alloc ratio with 'MinResourceAlloc', to avoid extreme biasing
-  let concolicRatio = max MIN_RESOURCE_RATIO (min MAX_RESOURCE_RATIO concolicRatio)
+  let concolicRatio =
+    max MIN_RESOURCE_RATIO (min MAX_RESOURCE_RATIO concolicRatio)
   let randFuzzRatio = 1.0 - concolicRatio
   let totalBudget = EXEC_BUDGET_PER_ROUND
   let greyConcBudget = int (float totalBudget * concolicRatio)
@@ -121,8 +122,8 @@ let rec private fuzzLoop opt contSpec concQ randQ =
   fuzzLoop opt contSpec concQ randQ
 
 let private fuzzingTimer opt = async {
-  let timespan = System.TimeSpan (0, 0, 0, opt.Timelimit)
-  System.Threading.Thread.Sleep (timespan)
+  let timespan = System.TimeSpan(0, 0, 0, opt.Timelimit)
+  System.Threading.Thread.Sleep(timespan)
   printLine "Fuzzing timeout expired."
   if opt.CheckOptionalBugs then TCManage.checkFreezingEtherBug ()
   log "===== Statistics ====="
@@ -137,12 +138,12 @@ let run args =
   log "Fuzz target : %s" opt.ProgPath
   log "Fuzzing starts at %s" (startTime.ToString("hh:mm:ss"))
   log "Time limit : %d s" opt.Timelimit
-  Async.Start (fuzzingTimer opt)
+  Async.Start(fuzzingTimer opt)
   createDirectoryIfNotExists opt.OutDir
   TCManage.initialize opt.OutDir
   Executor.initialize opt.ProgPath
-  let contSpec, initSeeds = if opt.StaticDFA then initializeWithDFA opt
-                            else initializeWithoutDFA opt
+  let contSpec, initSeeds =
+    if opt.StaticDFA then initializeWithDFA opt else initializeWithoutDFA opt
   let concQ = List.fold ConcolicQueue.enqueue ConcolicQueue.empty initSeeds
   let randQ = List.fold RandFuzzQueue.enqueue (RandFuzzQueue.init ()) initSeeds
   log "Start main fuzzing phase"

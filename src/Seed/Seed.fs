@@ -5,17 +5,16 @@ open Config
 open Utils
 
 /// A collection of input, which corresponds to a transaction sequence.
-type Seed = {
-  /// An array of transactions.
-  Transactions : Transaction array
-  /// The index of 'Inputs' to mutate for the next grey-box concolic testing.
-  TXCursor : int
-}
+type Seed =
+  { /// An array of transactions.
+    Transactions: Transaction array
+    /// The index of 'Inputs' to mutate for the next grey-box concolic testing.
+    TXCursor: int }
 
 module Seed =
 
   let empty =
-    { Transactions = [| |]
+    { Transactions = [||]
       TXCursor = 0 }
 
   /// Initialize a seed with specified function specs.
@@ -40,8 +39,8 @@ module Seed =
   let resetBlockData seed =
     let rec loop n (curTime, curNum) accList =
       if n <= 0 then List.rev accList |> Array.ofList
-      else let curTime = curTime + int64(random.Next(TIMESTAMP_INC_MAX))
-           let curNum = curNum + int64(random.Next(BLOCKNUM_INC_MAX))
+      else let curTime = curTime + int64 (random.Next(TIMESTAMP_INC_MAX))
+           let curNum = curNum + int64 (random.Next(BLOCKNUM_INC_MAX))
            let accList = (curTime, curNum) :: accList
            loop (n - 1) (curTime, curNum) accList
     // Note we can perform shallow copy here, since we don't change TX args.
@@ -56,7 +55,7 @@ module Seed =
     let makeEntity account contract =
       { Balance = initEther
         Account = account
-        Agent = SmartianAgent contract}
+        Agent = SmartianAgent contract }
     let accounts = Address.OWNER_ACCOUNT :: Address.USER_ACCOUNTS
     let contracts = Address.OWNER_CONTRACT :: Address.USER_CONTRACTS
     let entities = List.map2 makeEntity accounts contracts
@@ -130,8 +129,8 @@ module Seed =
     | Right -> curElem.ByteVals.Length - bytePos
     | Left -> bytePos + 1
 
-  // Auxiliary function for queryUpdateBound()
-  let private queryUpdateBoundLeft (byteVals: ByteVal []) byteCursor =
+  (* Auxiliary function for queryUpdateBound() *)
+  let private queryUpdateBoundLeft (byteVals: ByteVal[]) byteCursor =
     let byteVals' =
       if byteCursor - MAX_CHUNK_LEN >= 0
       then byteVals.[byteCursor - MAX_CHUNK_LEN .. byteCursor]
@@ -141,8 +140,8 @@ module Seed =
     | None -> byteVals'.Length
     | Some idx -> byteVals'.Length - idx - 1
 
-  // Auxiliary function for queryUpdateBound()
-  let private queryUpdateBoundRight (byteVals: ByteVal []) byteCursor maxLen =
+  (* Auxiliary function for queryUpdateBound() *)
+  let private queryUpdateBoundRight (byteVals: ByteVal[]) byteCursor maxLen =
     let byteVals' =
       if byteCursor + MAX_CHUNK_LEN < byteVals.Length
       then byteVals.[byteCursor .. byteCursor + MAX_CHUNK_LEN]
@@ -188,7 +187,7 @@ module Seed =
       | Right -> curElem.ByteCursor + offset
       | Left -> curElem.ByteCursor - offset
     let newByteVals = Array.copy curElem.ByteVals
-    let newByteVal = if low <> upper then Interval (low, upper) else Fixed low
+    let newByteVal = if low <> upper then Interval(low, upper) else Fixed low
     newByteVals.[byteCursor] <- newByteVal
     let newElem = { curElem with ByteVals = newByteVals }
     setCurElem seed newElem |> fixDeployTransaction
@@ -227,7 +226,7 @@ module Seed =
     let curElem = getCurElem seed
     match Element.stepCursor curElem with
     | None -> []
-    | Some newElem -> [setCurElem seed newElem]
+    | Some newElem -> [ setCurElem seed newElem ]
 
   let rewindByteCursors seed =
     let collector i tx =
@@ -249,7 +248,7 @@ module Seed =
     let txs = seed.Transactions
     let headTxs = txs.[ .. insertIdx]
     let tailTss = txs.[ (insertIdx + 1) .. ]
-    let newTxs = Array.concat [headTxs; [| tx |]; tailTss]
+    let newTxs = Array.concat [ headTxs; [| tx |]; tailTss ]
     rewindTxCursor { seed with Transactions = newTxs }
 
   /// Swap the two inputs of a seed at specified index.
@@ -264,16 +263,16 @@ module Seed =
   let removeTransactionAt seed idx =
     // Note we can perform shallow copy here, since we don't change TX args.
     let txs = seed.Transactions
-    let headTxs = if idx <= 0 then [| |] else txs.[ .. (idx - 1)]
-    let tailTxs = if idx = txs.Length - 1 then [| |] else txs.[ (idx + 1) .. ]
-    let newTxs = Array.concat [headTxs; tailTxs]
+    let headTxs = if idx <= 0 then [||] else txs.[ .. (idx - 1) ]
+    let tailTxs = if idx = txs.Length - 1 then [||] else txs.[ (idx + 1) .. ]
+    let newTxs = Array.concat [ headTxs; tailTxs ]
     rewindTxCursor { seed with Transactions = newTxs }
 
   let mutateTranasctionSenderAt seed idx =
     // Note we can perform shallow copy here, since we don't change TX args.
     let newTxs = Array.copy seed.Transactions
     let tx = newTxs.[idx]
-    let newSender = Sender.pick()
+    let newSender = Sender.pick ()
     let useAgent = random.Next(100) < TRY_REENTRANCY_PROB
     let newTx = { tx with Sender = newSender; UseAgent = useAgent }
     newTxs.[idx] <- newTx

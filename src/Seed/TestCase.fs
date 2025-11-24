@@ -10,10 +10,9 @@ open Nethermind.Dirichlet.Numerics
 open Nethermind.Abi
 open FSharp.Data
 
-type ArgData = {
-  ArgSpec : ArgSpec
-  Bytes : byte array
-}
+type ArgData =
+  { ArgSpec: ArgSpec
+    Bytes: byte array }
 
 module ArgData =
 
@@ -24,7 +23,7 @@ module ArgData =
          splitBytesAux width byteArr.[width .. ] accElems
 
   let private splitBytes width byteArr =
-    splitBytesAux width byteArr [| |]
+    splitBytesAux width byteArr [||]
 
   let private makeUInt byteArr =
     bytesToUnsignedBigInt LE byteArr
@@ -75,72 +74,71 @@ module ArgData =
     | Byte -> box byteArr.[0]
     | String -> box (makeString byteArr)
     // 1-dimensional arrays
-    | Array (_, UInt width) -> makeUIntArray width byteArr |> box
-    | Array (_, Int width) -> makeIntArray width byteArr |> box
-    | Array (_, Address) -> makeAddressArray byteArr |> box
-    | Array (_, Bool) -> makeBoolArray byteArr |> box
-    | Array (_, Byte) -> box byteArr
-    | Array (_, String) -> makeStringArray byteArr |> box
+    | Array(_, UInt width) -> makeUIntArray width byteArr |> box
+    | Array(_, Int width) -> makeIntArray width byteArr |> box
+    | Array(_, Address) -> makeAddressArray byteArr |> box
+    | Array(_, Bool) -> makeBoolArray byteArr |> box
+    | Array(_, Byte) -> box byteArr
+    | Array(_, String) -> makeStringArray byteArr |> box
     // 2-dimensional arrays
-    | Array (outerSize, Array (_, UInt width)) ->
+    | Array(outerSize, Array(_, UInt width)) ->
       makeUIntArray width byteArr |> relocArray outerSize |> box
-    | Array (outerSize, Array (_, Int width)) ->
+    | Array(outerSize, Array(_, Int width)) ->
       makeIntArray width byteArr |> relocArray outerSize |> box
-    | Array (outerSize, Array (_, Address)) ->
+    | Array(outerSize, Array(_, Address)) ->
       makeAddressArray byteArr |> relocArray outerSize |> box
-    | Array (outerSize, Array (_, Bool)) ->
+    | Array(outerSize, Array(_, Bool)) ->
       makeBoolArray byteArr |> relocArray outerSize |> box
-    | Array (outerSize, Array (_, Byte)) ->
+    | Array(outerSize, Array(_, Byte)) ->
       byteArr |> relocArray outerSize |> box
-    | Array (outerSize, Array (_, String)) ->
+    | Array(outerSize, Array(_, String)) ->
       makeStringArray byteArr |> relocArray outerSize |> box
     // 3-dimensional arrays
-    | Array (outerSize1, Array (outerSize2, Array (_, UInt width))) ->
+    | Array(outerSize1, Array(outerSize2, Array(_, UInt width))) ->
       makeUIntArray width byteArr
       |> relocArray outerSize1 |> Array.map (relocArray outerSize2)
       |> box
-    | Array (outerSize1, Array (outerSize2, Array (_, Int width))) ->
+    | Array(outerSize1, Array(outerSize2, Array(_, Int width))) ->
       makeIntArray width byteArr
       |> relocArray outerSize1 |> Array.map (relocArray outerSize2)
       |> box
-    | Array (outerSize1, Array (outerSize2, Array (_, Address))) ->
+    | Array(outerSize1, Array(outerSize2, Array(_, Address))) ->
       makeAddressArray byteArr
       |> relocArray outerSize1 |> Array.map (relocArray outerSize2)
       |> box
-    | Array (outerSize1, Array (outerSize2, Array (_, Bool))) ->
+    | Array(outerSize1, Array(outerSize2, Array(_, Bool))) ->
       makeBoolArray byteArr
       |> relocArray outerSize1 |> Array.map (relocArray outerSize2)
       |> box
-    | Array (outerSize1, Array (outerSize2, Array (_, Byte))) ->
+    | Array(outerSize1, Array(outerSize2, Array(_, Byte))) ->
       byteArr
       |> relocArray outerSize1 |> Array.map (relocArray outerSize2)
       |> box
-    | Array (outerSize1, Array (outerSize2, Array (_, String))) ->
+    | Array(outerSize1, Array(outerSize2, Array(_, String))) ->
       makeStringArray byteArr
       |> relocArray outerSize1 |> Array.map (relocArray outerSize2)
       |> box
-    | Array (_, Array (_, Array (_, Array _))) -> failwith "Unsupported"
+    | Array(_, Array(_, Array(_, Array _))) -> failwith "Unsupported"
 
 /// Reperesents a concrete transaction data that can be passed to EVM.
-type TXData = {
-  From : Address
-  To: Address
-  Value : UInt256
-  Data : byte array
-  Timestamp : int64
-  Blocknum : int64
-  // Informative fields used for debugging.
-  Function : string
-  OrigData : byte array
-  OrigValue : bigint
-}
+type TXData =
+  { From: Address
+    To: Address
+    Value: UInt256
+    Data: byte array
+    Timestamp: int64
+    Blocknum: int64
+    // Informative fields used for debugging.
+    Function: string
+    OrigData: byte array
+    OrigValue: bigint }
 
 module TXData =
 
-  let private abiEncoder = AbiEncoder ()
+  let private abiEncoder = AbiEncoder()
 
   let private getSignature name typeStrs =
-    abiEncoder.getSignature(name, toCsList typeStrs)
+    abiEncoder.getSignature (name, toCsList typeStrs)
 
   let private encodeData signature data =
     abiEncoder.Encode(AbiEncodingStyle.None, signature, data)
@@ -153,7 +151,7 @@ module TXData =
       OnlyOwner = false
       // Belows are not used.
       Entry = 0UL
-      ArgSpecs = [| |] }
+      ArgSpecs = [||] }
 
   let makeData funcSpec args =
     if funcSpec.Kind = Fallback then Array.empty // fallback
@@ -172,7 +170,7 @@ module TXData =
     let valueType = { TypeStr = "uint256"; Kind = ArgType.UInt 32 }
     let valueBytes = bigIntToBytes LE 32 value
     let valueArg = { ArgSpec = valueType; Bytes = valueBytes }
-    let bytesType = { TypeStr = "bytes"; Kind = Array (UnfixedSize, Byte) }
+    let bytesType = { TypeStr = "bytes"; Kind = Array(UnfixedSize, Byte) }
     let bytesArg = { ArgSpec = bytesType; Bytes = data }
     let args = [| addrArg; valueArg; bytesArg |]
     makeData REDIRECT_FUNC_SPEC args
@@ -207,14 +205,13 @@ module TXData =
       Blocknum = blocknum
       // Informative fields for debugging dosn't have to be filled.
       Function = ""
-      OrigData = [| |]
+      OrigData = [||]
       OrigValue = 0I }
 
-type Entity = {
-  Balance: UInt256
-  Account: Address
-  Agent: AgentType
-}
+type Entity =
+  { Balance: UInt256
+    Account: Address
+    Agent: AgentType }
 
 module Entity =
 
@@ -223,7 +220,8 @@ module Entity =
     | NoAgent -> entity.Account
     | SFuzzAgent addr | SmartianAgent addr -> addr
 
-  // Currently TX redirection occurs only when we send a TX to Smartian's agent.
+  (* Currently TX redirection occurs only when we send a TX
+     to Smartian's agent. *)
   let isTXRedirected ``to`` entity =
     match entity.Agent with
     | NoAgent | SFuzzAgent _ -> false
@@ -258,13 +256,12 @@ module Entity =
       Agent = agentType }
 
 /// Represents a concrete test case composed of transaction data.
-type TestCase = {
-  Entities: Entity list
-  TargetDeployer: Address
-  TargetContract: Address
-  DeployTx: TXData
-  Txs: TXData list
-}
+type TestCase =
+  { Entities: Entity list
+    TargetDeployer: Address
+    TargetContract: Address
+    DeployTx: TXData
+    Txs: TXData list }
 
 module TestCase =
 

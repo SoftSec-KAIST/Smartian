@@ -7,20 +7,19 @@ open BytesUtils
 open EVMAnalysis
 
 /// Represents a function call with args.
-type Transaction = {
-  /// Target function.
-  FuncSpec : FuncSpec
-  /// An array of fields.
-  Args : Arg array
-  /// The index of 'Fields' to mutate for the next grey-box concolic testing.
-  ArgCursor : int
-  /// Sender of the transaction
-  Sender : Sender
-  /// Send the transaction via agent contract.
-  UseAgent: bool
-  Timestamp: int64
-  Blocknum: int64
-}
+type Transaction =
+  { /// Target function.
+    FuncSpec: FuncSpec
+    /// An array of fields.
+    Args: Arg array
+    /// The index of 'Fields' to mutate for the next grey-box concolic testing.
+    ArgCursor: int
+    /// Sender of the transaction
+    Sender: Sender
+    /// Send the transaction via agent contract.
+    UseAgent: bool
+    Timestamp: int64
+    Blocknum: int64 }
 
 module Transaction =
 

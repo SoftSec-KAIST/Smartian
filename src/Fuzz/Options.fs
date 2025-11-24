@@ -30,17 +30,16 @@ with
         "Report bugs using other tools' oracles as well.\n\
         Currently we support (BD/IB/ME/RE) X (sFuzz/ILF/Mythril/MANTICORE)."
 
-type FuzzOption = {
-  Verbosity         : int
-  OutDir            : string
-  Timelimit         : int
-  ProgPath          : string
-  ABIPath           : string
-  StaticDFA         : bool
-  DynamicDFA        : bool
-  CheckOptionalBugs : bool
-  UseOthersOracle   : bool
-}
+type FuzzOption =
+  { Verbosity: int
+    OutDir: string
+    Timelimit: int
+    ProgPath: string
+    ABIPath: string
+    StaticDFA: bool
+    DynamicDFA: bool
+    CheckOptionalBugs: bool
+    UseOthersOracle: bool }
 
 let parseFuzzOption (args: string array) =
   let cmdPrefix = "dotnet Smartian.dll fuzz"

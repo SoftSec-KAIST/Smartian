@@ -5,12 +5,11 @@ open Utils
 open BytesUtils
 open Linear
 
-type LinearEquation = {
-  Endian     : Endian
-  ChunkSize  : int
-  Linearity  : Linearity
-  Solutions  : bigint list
-}
+type LinearEquation =
+  { Endian: Endian
+    ChunkSize: int
+    Linearity: Linearity
+    Solutions: bigint list }
 
 module LinearEquation =
 
@@ -30,7 +29,7 @@ module LinearEquation =
   /// overflow/underflow.
   let private solve slope x0 y0 targetY chunkSize cmpSize =
     let unsignedWrap = getUnsignedMax cmpSize + 1I
-    let targetYs = [targetY; targetY + unsignedWrap; targetY - unsignedWrap]
+    let targetYs = [ targetY; targetY + unsignedWrap; targetY - unsignedWrap ]
     List.choose (solveAux slope x0 y0) targetYs
     |> List.distinct
     |> List.filter (fun sol -> 0I <= sol && sol <= getUnsignedMax chunkSize)
@@ -45,7 +44,7 @@ module LinearEquation =
           Endian = endian; ChunkSize = chunkSize; Solutions = sols
         }
 
-  // TODO : Optimize by reversing the Byte array when constructing ctx.
+  (* TODO : Optimize by reversing the Byte array when constructing ctx. *)
   let private concatBytes chunkSize brInfo ctx =
     let tryByte = byte brInfo.TryVal
     match ctx.ByteDir with
@@ -58,7 +57,8 @@ module LinearEquation =
       let bytes = ctx.Bytes.[0 .. (chunkSize - 2)]
       Array.append [| tryByte |] bytes
 
-  let private findAsNByteChunk ctx endian chunkSize (brInfo1, brInfo2, brInfo3) =
+  let private findAsNByteChunk ctx endian chunkSize
+    (brInfo1, brInfo2, brInfo3) =
     (* The size of comparison operation (determined by cmpb, cmpw, cmpl..) may
      * not always match with the size of input field.
      *)
@@ -102,7 +102,7 @@ module LinearEquation =
 
   let find ctx brInfoTriple =
     // Try to interpret the branch traces in the following order
-    let types = [(LE, 1); (LE, 2); (LE, 4); (LE, 8); (LE, 16); (LE, 32)]
+    let types = [ (LE, 1); (LE, 2); (LE, 4); (LE, 8); (LE, 16); (LE, 32) ]
     // Filter out invalid chunk size
     let maxLen = Array.length ctx.Bytes + 1
     let types = List.filter (fun (endian, size) -> size <= maxLen) types

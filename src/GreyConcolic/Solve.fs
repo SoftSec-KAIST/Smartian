@@ -20,8 +20,8 @@ module GreySolver =
       | None -> // Failed to observe target point, proceed with the next tryVal
         findNextCharAux seed opt targPt accStr accBrInfos tailVals
       | Some brInfo ->
-        let accBrInfos = accBrInfos @ [brInfo]
-        let ctx = { Bytes = [| |]; ByteDir = Right }
+        let accBrInfos = accBrInfos @ [ brInfo ]
+        let ctx = { Bytes = [||]; ByteDir = Right }
         match BranchTree.inferLinEq ctx accBrInfos with
         | None -> // No linear equation found yet, proceed with more brInfo
           findNextCharAux seed opt targPt accStr accBrInfos tailVals
@@ -174,10 +174,10 @@ module GreySolver =
         else accRes1, (prevHigh, low) :: accRes2
       generateRangesUnsigned high sign tailSplitPoints accRes1 accRes2
 
-  let extractMSB size (i1:bigint, i2:bigint, sign) =
+  let extractMSB size (i1: bigint, i2: bigint, sign) =
     (i1 >>> ((size - 1) * 8), i2 >>> ((size - 1) * 8), sign)
 
-  // Currently we consider constraints just for MSB.
+  (* Currently we consider constraints just for MSB. *)
   let rec generateMSBRanges splitPoints size signedness =
     if List.isEmpty splitPoints then [], [] else
       let splitPoints = List.sortBy (fun (x, _, _) -> x) splitPoints
@@ -260,7 +260,7 @@ module GreySolver =
     let negCond = Constraint.make negMSBRanges endian size
     (posCond, negCond)
 
-  let updateConditions pc distSign (condP:Constraint) (condN:Constraint) =
+  let updateConditions pc distSign (condP: Constraint) (condN: Constraint) =
     if Config.Debug then
       log "updateConditions(pc : %A, condP : %A, condN : %A)" pc condP condN
     if distSign = Positive
@@ -281,7 +281,7 @@ module GreySolver =
           if ByteConstraint.isTop byteCond then accSeeds else
             List.collect (fun range ->
               match range with
-              | Between (low, high) ->
+              | Between(low, high) ->
                 let low = if low < 0I then 0uy
                           elif low > 255I then 255uy
                           else byte low
@@ -293,7 +293,7 @@ module GreySolver =
               | Bottom -> []
               | Top -> failwith "Unreachable"
             ) byteCond
-          ) [seed] byteConds
+          ) [ seed ] byteConds
       newSeeds
 
   let solveInequality seed opt dir pc distSign branchPoint ineq =
@@ -333,7 +333,7 @@ module GreySolver =
       let pc, newSeeds = solveBranchSeq seed opt dir pc branchSeq
       let terminalSeeds = encodeCondition seed opt dir pc
       newSeeds @ terminalSeeds
-    | ForkedTree (branchSeq, (LinIneq ineq, branchPt), childs) ->
+    | ForkedTree(branchSeq, (LinIneq ineq, branchPt), childs) ->
       let pc, newSeeds = solveBranchSeq seed opt dir pc branchSeq
       let condP, condN = extractCond seed opt dir ineq branchPt
       if Config.Debug then
@@ -346,11 +346,11 @@ module GreySolver =
           solveBranchTree seed opt dir pc childTree
         ) childs
       List.concat (newSeeds :: childSeeds)
-    | ForkedTree (branchSeq, _, childs) ->
+    | ForkedTree(branchSeq, _, childs) ->
       let pc, newSeeds = solveBranchSeq seed opt dir pc branchSeq
       let childSeeds = List.map (snd >> solveBranchTree seed opt dir pc) childs
       List.concat (newSeeds :: childSeeds)
-    | DivergeTree (branchSeq, subTrees) ->
+    | DivergeTree(branchSeq, subTrees) ->
       let pc, newSeeds = solveBranchSeq seed opt dir pc branchSeq
       let subTreeSeeds = List.map (solveBranchTree seed opt dir pc) subTrees
       List.concat (newSeeds :: subTreeSeeds)

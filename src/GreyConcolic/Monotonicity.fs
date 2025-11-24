@@ -6,15 +6,14 @@ open Utils
 type Tendency = Incr | Decr | Undetermined
 
 /// Represents interval [a,b] where f is monotonic, and f(a) < k < f(b)
-type Monotonicity = {
-  LowerX   : bigint // a
-  LowerY   : bigint option // f(a) (Used only in stringfy function)
-  UpperX   : bigint // b
-  UpperY   : bigint option // f(b) (Used only in stringfy function)
-  TargetY  : bigint // k
-  Tendency : Tendency
-  ByteLen  : int
-}
+type Monotonicity =
+  { LowerX: bigint // a
+    LowerY: bigint option // f(a) (Used only in stringfy function)
+    UpperX: bigint // b
+    UpperY: bigint option // f(b) (Used only in stringfy function)
+    TargetY: bigint // k
+    Tendency: Tendency
+    ByteLen: int }
 
 module Monotonicity =
 
@@ -67,7 +66,7 @@ module Monotonicity =
         // case, we don't have to search on this monotonicity.
         None
       elif checkIntermediate tendency prevY targY y then
-        Some (make tendency prevX (Some prevY) x (Some y) targY)
+        Some(make tendency prevX (Some prevY) x (Some y) targY)
       else generateAux tendency targY x y tailCoords
 
   let generate tendency targY coordinates =
@@ -122,7 +121,7 @@ module Monotonicity =
       if y < monotonic.TargetY then // We're not there yet
         { monotonic with LowerX = x; LowerY = Some y }
       else // We've come too far
-        { monotonic with UpperX = x; UpperY = Some y}
+        { monotonic with UpperX = x; UpperY = Some y }
     | Decr ->
       if y < monotonic.TargetY then // We've come too far
         { monotonic with UpperX = x; UpperY = Some y }
@@ -136,11 +135,13 @@ module Monotonicity =
   let toString mono =
     let a = mono.LowerX.ToString()
     let b = mono.UpperX.ToString()
-    let fa = match mono.LowerY with
-             | None -> "?"
-             | Some (bi: bigint) -> bi.ToString()
-    let fb = match mono.UpperY with
-             | None -> "?"
-             | Some (bi: bigint) -> bi.ToString()
+    let fa =
+      match mono.LowerY with
+      | None -> "?"
+      | Some(bi: bigint) -> bi.ToString()
+    let fb =
+      match mono.UpperY with
+      | None -> "?"
+      | Some(bi: bigint) -> bi.ToString()
     let k = mono.TargetY.ToString()
     Printf.sprintf "f(%s)=%s < %s < f(%s)=%s" a fa k b fb

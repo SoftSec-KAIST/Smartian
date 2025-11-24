@@ -6,17 +6,16 @@ open Utils
 open BytesUtils
 
 /// A building block of program input, composed of ByteVal array.
-type Element = {
-  /// Type
-  ElemType : ArgType
-  /// An array of ByteVal elements.
-  ByteVals : ByteVal array
-  /// Maximum lenght allowed.
-  MaxLength : int
-  /// Specifies the offset within the element (i.e. the index of 'ByteVals'),
-  /// which will be used for the next grey-box concolic testing.
-  ByteCursor : int
-}
+type Element =
+  { /// Type
+    ElemType: ArgType
+    /// An array of ByteVal elements.
+    ByteVals: ByteVal array
+    /// Maximum lenght allowed.
+    MaxLength: int
+    /// Specifies the offset within the element (i.e. the index of 'ByteVals'),
+    /// which will be used for the next grey-box concolic testing.
+    ByteCursor: int }
 
 module Element =
 
@@ -83,7 +82,7 @@ module Element =
   let stepCursor elem =
     let byteCursor = elem.ByteCursor
     if byteCursor + 1 >= elem.ByteVals.Length then None
-    else Some (setCursor elem (byteCursor + 1))
+    else Some(setCursor elem (byteCursor + 1))
 
   /// Update the ByteVal at the given offset.
   let updateByteAt elem pos byte =

@@ -3,11 +3,10 @@ namespace Smartian
 open Config
 
 /// A simple, purely functional queue.
-type Queue<'a > = {
-  Enqueued : 'a list
-  ToDequeue : 'a list
-  Size : int
-}
+type Queue<'a > =
+  { Enqueued: 'a list
+    ToDequeue: 'a list
+    Size: int }
 
 module Queue =
 
@@ -67,11 +66,11 @@ module Queue =
 /// A durable queue, where elements are not volatile. Elements are fetched out
 /// in a round-robin manner, but the elements are not removed from the queue
 /// unless explicitly requested.
-type DurableQueue<'a> = {
-  Elems : 'a array
-  Count : int
-  Finger : int // Next element to fetch.
-}
+type DurableQueue<'a> =
+  { Elems: 'a array
+    Count: int
+    (* Next element to fetch. *)
+    Finger: int }
 
 module DurableQueue =
 
@@ -121,11 +120,10 @@ module DurableQueue =
 
 /// A file-system-based queue. Queue element is always a byte array (use Pickle
 /// to encode a value into a byte array).
-type FileQueue = {
-  Name : string
-  Directory : string
-  LowerIdx : int
-  UpperIdx : int
-  Finger : int
-  MaxCount : int
-}
+type FileQueue =
+  { Name: string
+    Directory: string
+    LowerIdx: int
+    UpperIdx: int
+    Finger: int
+    MaxCount: int }

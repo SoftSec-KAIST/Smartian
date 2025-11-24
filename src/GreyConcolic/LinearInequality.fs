@@ -5,24 +5,22 @@ open Utils
 open BytesUtils
 open Linear
 
-type SimpleLinearInequality = {
-  Endian      : Endian
-  ChunkSize   : int
-  Linearity   : Linearity
-  SplitPoints : (bigint * bigint) list
-}
+type SimpleLinearInequality =
+  { Endian: Endian
+    ChunkSize: int
+    Linearity: Linearity
+    SplitPoints: (bigint * bigint) list }
 
 module SimpleLinearInequality =
-  let toString (linIneq : SimpleLinearInequality) =
+  let toString (linIneq: SimpleLinearInequality) =
     let linearity = linIneq.Linearity
     let splits = linIneq.SplitPoints
     Printf.sprintf "%s (split=%A)" (Linear.toString linearity) splits
 
-type LinearInequality = {
-  TightInequality : LinearEquation option
-  LooseInequality : SimpleLinearInequality option
-  Sign            : Signedness
-}
+type LinearInequality =
+  { TightInequality: LinearEquation option
+    LooseInequality: SimpleLinearInequality option
+    Sign: Signedness }
 
 module LinearInequality =
 
@@ -36,15 +34,15 @@ module LinearInequality =
     let candidate = x0 + (targetY - y0) * slope.Denominator / slope.Numerator
     let checkY = y0 + (candidate - x0) * slope.Numerator / slope.Denominator
     if targetY = checkY then
-      Some (candidate - 1I, candidate + 1I)
+      Some(candidate - 1I, candidate + 1I)
     elif checkY > targetY && slope.Numerator > 0I then
-      Some (candidate - 1I, candidate)
+      Some(candidate - 1I, candidate)
     elif checkY > targetY && slope.Numerator < 0I then
-      Some (candidate, candidate + 1I)
+      Some(candidate, candidate + 1I)
     elif checkY < targetY && slope.Numerator > 0I then
-      Some (candidate, candidate + 1I)
+      Some(candidate, candidate + 1I)
     elif checkY < targetY && slope.Numerator < 0I then
-      Some (candidate - 1I, candidate)
+      Some(candidate - 1I, candidate)
     else None
 
   /// Solve linear constraint. We should consider the wrap-around due to
@@ -54,10 +52,10 @@ module LinearInequality =
       match sign with
       | Signed ->
         let signedWrap = getSignedMax cmpSize + 1I
-        [-signedWrap; targetY; signedWrap]
+        [ -signedWrap; targetY; signedWrap ]
       | Unsigned ->
         let unsignedWrap = getUnsignedMax cmpSize + 1I
-        [0I; targetY; unsignedWrap]
+        [ 0I; targetY; unsignedWrap ]
     List.choose (solveAux slope x0 y0 sign) targetYs
     |> List.distinct
     |> List.filter
@@ -73,7 +71,7 @@ module LinearInequality =
           Endian = endian; ChunkSize = chunkSize; SplitPoints = sols
         }
 
-  // TODO : Optimize by reversing the Byte array when constructing ctx.
+  (* TODO : Optimize by reversing the Byte array when constructing ctx. *)
   let private concatBytes chunkSize brInfo ctx =
     let tryByte = byte brInfo.TryVal
     match ctx.ByteDir with
@@ -86,7 +84,8 @@ module LinearInequality =
       let bytes = ctx.Bytes.[0 .. (chunkSize - 2)]
       Array.append [| tryByte |] bytes
 
-  let private findAsNByteChunk ctx endian chunkSize (brInfo1, brInfo2, brInfo3) =
+  let private findAsNByteChunk ctx endian chunkSize
+    (brInfo1, brInfo2, brInfo3) =
     (* The size of comparison operation (determined by cmpb, cmpw, cmpl..) may
      * not always match with the size of input field.
      *)
@@ -128,7 +127,8 @@ module LinearInequality =
 
   let private findLoose ctx branchInfoTriple =
     // Try to interpret the branch information in the following order
-    let types = [(BE, 1); (BE, 2); (LE, 2); (BE, 4); (LE, 4); (BE, 8); (LE, 8)]
+    let types =
+      [ (BE, 1); (BE, 2); (LE, 2); (BE, 4); (LE, 4); (BE, 8); (LE, 8) ]
     // Filter out invalid chunk size
     let maxLen = Array.length ctx.Bytes + 1
     let types = List.filter (fun (endian, size) -> size <= maxLen) types

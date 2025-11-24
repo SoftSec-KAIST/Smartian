@@ -23,7 +23,7 @@ module ByteVal =
 
   let getConcreteByte = function
     | Untouched b | Undecided b | Fixed b | Sampled b -> b
-    | Interval (low, high)  -> byte ((uint32 low + uint32 high) / 2u)
+    | Interval(low, high)  -> byte ((uint32 low + uint32 high) / 2u)
 
   let isFixed = function
     | Fixed _ -> true
@@ -49,7 +49,7 @@ module ByteVal =
     | Undecided b -> sprintf "%02x?" b
     | Fixed b -> sprintf "%02x!" b
     // | Interval (low, upper) -> sprintf "%02x@(%02x-%02x)" low low upper
-    | Interval (low, upper) ->
+    | Interval(low, upper) ->
       sprintf "%02x@(%02x-%02x)" ((low + upper) / 2uy) low upper
     | Sampled b -> sprintf "%02x*" b
 
@@ -57,4 +57,4 @@ module ByteVal =
     match byteVal with
     | Untouched _ | Undecided _ | Sampled _ -> (0uy, 255uy) (* All bytes *)
     | Fixed x -> (x, x)
-    | Interval (low, upper) -> (low, upper)
+    | Interval(low, upper) -> (low, upper)

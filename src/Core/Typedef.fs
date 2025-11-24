@@ -29,4 +29,4 @@ type Sender =
 module Sender =
 
   let pick () =
-    pickFromList [TargetOwner; NormalUser1; NormalUser2; NormalUser3]
+    pickFromList [ TargetOwner; NormalUser1; NormalUser2; NormalUser3 ]

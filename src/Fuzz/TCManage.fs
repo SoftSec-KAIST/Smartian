@@ -8,6 +8,7 @@ open Utils
 (*** Directory paths ***)
 
 let mutable tcDir = ""
+
 let mutable bugDir = ""
 
 let initialize outDir =
@@ -19,19 +20,33 @@ let initialize outDir =
 (*** Statistics ***)
 
 let mutable private totalTC = 0
+
 let mutable private totalBug = 0
+
 let mutable private totalAF = 0
+
 let mutable private totalAW = 0
+
 let mutable private totalBD = 0
+
 let mutable private totalCH = 0
+
 let mutable private totalEL = 0
+
 let mutable private totalIB = 0
+
 let mutable private totalME = 0
+
 let mutable private totalMS = 0
+
 let mutable private totalRE = 0
+
 let mutable private totalSC = 0
+
 let mutable private totalTO = 0
+
 let mutable private totalFE = 0
+
 let mutable private totalRV = 0
 
 let checkFreezingEtherBug () =
@@ -102,7 +117,7 @@ let private dumpBug opt seed bugSet =
   let tag = decideBugTag bugSet
   let tc = Seed.concretize seed
   let tcStr = TestCase.toJson tc
-  let tcName = sprintf "id-%05d-%s_%05d" totalBug tag (elapsedSec())
+  let tcName = sprintf "id-%05d-%s_%05d" totalBug tag (elapsedSec ())
   let tcPath = System.IO.Path.Combine(bugDir, tcName)
   if opt.Verbosity >= 0 then
     log "[*] Save bug seed %s: %s" tcName (Seed.toString seed)
@@ -112,7 +127,7 @@ let private dumpBug opt seed bugSet =
 let private dumpTestCase opt seed =
   let tc = Seed.concretize seed
   let tcStr = TestCase.toJson tc
-  let tcName = sprintf "id-%05d_%05d" totalTC (elapsedSec())
+  let tcName = sprintf "id-%05d_%05d" totalTC (elapsedSec ())
   let tcPath = System.IO.Path.Combine(tcDir, tcName)
   if opt.Verbosity >= 1 then
     log "[*] Save new seed %s: %s" tcName (Seed.toString seed)

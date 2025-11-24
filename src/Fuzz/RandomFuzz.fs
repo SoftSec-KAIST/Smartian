@@ -6,20 +6,24 @@ open BytesUtils
 open EVMAnalysis
 
 let private MUTATE_MAX_POW = 7
+
 let private ARITH_MAX = 35
 
-// Mutable variables for statistics management.
+(* Mutable variables for statistics management. *)
 let mutable private recentExecNums: Queue<int> = Queue.empty
+
 let mutable private recentNewPathNums: Queue<int> = Queue.empty
 
 let updateStatus execN newPathN =
-  let recentExecNums' = if Queue.size recentExecNums > CHECK_LAST_N_ROUND
-                        then Queue.drop recentExecNums
-                        else recentExecNums
+  let recentExecNums' =
+    if Queue.size recentExecNums > CHECK_LAST_N_ROUND
+    then Queue.drop recentExecNums
+    else recentExecNums
   recentExecNums <- Queue.enqueue recentExecNums' execN
-  let recentNewPathNums' = if Queue.size recentNewPathNums > CHECK_LAST_N_ROUND
-                           then Queue.drop recentNewPathNums
-                           else recentNewPathNums
+  let recentNewPathNums' =
+    if Queue.size recentNewPathNums > CHECK_LAST_N_ROUND
+    then Queue.drop recentNewPathNums
+    else recentNewPathNums
   recentNewPathNums <- Queue.enqueue recentNewPathNums' newPathN
 
 let evaluateEfficiency () =
@@ -43,7 +47,7 @@ let private shuffleTransaction seed =
   if txNum < 3 then seed
   else // Avoid shuffling with the deploying transaction.
     match randomSelect (List.ofSeq { 1 .. (txNum - 1) }) 2 with
-    | [idx1; idx2] -> Seed.swapTransactions seed idx1 idx2
+    | [ idx1; idx2 ] -> Seed.swapTransactions seed idx1 idx2
     | _ -> failwith "Unreachable"
 
 let private removeTransaction seed =
@@ -91,21 +95,21 @@ let private tryInterestingByte elem =
   let newByte = pickBoundaryByte ()
   Element.updateByteAt elem i newByte
 
-// TODO: Cleanup
+(* TODO: Cleanup *)
 let private pickBoundaryIntBytes width =
   if width < 2 then failwithf "Invalid width: %d" width
   let ZEROS = Array.create (width - 2) 0uy
   let MASKS = Array.create (width - 2) 0xFFuy
   match random.Next(9) with
-  | 0 -> Array.concat [ [| 0x00uy |]; ZEROS; [|0x00uy|] ] // 0000 .. 0000
-  | 1 -> Array.concat [ [| 0x00uy |]; ZEROS; [|0x01uy|] ] // 0000 .. 0001
-  | 2 -> Array.concat [ [| 0x3Fuy |]; MASKS; [|0xFFuy|] ] // 3FFF .. FFFF
-  | 3 -> Array.concat [ [| 0x40uy |]; ZEROS; [|0x00uy|] ] // 4000 .. 0000
-  | 4 -> Array.concat [ [| 0x40uy |]; ZEROS; [|0x01uy|] ] // 4000 .. 0001
-  | 5 -> Array.concat [ [| 0x7Fuy |]; MASKS; [|0xFFuy|] ] // 7FFF .. FFFF
-  | 6 -> Array.concat [ [| 0x80uy |]; ZEROS; [|0x00uy|] ] // 8000 .. 0000
-  | 7 -> Array.concat [ [| 0x80uy |]; ZEROS; [|0x01uy|] ] // 8000 .. 0001
-  | 8 -> Array.concat [ [| 0xFFuy |]; MASKS; [|0xFFuy|] ] // FFFF .. FFFF
+  | 0 -> Array.concat [ [| 0x00uy |]; ZEROS; [| 0x00uy |] ] // 0000 .. 0000
+  | 1 -> Array.concat [ [| 0x00uy |]; ZEROS; [| 0x01uy |] ] // 0000 .. 0001
+  | 2 -> Array.concat [ [| 0x3Fuy |]; MASKS; [| 0xFFuy |] ] // 3FFF .. FFFF
+  | 3 -> Array.concat [ [| 0x40uy |]; ZEROS; [| 0x00uy |] ] // 4000 .. 0000
+  | 4 -> Array.concat [ [| 0x40uy |]; ZEROS; [| 0x01uy |] ] // 4000 .. 0001
+  | 5 -> Array.concat [ [| 0x7Fuy |]; MASKS; [| 0xFFuy |] ] // 7FFF .. FFFF
+  | 6 -> Array.concat [ [| 0x80uy |]; ZEROS; [| 0x00uy |] ] // 8000 .. 0000
+  | 7 -> Array.concat [ [| 0x80uy |]; ZEROS; [| 0x01uy |] ] // 8000 .. 0001
+  | 8 -> Array.concat [ [| 0xFFuy |]; MASKS; [| 0xFFuy |] ] // FFFF .. FFFF
   | _ -> failwith "Invalid mutation code"
   |> Array.rev // Since we use little endian for integer types.
 
@@ -114,9 +118,9 @@ let private pickInterestingElemBytes elemType =
   | Int width | UInt width ->
     if width = 1 then [| pickBoundaryByte () |]
     else pickBoundaryIntBytes width
-  | Address -> Address.pickInteresting() |> Address.toBytes LE
+  | Address -> Address.pickInteresting () |> Address.toBytes LE
   | Bool -> [| 0uy |]
-  | Byte -> [| pickBoundaryByte() |]
+  | Byte -> [| pickBoundaryByte () |]
   | String -> [| 0x41uy; 0x42uy; 0x43uy; 0uy |]
   | Array _ -> failwith "Array type not allowed for an element"
 

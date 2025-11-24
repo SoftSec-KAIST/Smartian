@@ -10,7 +10,7 @@ module BranchTrace =
 
   let collect seed opt minVal maxVal =
     let tryVals = sampleInt minVal maxVal N_SPAWN
-    let tryBytes = List.map (fun v -> Sampled (byte v)) tryVals
+    let tryBytes = List.map (fun v -> Sampled(byte v)) tryVals
     let trySeeds = List.map (Seed.updateCurByte seed) tryBytes
     let traces = List.map2 (Executor.getBranchTrace opt) trySeeds tryVals
     (traces, trySeeds)

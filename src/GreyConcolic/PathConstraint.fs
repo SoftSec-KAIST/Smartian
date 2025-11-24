@@ -12,26 +12,26 @@ module Interval =
 
   let top = Top
 
-  let make (low, high) = Between (low, high)
+  let make (low, high) = Between(low, high)
 
   let conjunction range1 range2 =
     match range1, range2 with
     | Top, _ -> range2
     | _, Top -> range1
     | Bottom, _ | _, Bottom -> Bottom
-    | Between (low1, high1), Between (low2, high2) ->
+    | Between(low1, high1), Between(low2, high2) ->
       if high1 < low2 || high2 < low1
       then Bottom
-      else Between (max low1 low2, min high1 high2)
+      else Between(max low1 low2, min high1 high2)
 
 type ByteConstraint = Interval list // Disjunction of each range
 
 module ByteConstraint =
 
-  // keyword 'false' is reserved, so cannot be used.
+  (* keyword 'false' is reserved, so cannot be used. *)
   let bot = []
 
-  // keyword 'true' is reserved, so cannot be used.
+  (* keyword 'true' is reserved, so cannot be used. *)
   let top = [ Interval.top ]
 
   let isBot = List.forall (fun range -> range = Bottom)
@@ -60,11 +60,11 @@ type Constraint = ByteConstraint list // Conjunction of each byte condition
 
 module Constraint =
 
-  // keyword 'false' is reserved, so cannot be used.
+  (* keyword 'false' is reserved, so cannot be used. *)
   let bot = [ ByteConstraint.bot ]
 
-  // keyword 'true' is reserved, so cannot be used.
-  let top = [ ]
+  (* keyword 'true' is reserved, so cannot be used. *)
+  let top = []
 
   let isBot x = List.exists ByteConstraint.isBot x
 
@@ -76,7 +76,7 @@ module Constraint =
         List.map (fun _ -> ByteConstraint.top) (List.ofSeq { 1 .. (size - 1) })
       padding @ [ ByteConstraint.make msbRanges ]
 
-  // Algin condition into the same length of byte constraint list
+  (* Algin condition into the same length of byte constraint list *)
   let alignCondition cond1 cond2 =
     if List.length cond1 < List.length cond2 then
       let n = List.length cond2 - List.length cond1

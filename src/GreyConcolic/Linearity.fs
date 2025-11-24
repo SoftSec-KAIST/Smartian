@@ -3,23 +3,20 @@ module Smartian.Linear
 open Utils
 
 type Fraction =
-  {
-    Numerator : bigint
-    Denominator : bigint
-  }
-  static member (==) (f1 : Fraction, f2 : Fraction) =
+  { Numerator: bigint
+    Denominator: bigint }
+  static member (==) (f1: Fraction, f2: Fraction) =
     f1.Numerator * f2.Denominator = f1.Denominator * f2.Numerator
 
 /// Represents (y-y0) = a * (x-x0)
-type Linearity = {
+type Linearity =
   (* The size of comparison operation (determined by cmpb, cmpw, cmpl..) may
-   * not always match with the size of input field.
-   *)
-  Slope      : Fraction // a
-  X0         : bigint
-  Y0         : bigint
-  Target     : bigint // 'y' value we want to achieve
-}
+     not always match with the size of input field.*)
+  { Slope: Fraction // a
+    X0: bigint
+    Y0: bigint
+    // 'y' value we want to achieve
+    Target: bigint }
 
 let generate slope x0 y0 targetY =
   { Slope = slope; X0 = x0; Y0 = y0; Target = targetY }

@@ -6,6 +6,7 @@ open Options
 
 // Mutable variables for statistics management.
 let mutable private recentExecNums: Queue<int> = Queue.empty
+
 let mutable private recentNewPathNums: Queue<int> = Queue.empty
 
 let updateStatus execN newPathN =

@@ -10,7 +10,7 @@ let random = System.Random()
 /// Converts a F# list into C# list.
 let toCsList (l: 'T list) = new List<'T>(l)
 
-// Give a less confusing name to identity function, 'id'.
+(* Give a less confusing name to identity function, 'id'. *)
 let identity = id
 
 let startTime = DateTime.Now
@@ -35,7 +35,7 @@ let escapeWhiteSpace (str: string) =
   let str = str.Replace("\n", "\\n").Replace("\r", "\\r")
   str.Replace(" ", "\\s").Replace("\t", "\\t")
 
-// Auxiliary function for splitList().
+(* Auxiliary function for splitList(). *)
 let rec private splitListAux n lst accum =
   match lst with
   | head :: tail when (n > 0) -> splitListAux (n - 1) tail (head :: accum)
@@ -77,8 +77,8 @@ let getUnsignedMax = function
   | 8 -> bigint (UInt64.MaxValue)
   | i -> (1I <<< (i * 8)) - 1I
 
-// Auxiliary function for randSubset().
-let private randomSubsetAux (accumSet : ImmutableHashSet<int>) i =
+(* Auxiliary function for randSubset(). *)
+let private randomSubsetAux (accumSet: ImmutableHashSet<int>) i =
   let t = random.Next(i + 1) // 't' will be in the range 0 ~ i.
   if accumSet.Contains(t)
   then accumSet.Add(i)
@@ -103,7 +103,7 @@ let pickFromList (list: 'a list) =
   list.[random.Next(list.Length)]
 
 /// Select integers uniformly from the given range.
-let sampleInt min max (n : int) =
+let sampleInt min max (n: int) =
   if max < min then failwith "sampleInt() : invalid range provided"
   let bigIntN = bigint n
   if max - min + 1I <= bigIntN then List.ofSeq {min .. max} else
